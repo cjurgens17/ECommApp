@@ -1,0 +1,9 @@
+<h1 class="text-3xl font-bold underline text-red-500">
+{{title | titlecase}}
+</h1>
+
+<table>
+  <th *ngFor="let product of products">
+    <tr>{{product.name}}</tr>
+  </th>
+</table>
