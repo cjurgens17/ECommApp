@@ -9,13 +9,17 @@ import { RouterModule } from '@angular/router';
 import { ProductsComponent } from './products/products.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ViewProductComponent } from './view-product/view-product.component';
+import { ViewCartComponent } from './view-cart/view-cart.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductsComponent,
     NavbarComponent,
-    ViewProductComponent
+    ViewProductComponent,
+    ViewCartComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,
@@ -24,6 +28,8 @@ import { ViewProductComponent } from './view-product/view-product.component';
     RouterModule.forRoot([
       {path: 'home', component: ProductsComponent},
       {path: 'viewproduct', component: ViewProductComponent},
+      {path: 'viewcart', component: ViewCartComponent},
+      {path: 'checkout', component: CheckoutComponent},
       {path: '', redirectTo:'home', pathMatch: 'full'},
       {path: '**', redirectTo: 'home', pathMatch: 'full'},
 

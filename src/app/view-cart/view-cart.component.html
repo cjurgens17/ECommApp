@@ -1,0 +1,44 @@
+<p>view-cart works!</p>
+
+<table
+*ngIf="cart$ | async as c"
+class="min-w-full bg-white border border-gray-300">
+  <thead>
+    <tr>
+      <th class="px-6 py-3 border-b">Product</th>
+      <th class="px-6 py-3 border-b">Quantity</th>
+      <th class="px-6 py-3 border-b">Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+     *ngFor="let product of c.products"
+     >
+      <td class="px-6 py-4 whitespace-nowrap border-b">{{ product.name | titlecase }}<img [src]="product.image"></td>
+      <div class="flex items-center">
+        <button class="px-2 py-1 bg-blue-500 text-white rounded" (click)="decrementQuantity(product)">-</button>
+        <span class="px-2">{{ product.quantity }}</span>
+        <button class="px-2 py-1 bg-blue-500 text-white rounded" (click)="incrementQuantity(product)">+</button>
+      </div>
+      <td class="px-6 py-4 whitespace-nowrap border-b">{{ product.price * product.quantity | currency}}</td>
+      <td class="px-6 py-4 whitespace-nowrap border-b">
+        <button href="#" (click)="removeFromCart(c.products,product)">Remove</button>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td class="px-6 py-4 whitespace-nowrap" colspan="2">Total</td>
+      <td class="px-6 py-4 whitespace-nowrap border-b">
+        {{ getTotalAmount(c.products) | currency:'USD' }}
+      </td>
+    </tr>
+  </tfoot>
+
+  <div class="flex justify-center mt-8">
+    <button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" (click)="checkout(c)">Checkout</button>
+  </div>
+</table>
+
+
+

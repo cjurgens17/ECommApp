@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Product } from './products';
 import { ProductsService } from './products.service';
 import { Cart } from './cart';
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, OnDestroy {
   title:string = 'Products Page';
   products!: Product[];
   cart!: Cart;
@@ -49,5 +49,10 @@ this.router.navigate(['/viewproduct']);
     .subscribe({
       next: cart => this.cart = cart
     });
+  }
+
+  ngOnDestroy(): void {
+    this.ngUnSubscribe.next();
+    this.ngUnSubscribe.complete();
   }
 }

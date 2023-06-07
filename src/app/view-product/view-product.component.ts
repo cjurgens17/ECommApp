@@ -14,7 +14,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
 
   cart!:Cart;
   product$ = this.viewProductService.productSubject$;
-  @Input() quantity: number = 0;
+  @Input() quantity: number = 1;
 
   private ngUnSubscribe = new Subject<void>();
 
@@ -28,7 +28,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
     }
 
     decrementQuantity() {
-      if (this.quantity > 0) {
+      if (this.quantity > 1) {
         this.quantity--;
       }
     }
@@ -48,7 +48,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
       product.quantity = this.quantity;
       this.cart.products.push(product);
     }
-    
+
     this.cart.size = this.cart.products.length;
     console.log(this.cart);
     this.productsService.setNextCart(this.cart);
