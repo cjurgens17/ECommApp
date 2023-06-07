@@ -1,19 +1,35 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Products } from './products';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { Product } from './products';
+import { Cart } from './cart';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
+  private cartSubject = new BehaviorSubject<Cart>(
+    {
+      products: [],
+      size: 0,
+      price: 0
+    }
+  );
+  cart$ = this.cartSubject.asObservable();
+
 
   constructor(private http: HttpClient) { }
 
   SERVER_URL: string = 'http://localhost:8080/api';
+    ///----------------Http calls
+  getProducts():Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.SERVER_URL}/products`);
+  }
 
-  getProducts():Observable<Products[]> {
-    return this.http.get<Products[]>(`${this.SERVER_URL}/products`);
+
+  //------functions
+  setNextCart(cart: Cart): void {
+    this.cartSubject.next(cart);
   }
 
 }

@@ -7,11 +7,15 @@ import { AppComponent } from './app.component';
 import { InMemoryService } from './inmemoryDB/in-memory.service';
 import { RouterModule } from '@angular/router';
 import { ProductsComponent } from './products/products.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { ViewProductComponent } from './view-product/view-product.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductsComponent
+    ProductsComponent,
+    NavbarComponent,
+    ViewProductComponent
   ],
   imports: [
     BrowserModule,
@@ -19,8 +23,10 @@ import { ProductsComponent } from './products/products.component';
     HttpClientInMemoryWebApiModule.forRoot(InMemoryService),
     RouterModule.forRoot([
       {path: 'home', component: ProductsComponent},
+      {path: 'viewproduct', component: ViewProductComponent},
       {path: '', redirectTo:'home', pathMatch: 'full'},
-      {path: '**', redirectTo: 'home', pathMatch: 'full'}
+      {path: '**', redirectTo: 'home', pathMatch: 'full'},
+
     ])
 
   ],

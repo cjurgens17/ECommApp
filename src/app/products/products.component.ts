@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Products } from './products';
+import { Product } from './products';
 import { ProductsService } from './products.service';
+import { Cart } from './cart';
+import { Subject, takeUntil } from 'rxjs';
+import { ViewProductService } from '../view-product/view-product.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -9,14 +13,41 @@ import { ProductsService } from './products.service';
 })
 export class ProductsComponent implements OnInit {
   title:string = 'Products Page';
-  products!: Products[];
+  products!: Product[];
+  cart!: Cart;
 
-constructor(private productsService: ProductsService){}
+  private ngUnSubscribe = new Subject<void>();
+
+constructor(
+  private productsService: ProductsService,
+  private viewProductService: ViewProductService,
+  private router: Router
+   ){}
+
+
+
+//----------------cart functions------
+
+viewProduct(product:Product): void {
+this.viewProductService.swappingProductSubject(product);
+this.router.navigate(['/viewproduct']);
+}
 //-----------LifeCycle Hooks---------------
   ngOnInit(): void {
     this.productsService.getProducts()
+    .pipe(
+      takeUntil(this.ngUnSubscribe)
+    )
     .subscribe({
       next: products => this.products = products
-    })
+    });
+
+    this.productsService.cart$
+    .pipe(
+      takeUntil(this.ngUnSubscribe)
+    )
+    .subscribe({
+      next: cart => this.cart = cart
+    });
   }
 }
