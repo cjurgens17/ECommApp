@@ -1,0 +1,38 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family:'Courier New', Courier, monospace;
+}
+
+nav {
+  background-color: hsla(187, 17%, 53%, 0.849);
+  min-height: 5rem;
+}
+
+.logo {
+  margin-right: auto;
+  padding-left: 16px;
+}
+
+.logo > button:hover {
+  text-decoration: underline;
+  color: hsla(209, 89%, 48%, 0.815);
+}
+
+.options {
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
+}
+
+.options > button:hover {
+  text-decoration: underline;
+  color: hsla(209, 89%, 48%, 0.815);
+}
+
+.options:last-child {
+  padding-right: 16px;
+}
+
+

@@ -1,12 +1,12 @@
 <p>view-product works!</p>
-
+<div class="spacer"></div>
+<div class="max-width-wrapper">
 <div *ngIf="product$ | async as product" class="flex flex-col justify-center items-center">
   <h1>{{product.name}}</h1>
-  <h1><img [src]="product.image"></h1>
+  <!-- <h1><img [src]="product.image"></h1> -->
+  <h1><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8rGqdL5lp7cWIyv2mNrNolgeZVPwRqD5o-g&usqp=CAU"></h1>
   <h1>{{product.price}}</h1>
   <h1>{{product.id}}</h1>
-  <button (click)="addToCart(product)">Add To Cart</button>
-
   <div class="flex items-center justify-between p-4">
     <div class="flex items-center space-x-4">
       <button class="p-2 bg-blue-500 text-white rounded-full" (click)="decrementQuantity()">-</button>
@@ -17,6 +17,8 @@
       <!-- Display the cart item details here -->
     </div>
   </div>
+  <button class="button" (click)="addToCart(product)">Add To Cart</button>
+</div>
 </div>
 
 

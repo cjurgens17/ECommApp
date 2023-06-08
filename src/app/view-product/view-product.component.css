@@ -1,0 +1,43 @@
+.max-width-wrapper {
+  max-width: 500px;
+  margin-right: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+p {
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 3rem;
+  font-weight: 500;
+  margin: 10px 0;
+  text-transform: capitalize;
+}
+
+.spacer {
+  display: block;
+  height:4rem;
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  background-color: hsla(209, 89%, 48%, 0.815);
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: hsla(209, 92%, 28%, 0.815);
+}
+
+
