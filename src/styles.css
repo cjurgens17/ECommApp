@@ -3,6 +3,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
+
 
 *,
 *:before,
@@ -15,4 +17,11 @@
 body, html {
   height: 100%;
   margin: 0;
+}
+
+body {
+  font-family: "Raleway",Helvetica,sans-serif;
+  --font-weight-light: 315;
+  --font-weight-medium: 630;
+  --font-weight-dark: 945;
 }

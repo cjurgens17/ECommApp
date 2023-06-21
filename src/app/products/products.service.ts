@@ -26,6 +26,10 @@ export class ProductsService {
     return this.http.get<Product[]>(`${this.SERVER_URL}/products`);
   }
 
+  getAdvertisedProducts():Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.SERVER_URL}/advertisedProducts`);
+  }
+
 
   //------functions
   setNextCart(cart: Cart): void {

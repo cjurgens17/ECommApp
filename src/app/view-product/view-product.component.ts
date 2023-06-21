@@ -58,6 +58,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
     this.cart.size = this.cart.products.length;
     console.log(this.cart);
     this.productsService.setNextCart(this.cart);
+    this.quantity = 1;
   }
 
   viewProduct(product:Product): void {

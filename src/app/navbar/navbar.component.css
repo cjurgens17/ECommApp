@@ -2,19 +2,36 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  font-family:'Courier New', Courier, monospace;
 }
 
 nav {
   position: sticky;
   top: 0;
-  background-color: hsla(187, 17%, 53%);
+  background-color: white;
   min-height: 5rem;
+  padding: 48px;
+}
+
+nav h1:first-of-type {
+  color: black;
+  font-size: 3rem;
+  font-weight: 500;
+  font-family:Helvetica;
+  margin-right: auto;
+  margin-left: auto;
+
 }
 
 .logo {
-  margin-right: auto;
+  display: flex;
+  gap: 16px;
   padding-left: 16px;
+  font-weight: var(--font-weight-light);
+  font-size: 1.15rem;
+}
+
+.logo > button {
+  color:gray;
 }
 
 .logo > button:hover {
@@ -25,7 +42,13 @@ nav {
 .options {
   display: flex;
   flex-direction: row;
-  gap: 3rem;
+  gap: 2rem;
+  font-weight: var(--font-weight-light);
+  font-size: 1.15rem;
+}
+
+.options > button {
+  color: gray;
 }
 
 .options > button:hover {
@@ -36,5 +59,7 @@ nav {
 .options:last-child {
   padding-right: 16px;
 }
+
+
 
 
