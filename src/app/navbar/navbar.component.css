@@ -6,7 +6,9 @@
 }
 
 nav {
-  background-color: hsla(187, 17%, 53%, 0.849);
+  position: sticky;
+  top: 0;
+  background-color: hsla(187, 17%, 53%);
   min-height: 5rem;
 }
 

@@ -1,0 +1,43 @@
+footer {
+  --min-foot-size: 200px;
+  display: grid;
+  height: fit-content;
+  background-color: hsla(187, 8%, 78%);
+  grid-template-columns:
+  1fr 1fr;
+  grid-template-rows: 1fr;
+}
+
+
+.col {
+  display: flex;
+  flex-direction: column;
+  min-height: fit-content;
+  justify-content: start;
+  align-items: start;
+  gap: 8px;
+  padding: 16px;
+}
+
+.col.one h1:first-of-type {
+  margin-bottom: 16px;
+  font-weight: 500;
+  color: white;
+}
+
+.col.one > p {
+  font-weight: 300;
+  color: white;
+}
+
+.col.one h1:last-of-type {
+  margin-top: 16px;
+  font-weight: 300;
+  color: white;
+}
+
+.col.two > button {
+  color: white;
+  padding: 8px;
+  margin-left: auto;
+}

@@ -1,26 +1,12 @@
-<!-- <h1 class="text-3xl font-bold underline text-red-500">
-{{title | titlecase}}
-</h1>
-
-<table>
-  <th>Products:
-    <tr *ngFor="let product of products">{{product.name}}</tr>
-  </th>
-  <th>Price:
-    <tr *ngFor="let product of products">{{product.price | currency}}</tr>
-  </th>
-  <th>Image:
-    <tr>
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBSYD7aICN18099fxql0kpHCZoS-SthRo83g&usqp=CAU"/>
-    </tr>
-  </th>
-</table> -->
-<div class="h-screen">
-<div *ngFor="let product of products" class="container h-1/2">
-  <div class="border-4 w-80 flex flex-col justify-start items-center mt-4 ml-4 h-full">
-    <img [src]=product.image>
-    <button class="bg-blue-300"(click)="viewProduct(product)">View</button>
-  </div>
+<div class="wrapper">
+  <button (click)="viewProduct(product)" *ngFor="let product of products">
+    <div class="card">
+      <div class="image-container">
+        <img class="card-img" [src]="product.image" alt="product.name">
+      </div>
+      <h1>{{product.name | titlecase}}</h1>
+      <h1>{{product.price | currency}}</h1>
+      <h1 *ngIf="product.quantity <= 5">Only {{product.quantity}} Left</h1>
+    </div>
+  </button>
 </div>
-</div>
-<!-- create a card for a product than we can load all of them- we will find a ecomm shop to emulate and try to setup the css the same way -->

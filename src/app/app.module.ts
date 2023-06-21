@@ -11,6 +11,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ViewProductComponent } from './view-product/view-product.component';
 import { ViewCartComponent } from './view-cart/view-cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { HomeComponent } from './home/home.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -19,14 +21,17 @@ import { CheckoutComponent } from './checkout/checkout.component';
     NavbarComponent,
     ViewProductComponent,
     ViewCartComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    HomeComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(InMemoryService),
     RouterModule.forRoot([
-      {path: 'home', component: ProductsComponent},
+      {path: 'home', component: HomeComponent},
+      {path: 'products', component: ProductsComponent},
       {path: 'viewproduct', component: ViewProductComponent},
       {path: 'viewcart', component: ViewCartComponent},
       {path: 'checkout', component: CheckoutComponent},
