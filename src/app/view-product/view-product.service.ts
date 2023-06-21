@@ -14,6 +14,7 @@ export class ViewProductService {
     name: '',
     price: 0,
     image: '',
+    altImage: '',
     quantity: 0
   }
   );

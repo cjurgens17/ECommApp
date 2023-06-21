@@ -1,24 +1,51 @@
-<p>view-product works!</p>
-<div class="spacer"></div>
-<div class="max-width-wrapper">
-<div *ngIf="product$ | async as product" class="flex flex-col justify-center items-center">
-  <h1>{{product.name}}</h1>
-  <!-- <h1><img [src]="product.image"></h1> -->
-  <h1><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8rGqdL5lp7cWIyv2mNrNolgeZVPwRqD5o-g&usqp=CAU"></h1>
-  <h1>{{product.price}}</h1>
-  <h1>{{product.id}}</h1>
-  <div class="flex items-center justify-between p-4">
-    <div class="flex items-center space-x-4">
-      <button class="p-2 bg-blue-500 text-white rounded-full" (click)="decrementQuantity()">-</button>
-      <span>{{ quantity }}</span>
-      <button class="p-2 bg-blue-500 text-white rounded-full" (click)="incrementQuantity()">+</button>
-    </div>
-    <div>
-      <!-- Display the cart item details here -->
-    </div>
+<div class="wrapper" *ngIf="product$ |async as product">
+  <div class="sub-header">Product > {{product.name | titlecase}}</div>
+  <div class="product-grid">
+    <aside>
+      <div class="aside-img-container">
+        <button (click)="updateImage(true)">
+        <img
+          [src]="product.image">
+        </button>
+      </div>
+      <div class="aside-img-container">
+        <button (click)="updateImage(false)">
+        <img  [src]="product.altImage">
+      </button>
+      </div>
+    </aside>
+    <figure>
+      <div class="figure-img-container" [ngSwitch]="showPicture">
+        <img *ngSwitchCase='true' [src]="product.image">
+        <img *ngSwitchCase="false" [src]="product.altImage">
+        <img *ngSwitchDefault [src]="product.image">
+      </div>
+    </figure>
+    <main>
+      <h1>{{product.name}}</h1>
+      <p class="price">{{product.price | currency}}</p>
+      <p class="product-description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit incidunt nulla natus unde voluptates laborum,
+        ipsa atque dolorum aperiam harum? Ex, ipsum optio. Quisquam corrupti, repellat pariatur saepe in blanditiis.</p>
+      <p class="quantity">Quantity:</p>
+      <div class="box-container">
+        <button class="p-2 bg-white text-black rounded-full" (click)="decrementQuantity()">-</button>
+        <span>{{ quantity }}</span>
+        <button class="p-2 bg-white text-black rounded-full" (click)="incrementQuantity(product.quantity)">+</button>
+      </div>
+      <button class="cart-button" (click)="addToCart(product)">Add To Cart</button>
+    </main>
   </div>
-  <button class="button" (click)="addToCart(product)">Add To Cart</button>
+  <div class="also-like">You Might Also Like</div>
+  <div class="products-grid">
+    <button (click)="viewProduct(product)" *ngFor="let product of products">
+      <div class="card">
+        <div class="image-container">
+          <img class="card-img" [src]="product.image" alt="product.name">
+        </div>
+        <h1>{{product.name | titlecase}}</h1>
+        <h1>{{product.price | currency}}</h1>
+        <h1 *ngIf="product.quantity <= 5">Only {{product.quantity}} Left</h1>
+      </div>
+    </button>
+  </div>
 </div>
-</div>
-
-

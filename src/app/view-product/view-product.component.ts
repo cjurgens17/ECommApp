@@ -3,7 +3,8 @@ import { ViewProductService } from './view-product.service';
 import { Cart } from '../products/cart';
 import { Product } from '../products/products';
 import { ProductsService } from '../products/products.service';
-import { Subject, takeUntil } from 'rxjs';
+import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-product',
@@ -12,7 +13,9 @@ import { Subject, takeUntil } from 'rxjs';
 })
 export class ViewProductComponent implements OnInit, OnDestroy {
 
+  showPicture: boolean = true;
   cart!:Cart;
+  products!: Product[];
   product$ = this.viewProductService.productSubject$;
   @Input() quantity: number = 1;
 
@@ -20,11 +23,14 @@ export class ViewProductComponent implements OnInit, OnDestroy {
 
   constructor(
     private viewProductService: ViewProductService,
-    private productsService: ProductsService
+    private productsService: ProductsService,
+    private router: Router
     ) {}
     //functions-------
-    incrementQuantity() {
-      this.quantity++;
+    incrementQuantity(maxQuan: number) {
+      if(this.quantity < maxQuan){
+        this.quantity++;
+      }
     }
 
     decrementQuantity() {
@@ -53,6 +59,15 @@ export class ViewProductComponent implements OnInit, OnDestroy {
     console.log(this.cart);
     this.productsService.setNextCart(this.cart);
   }
+
+  viewProduct(product:Product): void {
+    this.viewProductService.swappingProductSubject(product);
+    this.router.navigate(['/viewproduct']);
+    }
+
+    updateImage(value: boolean){
+      this.showPicture = value;
+    }
 //-------------------Lifecycle hooks
   ngOnInit(): void {
 
@@ -63,11 +78,17 @@ export class ViewProductComponent implements OnInit, OnDestroy {
     .subscribe({
       next: cart => this.cart = cart
     });
+
+    this.productsService.getProducts()
+    .pipe(
+      takeUntil(this.ngUnSubscribe)
+    )
+    .subscribe({
+      next: products => this.products = products
+    });
   }
   ngOnDestroy(): void {
     this.ngUnSubscribe.next();
     this.ngUnSubscribe.complete();
   }
-
-
 }

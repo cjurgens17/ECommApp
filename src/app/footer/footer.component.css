@@ -6,6 +6,7 @@ footer {
   grid-template-columns:
   1fr 1fr;
   grid-template-rows: 1fr;
+  padding: 32px;
 }
 
 
@@ -23,6 +24,7 @@ footer {
   margin-bottom: 16px;
   font-weight: 500;
   color: white;
+  font-size: 2rem;
 }
 
 .col.one > p {
