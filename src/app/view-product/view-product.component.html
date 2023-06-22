@@ -1,5 +1,6 @@
 <div class="wrapper" *ngIf="product$ |async as product">
   <div class="sub-header">Product > {{product.name | titlecase}}</div>
+  <div class="spacer"></div>
   <div class="product-grid">
     <aside>
       <div class="aside-img-container">
@@ -35,6 +36,7 @@
       <button class="cart-button" (click)="addToCart(product)">Add To Cart</button>
     </main>
   </div>
+  <div class="spacer"></div>
   <div class="also-like">You Might Also Like</div>
   <div class="products-grid">
     <button (click)="viewProduct(product)" *ngFor="let product of products">
@@ -42,9 +44,9 @@
         <div class="image-container">
           <img class="card-img" [src]="product.image" alt="product.name">
         </div>
-        <h1>{{product.name | titlecase}}</h1>
+        <h1 class="product-name">{{product.name | titlecase}}</h1>
         <h1>{{product.price | currency}}</h1>
-        <h1 *ngIf="product.quantity <= 5">Only {{product.quantity}} Left</h1>
+        <h1 class="quantity-grid" *ngIf="product.quantity <= 5">Only {{product.quantity}} Left</h1>
       </div>
     </button>
   </div>

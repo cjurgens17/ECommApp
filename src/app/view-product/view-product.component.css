@@ -13,6 +13,8 @@ body {
   align-items: center;
   margin-left: 8px;
   padding-top: 32px;
+  --font-weight-light: 450;
+  font-weight: var(--font-weight-light);
 }
 
 .product-grid {
@@ -77,7 +79,8 @@ main h1:first-of-type {
 }
 
 .product-description {
-  font-weight: 300;
+  --font-weight-light: 450;
+  font-weight: var(--font-weight-light);
   line-height: 1.5rem;
   text-align: justify;
   text-overflow: hidden;
@@ -87,7 +90,8 @@ main h1:first-of-type {
 }
 
 .quantity {
-  font-weight: 400;
+  --font-weight-light: 450;
+  font-weight: var(--font-weight-light);
 }
 
 .box-container {
@@ -104,7 +108,7 @@ main h1:first-of-type {
   height: 50px;
   background-color: hsla(187, 8%, 78%);
   color: white;
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   font-size: 1.75rem;
   margin-right: auto;
 }
@@ -123,8 +127,9 @@ main h1:first-of-type {
 .products-grid {
   --products-size: 250px;
   display: grid;
+  gap: 16px;
   justify-content: center;
-  align-items: center;
+  align-items: baseline;
   grid-template-columns: 1fr 1fr 1fr;
   /* repeat(auto-fill, minmax(min(var(--products-size),100%), 1fr)); */
   min-height: 100%;
@@ -144,4 +149,22 @@ main h1:first-of-type {
   object-fit: cover;
   aspect-ratio: 3/1;
 }
+
+.spacer {
+  display: block;
+  height: 6rem;
+  width: 100%;
+  background-color: white;
+}
+
+.product-name {
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-medium);
+}
+
+.quantity-grid {
+  color:hsla(187, 8%, 78%);
+  padding-top: 4px;
+}
+
 
