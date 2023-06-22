@@ -5,8 +5,6 @@
 }
 
 nav {
-  position: sticky;
-  top: 0;
   background-color: white;
   min-height: 5rem;
   padding: 48px;
@@ -35,8 +33,7 @@ nav h1:first-of-type {
 }
 
 .logo > button:hover {
-  text-decoration: underline;
-  color: hsla(209, 89%, 48%, 0.815);
+  color: var(--font-weight-medium);
 }
 
 .options {
@@ -52,12 +49,15 @@ nav h1:first-of-type {
 }
 
 .options > button:hover {
-  text-decoration: underline;
-  color: hsla(209, 89%, 48%, 0.815);
+  color: var(--font-weight-medium);
 }
 
 .options:last-child {
   padding-right: 16px;
+}
+
+.clicked:focus {
+  border-bottom: 2px solid black;
 }
 
 

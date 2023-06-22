@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { ViewProductService } from './view-product.service';
 import { Cart } from '../products/cart';
 import { Product } from '../products/products';
@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./view-product.component.css']
 })
 export class ViewProductComponent implements OnInit, OnDestroy {
+
+
 
   showPicture: boolean = true;
   cart!:Cart;
@@ -69,6 +71,8 @@ export class ViewProductComponent implements OnInit, OnDestroy {
     updateImage(value: boolean){
       this.showPicture = value;
     }
+
+  
 //-------------------Lifecycle hooks
   ngOnInit(): void {
 

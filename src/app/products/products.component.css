@@ -11,7 +11,7 @@ body {
   grid-template-columns:
     repeat(auto-fill, minmax(min(var(--min-size), 100%), 1fr));
   justify-content: center;
-  align-items: center;
+  align-items: baseline;
   gap: 32px;
   padding: 16px;
 }
@@ -35,3 +35,12 @@ body {
   aspect-ratio: 3/1;
 }
 
+.product-name {
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-medium);
+}
+
+.quantity-grid {
+  color:hsla(187, 8%, 78%);
+  padding-top: 4px;
+}

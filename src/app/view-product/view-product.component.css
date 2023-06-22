@@ -143,11 +143,40 @@ main h1:first-of-type {
   height: 100%;
 }
 
+.image-container {
+  position: relative;
+}
+
+.products-grid > button:hover .card-img-2 {
+  opacity: 1;
+}
+
+.products-grid button:hover .card-img {
+  opacity: 0;
+}
+
 .card-img {
   padding-bottom: 16px;
   padding-top: 16px;
   object-fit: cover;
+  opacity: 1;
   aspect-ratio: 3/1;
+}
+
+.card-img-2 {
+  position: absolute;
+  top: 0;
+  left:0;
+  bottom: 0;
+  right:0;
+  padding-bottom: 16px;
+  padding-top: 16px;
+  object-fit: cover;
+  aspect-ratio: 3/1;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 700ms ease-in-out;
 }
 
 .spacer {

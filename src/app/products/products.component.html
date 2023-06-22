@@ -4,9 +4,9 @@
       <div class="image-container">
         <img class="card-img" [src]="product.image" alt="product.name">
       </div>
-      <h1>{{product.name | titlecase}}</h1>
+      <h1 class="product-name">{{product.name | titlecase}}</h1>
       <h1>{{product.price | currency}}</h1>
-      <h1 *ngIf="product.quantity <= 5">Only {{product.quantity}} Left</h1>
+      <h1 class="quantity-grid" *ngIf="product.quantity <= 5">Only {{product.quantity}} Left</h1>
     </div>
   </button>
 </div>
