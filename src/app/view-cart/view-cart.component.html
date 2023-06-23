@@ -1,5 +1,4 @@
-<p>view-cart works!</p>
-
+<div class="wrapper">
 <table
 *ngIf="cart$ | async as c"
 class="min-w-full bg-white border border-gray-300">
@@ -39,6 +38,7 @@ class="min-w-full bg-white border border-gray-300">
     <button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" (click)="checkout(c)">Checkout</button>
   </div>
 </table>
+</div>
 
 
 

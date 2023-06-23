@@ -13,6 +13,7 @@ import { ViewCartComponent } from './view-cart/view-cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
+import { IconsModule } from './icons/icons.module';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { FooterComponent } from './footer/footer.component';
       {path: '', redirectTo:'home', pathMatch: 'full'},
       {path: '**', redirectTo: 'home', pathMatch: 'full'},
 
-    ])
+    ]),
+    IconsModule
 
   ],
   providers: [],
