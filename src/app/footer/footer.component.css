@@ -2,7 +2,7 @@ footer {
   --min-foot-size: 200px;
   display: grid;
   height: fit-content;
-  background-color: hsla(187, 8%, 78%);
+  background-color: hsl(200deg, 73%, 44%);
   grid-template-columns:
   1fr 1fr;
   grid-template-rows: 1fr;

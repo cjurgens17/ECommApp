@@ -1,12 +1,14 @@
 nav {
-  background-color: white;
+  /* make footer color, then not on home we use that style */
+  background-color: hsl(200deg, 73%, 75%);
   height: min-content;
   padding: 48px;
-
+  position: relative;
+  z-index: 34;
 }
 
 nav h1:first-of-type {
-  color: black;
+  color: white;
   font-size: 3rem;
   font-weight: 500;
   font-family:Helvetica;
@@ -49,12 +51,16 @@ nav h1:first-of-type {
   height: 35px;
   display: block;
   padding-top: 8px;
+  color: white !important;
 }
 
 .cart {
-padding-top: 1px;
+padding-top: 2px;
 width: 35px;
+display: block;
+padding-right: 8px;
 height: 35px;
+color: white;
 }
 
  svg {
@@ -80,16 +86,37 @@ height: 35px;
   gap: 32px;
   align-items: baseline;
   padding-left: 16px;
-  font-weight: var(--font-weight-light);
   font-size: 1.15rem;
 }
 
 .logo > button {
-  color:gray;
+  color:white;
+  padding-bottom: 15px;
+  font-size: 1.5rem;
 }
 
-.logo > button:hover {
-  color: var(--font-weight-medium);
+
+.cool-link {
+  display: inline-block;
+  color: #000;
+  text-decoration: none;
+
+}
+
+.cool-link::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: white;
+  transition: width .2s;
+  margin-top: 8px;
+}
+
+.cool-link:hover::after {
+  width: 100%;
+  transition: width .3s;
+  margin-top: 8px;
 }
 
 .options {
@@ -97,23 +124,19 @@ height: 35px;
   flex-direction: row;
   gap: 2rem;
   font-weight: var(--font-weight-light);
-  font-size: 1.15rem;
+  font-size: 1.5rem;
 }
 
 .options > button {
-  color: gray;
-}
-
-.options > button:hover {
-  color: var(--font-weight-medium);
+  color: white;
 }
 
 .options:last-child {
   padding-right: 16px;
 }
 
-.clicked:focus {
-  border-bottom: 2px solid rgba(43, 40, 40, 0.973);
+.transparent-bg {
+  background-color: transparent;
 }
 
 @media (max-width: 900px) {
