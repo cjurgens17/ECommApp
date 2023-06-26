@@ -20,7 +20,7 @@ body, html {
 }
 
 body {
-  font-family: "Raleway",Helvetica,sans-serif;
+  font-family: "Roboto","Raleway",Helvetica,sans-serif;
   --font-weight-light: 315;
   --font-weight-medium: 630;
   --font-weight-dark: 945;

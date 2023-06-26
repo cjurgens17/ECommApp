@@ -1,7 +1,8 @@
 nav {
   background-color: white;
-  height: 10rem;
+  height: min-content;
   padding: 48px;
+
 }
 
 nav h1:first-of-type {
@@ -14,13 +15,54 @@ nav h1:first-of-type {
 
 }
 
+@keyframes slide-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+
+.b-options {
+  display: none;
+}
+
+.show {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  animation: slide-in 700ms ease-in-out both;
+}
+
+.X {
+  color: blue;
+}
+.coffee {
+  padding-top: 3px;
+}
+
+.cart {
+padding-top: 3px;
+}
+
+ svg {
+  display: block;
+}
+
 .menu-bar {
   display: none;
 }
 
 .logo {
   display: flex;
-  gap: 16px;
+  gap: 32px;
+  align-items: baseline;
   padding-left: 16px;
   font-weight: var(--font-weight-light);
   font-size: 1.15rem;
@@ -68,7 +110,7 @@ nav h1:first-of-type {
   }
 
   .menu-bar {
-    display: revert;
+    display: block;
     margin-left: 16px;
   }
 
@@ -102,6 +144,12 @@ nav h1:first-of-type {
   }
 
   nav h1:first-of-type {
+    display: none;
+  }
+}
+
+@media (min-width: 901px) {
+  .menu-bar {
     display: none;
   }
 }
