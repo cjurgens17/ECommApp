@@ -1,7 +1,7 @@
 <nav class="flex flex-row justify-evenly items-baseline bg-white">
   <div class="logo">
-  <button class="text-black clicked" routerLink="/home"><i-feather name="coffee" class="coffee"></i-feather></button>
-  <button class="text-black clicked" routerLink="/home">Our Story</button>
+  <button class="text-black clicked" routerLink="/home"><span class="drop"><i-feather name="coffee" class="coffee"></i-feather></span></button>
+  <button class="text-black clicked" routerLink="/products">Products</button>
   <button class="text-black clicked" routerLink="/home">Blog</button>
   </div>
   <h1>Brothers Coffee</h1>
@@ -9,11 +9,11 @@
     <button class="clicked">Log In</button>
     <button class="clicked icon" routerLink="/viewcart"><i-feather name="shopping-cart" class="cart"></i-feather></button>
   </div>
-  <div class="menu-bar" id="menubar"><button (click)="showOptions()"><i-feather name="menu"></i-feather></button></div>
+  <div class="menu-bar" id="menubar"><button (click)="showOptions()"><i-feather name="menu" class="imenu"></i-feather></button></div>
   <div class="b-options" id="burgerOptions">
     <button (click)="backToBurger()"><i-feather name="x" class="X"></i-feather></button>
     <button class="text-black clicked" routerLink="/home">Home</button>
-    <button class="clicked">Products</button>
+    <button class="clicked" routerLink="/products">Products</button>
     <button class="clicked icon" routerLink="/viewcart">Cart</button>
   </div>
 </nav>

@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 export class NavbarComponent {
   options: boolean = false;
 
+
   public showOptions(): void{
     const getShow = document.getElementById('burgerOptions') as HTMLElement;
     const menuBar = document.getElementById('menubar') as HTMLElement;
@@ -16,7 +17,7 @@ export class NavbarComponent {
 
     if (this.options) {
       getShow.classList.add('show');
-      menuBar.style.display = 'none';
+      menuBar.classList.add('hide');
     }else {
       getShow.classList.remove('show');
     }
@@ -25,16 +26,10 @@ export class NavbarComponent {
   }
 
   public backToBurger(): void {
-    const menuBar = document.getElementById('menubar') as HTMLElement;
     const getShow = document.getElementById('burgerOptions') as HTMLElement;
-    // const screenWidth = window.innerWidth;
+    const menuBar = document.getElementById('menubar') as HTMLElement;
 
-    // if(screenWidth < 900){
-    //   menuBar.style.display = 'revert';
-    // }else {
-    //   menuBar.style.display = 'none';
-    // }
-    menuBar.style.display = 'revert';
     getShow.classList.remove('show');
+    menuBar.classList.remove('hide');
   }
 }

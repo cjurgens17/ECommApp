@@ -41,22 +41,38 @@ nav h1:first-of-type {
 }
 
 .X {
-  color: blue;
+  color: black;
 }
+
 .coffee {
-  padding-top: 3px;
+  width: 35px;
+  height: 35px;
+  display: block;
+  padding-top: 8px;
 }
 
 .cart {
-padding-top: 3px;
+padding-top: 1px;
+width: 35px;
+height: 35px;
 }
 
  svg {
   display: block;
 }
 
+.imenu {
+  width: 50px;
+  height: 50px;
+}
+
 .menu-bar {
   display: none;
+  margin-bottom: 2px;
+}
+
+.hide {
+  display: none !important;
 }
 
 .logo {
@@ -134,16 +150,22 @@ padding-top: 3px;
   }
 
   .menu-bar {
-    display: revert;
+    display: block;
     margin-left: 16px;
   }
 
   nav {
-    justify-content: flex-start;
-    align-items: flex-end;
+    justify-content: center;
+    align-items: center;
   }
 
   nav h1:first-of-type {
+    display: none;
+  }
+}
+/* //desktop styles */
+@media (min-width: 901px) {
+  .show {
     display: none;
   }
 }
