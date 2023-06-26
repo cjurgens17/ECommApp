@@ -187,7 +187,10 @@ body {
 
 @media (max-width: 1150px ) {
   .wrapper {
-    background-image: url('src\assets\static\images\christina-rumpf-LMzwJDu6hTE-unsplash-900_x_900.jpg');
+    background-image:  linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    ), url('src\assets\static\images\christina-rumpf-LMzwJDu6hTE-unsplash-900_x_900.jpg');
   }
 }
 
@@ -195,7 +198,10 @@ body {
 
 @media (max-width: 950px){
   .wrapper {
-    background-image: url('src\assets\static\images\christina-rumpf-LMzwJDu6hTE-unsplash-600_x_600.jpg');
+    background-image:   linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    ), url('src\assets\static\images\christina-rumpf-LMzwJDu6hTE-unsplash-600_x_600.jpg');
   }
 }
 

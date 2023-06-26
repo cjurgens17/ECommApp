@@ -148,11 +148,6 @@ padding-top: 3px;
   }
 }
 
-@media (min-width: 901px) {
-  .menu-bar {
-    display: none;
-  }
-}
 
 
 
