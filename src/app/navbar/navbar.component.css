@@ -1,5 +1,9 @@
+body {
+  width: 100%;
+}
+
 nav {
-  /* make footer color, then not on home we use that style */
+  width: 100%;
   background-color: hsl(200deg, 73%, 75%);
   height: min-content;
   padding: 48px;
@@ -85,7 +89,6 @@ color: white;
   display: flex;
   gap: 32px;
   align-items: baseline;
-  padding-left: 16px;
   font-size: 1.15rem;
 }
 

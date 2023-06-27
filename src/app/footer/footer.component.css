@@ -1,5 +1,10 @@
+body {
+  width: 100%;
+}
+
 footer {
   --min-foot-size: 200px;
+  width: 100%;
   display: grid;
   height: fit-content;
   background-color: hsl(200deg, 73%, 44%);
