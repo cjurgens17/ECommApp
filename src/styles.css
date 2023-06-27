@@ -25,6 +25,7 @@ body {
   font-family: "Roboto","Raleway",Helvetica,sans-serif;
   --font-weight-light: 315;
   --font-weight-medium: 630;
+  --font-weight-title: 580;
   --font-weight-dark: 945;
 }
 

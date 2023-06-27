@@ -1,3 +1,5 @@
+/* desktop to mobile approach: media queries are at the end of the file */
+
 body {
   height: 100%;
   width: 100%;
@@ -263,10 +265,10 @@ body {
 
 /* Mobile Styles */
 @media (max-width: 550px){
-
+/* not much to put for now, design is pretty fluid at the moment */
 }
 
-/* miscellanous query */
+/* miscellanous query -- to adjust position of middle spanned image--coffee mug*/
 @media (max-width: 450px){
   .cool-image-container {
     background-position: 20% 20%;
@@ -274,7 +276,7 @@ body {
 }
 
 
-/* prevent white-space in welcome containter */
+/* prevent white-space in welcome container */
 @media (max-width: 350px) {
   .home-welcome {
     width: 100%;

@@ -1,3 +1,15 @@
+<div class="parent-wrapper">
+  <div class="spacer"></div>
+  <h1 class="hero-heading">Our Coffee</h1>
+  <div class="hero-summary">
+    <p class="hero-text">Discover our exquisite coffee collection sourced from around the globe. With meticulous roasting, we ensure every
+       cup is bursting with rich, flavorful goodness. Choose from dark, medium, and light roasts, each boasting its own unique character.
+        Elevate your coffee experience with our high-quality brewing accessories.
+       Let the enticing aroma and exceptional taste transport you to a world of sensory delight. Unleash the true essence of coffee with us.</p>
+       <img class="hero-float" src="\assets\static\images\undraw_coffee_re_x35h.svg">
+  </div>
+  <div class="spacer"></div>
+  <h1 class="hero-heading">Signature Coffee Blends</h1>
 <div class="wrapper">
   <button (click)="viewProduct(product)" *ngFor="let product of products">
     <div class="card">
@@ -9,4 +21,5 @@
       <h1 class="quantity-grid" *ngIf="product.quantity <= 5">Only {{product.quantity}} Left</h1>
     </div>
   </button>
+</div>
 </div>
