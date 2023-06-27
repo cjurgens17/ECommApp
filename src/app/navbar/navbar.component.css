@@ -47,7 +47,7 @@ nav h1:first-of-type {
 }
 
 .X {
-  color: black;
+  color: white;
 }
 
 .coffee {
@@ -72,6 +72,7 @@ color: white;
 }
 
 .imenu {
+  color: white;
   width: 50px;
   height: 50px;
 }
@@ -101,7 +102,7 @@ color: white;
 
 .cool-link {
   display: inline-block;
-  color: #000;
+  color: white;
   text-decoration: none;
 
 }
