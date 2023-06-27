@@ -14,8 +14,8 @@ footer {
   display: flex;
   flex-direction: column;
   min-height: fit-content;
-  justify-content: start;
-  align-items: start;
+  justify-content: flex-start;
+  align-items: flex-start;
   gap: 8px;
   padding: 16px;
 }

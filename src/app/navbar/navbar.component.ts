@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
-import { Subject, takeUntil } from 'rxjs';
+import { Location } from '@angular/common';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -9,11 +9,23 @@ import { Subject, takeUntil } from 'rxjs';
 })
 export class NavbarComponent implements OnInit, OnDestroy {
 
-  private ngUnSubscribe = new Subject<void>();
-
   options: boolean = false;
+  transparent!: boolean;
 
-  constructor(private router: Router){}
+  constructor(private location: Location){
+
+     location.onUrlChange((val) => {
+      console.log(val);
+      if(val !== '/home'){
+          this.transparent = false;
+      }else {
+       this.transparent = true;
+      }
+
+      console.log(this.transparent);
+    })
+
+  }
 
   public showOptions(): void{
     const getShow = document.getElementById('burgerOptions') as HTMLElement;
@@ -40,29 +52,16 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
 
+
+
   //Lifecycle Hooks
 
   ngOnInit(): void {
-    const nav = document.getElementById('nav') as HTMLElement;
-    this.router.events
-    .pipe(
-      takeUntil(this.ngUnSubscribe)
-    ).subscribe((event) => {
-      if (event instanceof NavigationEnd){
-        const isHomePage = event.url === '/home';
 
-        if(!isHomePage) {
-          nav.classList.remove('transparent-bg');
-        }else{
-          nav.classList.add('transparent-bg');
-        }
-      }
-    })
   }
 
   ngOnDestroy(): void {
-    this.ngUnSubscribe.next();
-    this.ngUnSubscribe.complete();
+
   }
 
 }

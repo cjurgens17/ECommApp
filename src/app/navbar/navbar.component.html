@@ -1,4 +1,6 @@
-<nav id="nav" class="flex flex-row justify-evenly items-baseline transparent-bg">
+<nav id="nav" class="flex flex-row justify-evenly items-baseline" [ngClass]="{
+  'transparent-bg': transparent
+}">
   <div class="logo">
   <button class="text-white" routerLink="/home"><i-feather name="coffee" class="coffee cool-link"></i-feather></button>
   <button class="text-white cool-link" routerLink="/products">Products</button>
