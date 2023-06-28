@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Product } from './products';
 import { ProductsService } from './products.service';
 import { Cart } from './cart';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, take, takeUntil } from 'rxjs';
 import { ViewProductService } from '../view-product/view-product.service';
 import { Router } from '@angular/router';
 
@@ -15,6 +15,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   title:string = 'Products Page';
   products!: Product[];
   cart!: Cart;
+  awardProducts!: Product[];
 
   private ngUnSubscribe = new Subject<void>();
 
@@ -40,6 +41,12 @@ this.router.navigate(['/viewproduct']);
     )
     .subscribe({
       next: products => this.products = products
+    });
+
+    this.productsService.getAdvertisedProducts().pipe(
+      takeUntil(this.ngUnSubscribe)
+    ).subscribe({
+      next: awProducts => this.awardProducts = awProducts
     });
 
     this.productsService.cart$

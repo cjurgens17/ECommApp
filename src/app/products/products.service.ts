@@ -30,6 +30,10 @@ export class ProductsService {
     return this.http.get<Product[]>(`${this.SERVER_URL}/advertisedProducts`);
   }
 
+  getAwardProducts():Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.SERVER_URL}/awardProducts`);
+  }
+
 
   //------functions
   setNextCart(cart: Cart): void {
