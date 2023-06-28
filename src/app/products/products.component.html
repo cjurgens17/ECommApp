@@ -21,24 +21,33 @@
       <div class="quantity-grid" *ngIf="product.quantity <= 5">{{product.quantity}} Left</div>
       <div class="content">
         <h1 class="product-name">{{product.name | titlecase}}</h1>
-        <h1>{{product.price | currency}}</h1>
+        <h1 class="currency-size">{{product.price | currency}}</h1>
       </div>
     </button>
     </div>
   </div>
   <div class="spacer"></div>
   <h1 class="hero-heading">Award winning Blends</h1>
+  <div class="award-container">
+    <div class="award-first">Explore Our</div>
+    <div class="award-text">Carefully Crafted Roasts</div>
+  </div>
   <div class="spacer"></div>
-  <div class="wrapper">
+  <div class="wrapper bottom-border">
     <div class="card" (click)="viewProduct(product)" *ngFor="let product of awardProducts">
       <button class="product-button">
       <img class="card-img" [src]="product.image" alt="product.name">
-      <div class="quantity-grid" *ngIf="product.quantity <= 5">{{product.quantity}} Left</div>
+      <div class="star"></div>
       <div class="content">
         <h1 class="product-name">{{product.name | titlecase}}</h1>
-        <h1>{{product.price | currency}}</h1>
+        <h1 class="currency-size">{{product.price | currency}}</h1>
       </div>
     </button>
     </div>
   </div>
+  <div class="fixed-element" id="fixedElement">
+    <span class="close-btn" (click)="hideFixedElement()">x</span>
+    Save 15% off with code 'coffee'
+  </div>
 </div>
+

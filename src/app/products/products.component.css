@@ -89,6 +89,7 @@ body {
 .product-name {
   font-size: 1.15rem;
   font-weight: var(--font-weight-medium);
+  transition: color 125ms;
 }
 
 .quantity-grid {
@@ -107,5 +108,106 @@ body {
   line-height: 1;
   padding: 0.6rem 1.3rem;
   font-family: Montserrat, sans-serif;
-
 }
+
+.award-container {
+  width: calc(100% + 128px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  background-color: white;
+  height: 350px;
+  margin-left: -64px;
+  margin-right: -64px;
+  background-image:
+  linear-gradient(
+    rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0.2)
+  ),
+ url('src\assets\static\images\victor-he-yam1KMv0SgQ-unsplash.jpg');
+  background-position: 30%;
+  padding: 16px;
+  background-size: cover;
+  gap: 10px;
+  isolation: isolate;
+  z-index: 0;
+}
+
+.award-first {
+  font-size: 1.35rem;
+  max-width: 100ch;
+  color: white;
+  font-weight: var(--font-weight-dark);
+  word-wrap: break-word;
+  hyphens: auto;
+  letter-spacing: .5rem;
+  z-index:1;
+  align-self: start;
+  padding-top: 32px;
+  transform: translateX(5%);
+}
+
+.award-text {
+  font-size: 1.35rem;
+  max-width: 100ch;
+  color: white;
+  font-weight: var(--font-weight-dark);
+  word-wrap: break-word;
+  hyphens: auto;
+  letter-spacing: .5rem;
+  z-index: 1;
+  justify-self: end;
+  align-self: center;
+  padding-bottom: 32px;
+}
+
+
+/* Star Css */
+.star {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translateX(-500%);
+
+  display: inline-block;
+  width: 0;
+  height: 0;
+
+  margin-left: .9em;
+  margin-right: .9em;
+  margin-bottom: 1.2em;
+
+  border-right:  .3em solid transparent;
+  border-bottom: .7em  solid #FC0;
+  border-left:   .3em solid transparent;
+
+  /* Controlls the size of the stars. */
+  font-size: 32px;
+}
+
+  .star:before, .star:after {
+    content: '';
+
+    display: block;
+    width: 0;
+    height: 0;
+
+    position: absolute;
+    top: .6em;
+    left: -1em;
+
+    border-right:  1em solid transparent;
+    border-bottom: .7em  solid #FC0;
+    border-left:   1em solid transparent;
+
+    transform: rotate(-35deg);
+  }
+
+  .star:after {
+    transform: rotate(35deg);
+  }
+
+
+  .bottom-border {
+    border-bottom: 1px solid gray;
+  }

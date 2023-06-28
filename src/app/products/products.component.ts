@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Product } from './products';
 import { ProductsService } from './products.service';
 import { Cart } from './cart';
-import { Subject, take, takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { ViewProductService } from '../view-product/view-product.service';
 import { Router } from '@angular/router';
 
@@ -32,6 +32,11 @@ constructor(
 viewProduct(product:Product): void {
 this.viewProductService.swappingProductSubject(product);
 this.router.navigate(['/viewproduct']);
+}
+//code discount removal
+public hideFixedElement(): void {
+  const fixedElement = document.getElementById('fixedElement');
+  fixedElement?.classList.add('hidden');
 }
 //-----------LifeCycle Hooks---------------
   ngOnInit(): void {
