@@ -34,6 +34,17 @@ viewProduct(product:Product): void {
 this.viewProductService.swappingProductSubject(product);
 this.router.navigate(['/viewproduct']);
 }
+
+
+// removeColdBrew(): void {
+//   const viewportWidth = window.innerWidth;
+//   const brewElement = document.getElementById('coldBrew');
+//   if(viewportWidth <= 600){
+//     brewElement?.classList.add('hidden');
+//   }else if(viewportWidth >= 601){
+//     brewElement?.classList.remove('hidden');
+//   }
+// }
 //code discount removal
 public hideFixedElement(): void {
   const fixedElement = document.getElementById('fixedElement');
