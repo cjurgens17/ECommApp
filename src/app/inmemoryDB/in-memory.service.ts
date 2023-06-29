@@ -34,7 +34,7 @@ export class InMemoryService implements InMemoryDbService {
     let advertisedProducts = [
       { id: 1, name: 'Light Roast', price: 10, image: 'https://cdn.shopify.com/s/files/1/0615/7785/5151/products/coffee-bros-light-roast-coffee-beans-jpg.jpg?v=1676560390'},
      { id: 2, name: 'Peach Delight', price: 20, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShpF6NrJ1jclX7TmczLwhXEAEKQs-6nXQNCNeMuIFjwiUo0kpAYCCsG1Y9XjdNxjEySdg&usqp=CAU'},
-     {id: 3, name: 'Round Stark', price: 30, image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_F4EL5gL7Ea4oqKEHfPFRCgAeEUekbUq0sw&usqp=CAU'}
+     {id: 3, name: 'Stark Brew', price: 30, image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_F4EL5gL7Ea4oqKEHfPFRCgAeEUekbUq0sw&usqp=CAU'}
     ];
 
 
@@ -42,8 +42,13 @@ export class InMemoryService implements InMemoryDbService {
       { id: 1, name: `Chock full o' Nuts`, price: 9.99, image: 'https://m.media-amazon.com/images/I/81TBeTikHhL._AC_UL400_.jpg', quantity: 15, altImage: 'https://m.media-amazon.com/images/I/818na+MgHtL._SX679_.jpg'},
       { id: 2, name: 'LavAzza', price: 19.99, image: 'https://m.media-amazon.com/images/I/319vKG87sOL._AC_UL400_.jpg', quantity: 6, altImage: 'https://m.media-amazon.com/images/I/51PoeLDKKyL.jpg'},
       { id: 3, name: 'Amazon Fresh Colombia', price: 14.99, image: 'https://m.media-amazon.com/images/I/71AkGIlaV7L._SY679_.jpg', quantity: 4, altImage: 'https://m.media-amazon.com/images/I/81gcF-SEGpL._SY679_.jpg'},
+    ];
+
+    let coldBrew = [
+      { id: 1, name: `Bizzy Organic Cold Brew Coffee`, price: 12.99, image: 'https://m.media-amazon.com/images/I/71iJbtnINAL._AC_UL400_.jpg', quantity: 10, altImage: 'https://m.media-amazon.com/images/I/71P7qumwVxL._SX679_.jpg', type:"bottle"},
+      { id: 2, name: `Tronco 16 oz glass Tumbler`, price: 15.99, image: 'https://m.media-amazon.com/images/I/61VnlnKfILS._AC_SX522_.jpg', quantity: 15, altImage: 'https://m.media-amazon.com/images/I/61VnlnKfILS._AC_SX522_.jpg', type:"blend"}
     ]
 
-    return {products, service, advertisedProducts, awardProducts};
+    return {products, service, advertisedProducts, awardProducts, coldBrew};
   }
 }

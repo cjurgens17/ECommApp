@@ -34,6 +34,10 @@ export class ProductsService {
     return this.http.get<Product[]>(`${this.SERVER_URL}/awardProducts`);
   }
 
+  getColdBrewProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.SERVER_URL}/coldBrew`);
+  }
+
 
   //------functions
   setNextCart(cart: Cart): void {

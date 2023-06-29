@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Product } from './products';
 import { ProductsService } from './products.service';
 import { Cart } from './cart';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, take, takeUntil } from 'rxjs';
 import { ViewProductService } from '../view-product/view-product.service';
 import { Router } from '@angular/router';
 
@@ -16,6 +16,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   products!: Product[];
   cart!: Cart;
   awardProducts!: Product[];
+  coldBrew!: Product[];
 
   private ngUnSubscribe = new Subject<void>();
 
@@ -61,6 +62,14 @@ public hideFixedElement(): void {
     .subscribe({
       next: cart => this.cart = cart
     });
+
+    this.productsService.getColdBrewProducts()
+    .pipe(
+      takeUntil(this.ngUnSubscribe)
+    )
+    .subscribe({
+        next: coldBrew => this.coldBrew = coldBrew
+      });
   }
 
   ngOnDestroy(): void {

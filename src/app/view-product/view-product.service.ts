@@ -15,7 +15,8 @@ export class ViewProductService {
     price: 0,
     image: '',
     altImage: '',
-    quantity: 0
+    quantity: 0,
+    type: ''
   }
   );
   productSubject$ = this.productSubject.asObservable();

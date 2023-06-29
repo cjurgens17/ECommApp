@@ -17,13 +17,13 @@
   <div class="wrapper">
     <div class="card" (click)="viewProduct(product)" *ngFor="let product of products">
       <button class="product-button">
-      <img class="card-img" [src]="product.image" alt="product.name">
-      <div class="quantity-grid" *ngIf="product.quantity <= 5">{{product.quantity}} Left</div>
-      <div class="content">
-        <h1 class="product-name">{{product.name | titlecase}}</h1>
-        <h1 class="currency-size">{{product.price | currency}}</h1>
-      </div>
-    </button>
+        <img class="card-img" [src]="product.image" alt="product.name">
+        <div class="quantity-grid" *ngIf="product.quantity <= 5">{{product.quantity}} Left</div>
+        <div class="content">
+          <h1 class="product-name">{{product.name | titlecase}}</h1>
+          <h1 class="currency-size">{{product.price | currency}}</h1>
+        </div>
+      </button>
     </div>
   </div>
   <div class="spacer"></div>
@@ -36,18 +36,28 @@
   <div class="wrapper bottom-border">
     <div class="card" (click)="viewProduct(product)" *ngFor="let product of awardProducts">
       <button class="product-button">
-      <img class="card-img" [src]="product.image" alt="product.name">
-      <div class="star"></div>
-      <div class="content">
-        <h1 class="product-name">{{product.name | titlecase}}</h1>
-        <h1 class="currency-size">{{product.price | currency}}</h1>
-      </div>
-    </button>
+        <img class="card-img" [src]="product.image" alt="product.name">
+        <div class="star"></div>
+        <div class="content">
+          <h1 class="product-name">{{product.name | titlecase}}</h1>
+          <h1 class="currency-size">{{product.price | currency}}</h1>
+        </div>
+      </button>
     </div>
   </div>
   <div class="fixed-element" id="fixedElement">
     <span class="close-btn" (click)="hideFixedElement()">x</span>
     Save 15% off with code 'coffee'
   </div>
+  <div class="spacer"></div>
+  <h1 class="hero-heading">Cold Brew Season is Here!</h1>
+  <div class="spacer"></div>
+  <div class="cold-grid">
+    <div class="cold-grid-disPic"></div>
+    <div *ngFor="let product of coldBrew" [ngClass]="product.type">
+      <img class="cold-img" [src]="product.image">
+      <div class="grid-name">{{product.name}}</div>
+      <div class="currency-size">{{product.price | currency}}</div>
+    </div>
+  </div>
 </div>
-
