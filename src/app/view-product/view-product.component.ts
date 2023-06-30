@@ -68,6 +68,17 @@ export class ViewProductComponent implements OnInit, OnDestroy {
     this.quantity = 1;
   }
 
+  showElement(): void {
+     //adding css class for user feedback element of adding to the cart
+     const addElement = document.getElementById('appear');
+     addElement?.classList.add('show');
+
+     //removing the css so the element goes away
+     setTimeout(() => {
+      addElement?.classList.remove('show');
+     }, 3000);
+  }
+
   viewProduct(product: Product): void {
     this.viewProductService.swappingProductSubject(product);
     this.router.navigate(['/viewproduct']);

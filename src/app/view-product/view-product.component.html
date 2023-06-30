@@ -23,8 +23,19 @@
         <button class="p-2 bg-white text-black rounded-full text-3xl" (click)="decrementQuantity()">-</button>
         <span>{{ quantity }}</span>
         <button class="p-2 bg-white text-black rounded-full text-3xl" (click)="incrementQuantity(product.quantity)">+</button>
+        <div
+        *ngIf="quantity == product.quantity"
+        class="max-quan"
+        >
+        Max Available!
       </div>
-      <button class="cart-button" (click)="addToCart(product)">Add To Cart</button>
+      </div>
+      <button class="cart-button" (click)="addToCart(product)" (click)="showElement()">
+        <div id="appear" class="added-to-cart">
+          Added to Cart!
+        </div>
+        Add To Cart
+      </button>
     </main>
   </div>
   <div class="spacer"></div>

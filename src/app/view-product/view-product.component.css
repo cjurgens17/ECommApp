@@ -102,7 +102,23 @@ main h1:first-of-type {
   font-weight: var(--font-weight-light);
 }
 
+.max-quan {
+  position: absolute;
+  right: -125%;
+  width: fit-content;
+  height: fit-content;
+  padding: 8px;
+  background-color: #2c3e50;
+  font-size: 14px;
+  border-radius: 4px;
+  font-weight: var(--font-weight-medium);
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
 .box-container {
+  position: relative;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -112,6 +128,7 @@ main h1:first-of-type {
 }
 
 .cart-button {
+  position: relative;
   width: 75%;
   height: 50px;
   background-color: white;
@@ -121,6 +138,29 @@ main h1:first-of-type {
   margin-right: auto;
   border: 1px solid black;
   transition: background-color 200ms;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.added-to-cart {
+position:absolute;
+display: none;
+left: 50%;
+top: 50%;
+opacity: 0;
+transform: translate(-50%, 100%);
+font-size: 14px;
+padding: 8px;
+background-color: #2c3e50;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+text-align: center;
+font-weight: var(--font-weight-medium);
+color: white;
+will-change: transform;
+animation: fadeIn 200ms ease-in-out forwards;
 }
 
 .cart-button:hover {
@@ -173,13 +213,6 @@ main h1:first-of-type {
   15% {
     opacity: 0;
   }
-
-  /* 50%{
-    opacity: 0.5;
-  }
-  60% {
-  opacity: 0.5;
-  } */
   90% {
     opacity: 1;
   }
@@ -226,30 +259,6 @@ main h1:first-of-type {
   position: relative;
 }
 
-/* .products-grid > button:hover .card-img-2 {
-  opacity: 1;
-}
-
-.products-grid button:hover .card-img {
-  opacity: 0;
-} */
-
-/* .card-img-2 {
-  position: absolute;
-  top: 0;
-  left:0;
-  bottom: 0;
-  right:0;
-  padding-bottom: 16px;
-  padding-top: 16px;
-  object-fit: cover;
-  aspect-ratio: 3/1;
-  height: 100%;
-  width: 100%;
-  opacity: 0;
-  transition: opacity 700ms ease-in-out;
-} */
-
 .spacer {
   display: block;
   height: 6rem;
@@ -265,6 +274,11 @@ main h1:first-of-type {
 .quantity-grid {
   color:hsla(187, 8%, 78%);
   padding-top: 4px;
+}
+
+.show {
+  display: block;
+  opacity: 1;
 }
 
 
