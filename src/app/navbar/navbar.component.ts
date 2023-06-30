@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { Observable } from 'rxjs';
+import { ProductsService } from '../products/products.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,8 +11,12 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   options: boolean = false;
   transparent!: boolean;
+  currentCart$ = this.productsService.cart$;
 
-  constructor(private location: Location){
+  constructor(
+    private location: Location,
+    private productsService: ProductsService
+    ){
 
      location.onUrlChange((val) => {
       console.log(val);
@@ -58,10 +62,14 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
+
+
+
+
+
   }
 
   ngOnDestroy(): void {
-
   }
 
 }
