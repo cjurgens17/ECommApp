@@ -3,23 +3,14 @@
   <div class="spacer"></div>
   <div class="product-grid">
     <aside>
-      <div class="aside-img-container">
-        <button (click)="updateImage(true)">
-        <img
-          [src]="product.image">
-        </button>
-      </div>
-      <div class="aside-img-container">
-        <button (click)="updateImage(false)">
-        <img  [src]="product.altImage">
-      </button>
-      </div>
+      <div class="aside-img-container"  [ngStyle]="{'background-image' : 'url(' + product.image + ')'}"><button (click)="updateImage(true)"></button></div>
+      <div class="aside-img-container" [ngStyle]="{'background-image' : 'url(' + product.altImage + ')'}">  <button (click)="updateImage(false)"></button></div>
     </aside>
     <figure>
       <div class="figure-img-container" [ngSwitch]="showPicture">
-        <img *ngSwitchCase='true' [src]="product.image">
-        <img *ngSwitchCase="false" [src]="product.altImage">
-        <img *ngSwitchDefault [src]="product.image">
+        <img class="fig-img" *ngSwitchCase='true' [src]="product.image">
+        <img class="fig-img" *ngSwitchCase="false" [src]="product.altImage">
+        <img class="fig-img" *ngSwitchDefault [src]="product.image">
       </div>
     </figure>
     <main>
@@ -29,9 +20,9 @@
         ipsa atque dolorum aperiam harum? Ex, ipsum optio. Quisquam corrupti, repellat pariatur saepe in blanditiis.</p>
       <p class="quantity">Quantity:</p>
       <div class="box-container">
-        <button class="p-2 bg-white text-black rounded-full" (click)="decrementQuantity()">-</button>
+        <button class="p-2 bg-white text-black rounded-full text-3xl" (click)="decrementQuantity()">-</button>
         <span>{{ quantity }}</span>
-        <button class="p-2 bg-white text-black rounded-full" (click)="incrementQuantity(product.quantity)">+</button>
+        <button class="p-2 bg-white text-black rounded-full text-3xl" (click)="incrementQuantity(product.quantity)">+</button>
       </div>
       <button class="cart-button" (click)="addToCart(product)">Add To Cart</button>
     </main>
@@ -43,7 +34,7 @@
     class="card" (click)="viewProduct(product)"
     *ngFor="let product of products; let i = index"
     >
-      <button class="product-button">
+      <button class="product-button" (click)="scrollToTop()">
         <div
         [ngStyle]="{
           'background-image': 'url(' + product.image + ')'
@@ -60,5 +51,9 @@
         </div>
       </button>
     </div>
+  </div>
+  <div class="fixed-element" id="fixedElement">
+    <span class="close-btn" (click)="hideFixedElement()">x</span>
+    Save 15% off with code 'coffee'
   </div>
 </div>

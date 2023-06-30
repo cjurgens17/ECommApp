@@ -94,6 +94,15 @@ export class ViewProductComponent implements OnInit, OnDestroy {
   }
   //End of last comment, keep these methods jumbled together for better identity and seperation of concerns
 
+  scrollToTop(): void {
+    window.scrollTo({top: 100, behavior: 'smooth'});
+  }
+
+  hideFixedElement(): void {
+    const fixedElement = document.getElementById('fixedElement');
+    fixedElement?.classList.add('hidden');
+  }
+
   //-------------------Lifecycle hooks
   ngOnInit(): void {
     this.productsService.cart$.pipe(takeUntil(this.ngUnSubscribe)).subscribe({

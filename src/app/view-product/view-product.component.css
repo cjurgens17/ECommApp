@@ -11,7 +11,6 @@ body {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin-left: 8px;
   padding-top: 32px;
   --font-weight-light: 450;
   font-weight: var(--font-weight-light);
@@ -22,25 +21,37 @@ body {
   grid-template-columns: 100px 1fr 1fr;
   grid-template-areas:
   'aside product main';
-  justify-content: center;
+  justify-items: center;
   align-items: start;
   height: fit-content;
 }
 
 aside {
   grid-area: aside;
+  gap: 16px;
+  width: 100%;
+
 }
 
 .aside-img-container {
   width: 100%;
   height: 100px;
   margin-bottom: 16px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
-.aside-img-container img {
-  object-fit: cover;
-  aspect-ratio: 1/1;
+.aside-img-container button {
+  width: 100%;
+  height: 100%;
 }
+
+.aside-img-container:hover {
+  outline: 2px solid #1196AB;
+  box-shadow: 0 0 24px 8px #c8f3fa;
+}
+
 
 figure {
   grid-area: product;
@@ -54,9 +65,8 @@ figure {
 }
 
 .figure-img-container img {
-  width: 100%;
-  object-fit: cover;
-  aspect-ratio: 1/1;
+  object-fit: contain;
+  object-position: center;
 }
 
 main {
@@ -83,10 +93,8 @@ main h1:first-of-type {
   font-weight: var(--font-weight-light);
   line-height: 1.5rem;
   text-align: justify;
-  text-overflow: hidden;
   hyphens: auto;
-  overflow: hidden;
-  word-break: break-all;
+  word-break: break-word;
 }
 
 .quantity {
@@ -106,18 +114,23 @@ main h1:first-of-type {
 .cart-button {
   width: 75%;
   height: 50px;
-  background-color: hsla(187, 8%, 78%);
-  color: white;
-  font-weight: var(--font-weight-medium);
+  background-color: white;
+  color: black;
+  font-weight: var(--font-weight-light);
   font-size: 1.75rem;
   margin-right: auto;
+  border: 1px solid black;
+  transition: background-color 200ms;
+}
+
+.cart-button:hover {
+  box-shadow: 0 0 0 1px;
 }
 
 .also-like {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 16px;
   color: black;
   font-size: 2rem;
   font-weight: 500;
@@ -153,6 +166,33 @@ main h1:first-of-type {
   color: hsla(26, 94%, 58%, 1);
 }
 
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  15% {
+    opacity: 0;
+  }
+
+  /* 50%{
+    opacity: 0.5;
+  }
+  60% {
+  opacity: 0.5;
+  } */
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.card-img:hover {
+  animation: fade-in 600ms ease-in-out;
+  transform: scale(1.05);
+}
+
 .card-img {
   background-color: white;
   padding: 16px;
@@ -161,7 +201,9 @@ main h1:first-of-type {
   background-position: center;
   height: 214px;
   width: 100%;
-  transition: transform 300ms ease-out;
+  will-change: transform;
+  transition: transform 500ms ease-in;
+  overflow: hidden;
 }
 
 .content {
