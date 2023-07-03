@@ -1,18 +1,27 @@
 <div class="wrapper" *ngIf="product$ |async as product">
-  <div class="sub-header">Product > {{product.name | titlecase}}</div>
+  <div
+    *ngIf="product.name.length > 0 ; else noProduct"
+   class="sub-header">Product<span class="featured-product">{{product.name | titlecase}}</span></div>
+   <ng-template #noProduct>
+    <div class="no-product">No items are currently loaded. Choose an item to display</div>
+  </ng-template>
   <div class="spacer"></div>
   <div class="product-grid">
-    <aside>
+    <aside *ngIf="product.image.length > 0; else noProductBox">
       <div class="aside-img-container"  [ngStyle]="{'background-image' : 'url(' + product.image + ')'}"><button (click)="updateImage(true)"></button></div>
       <div class="aside-img-container" [ngStyle]="{'background-image' : 'url(' + product.altImage + ')'}">  <button (click)="updateImage(false)"></button></div>
     </aside>
-    <figure>
+    <ng-template #noProductBox>
+    </ng-template>
+    <figure *ngIf="product.image.length > 0; else noImage">
       <div class="figure-img-container" [ngSwitch]="showPicture">
         <img class="fig-img" *ngSwitchCase='true' [src]="product.image">
         <img class="fig-img" *ngSwitchCase="false" [src]="product.altImage">
         <img class="fig-img" *ngSwitchDefault [src]="product.image">
       </div>
     </figure>
+    <ng-template #noImage>
+    </ng-template>
     <main>
       <h1>{{product.name}}</h1>
       <p class="price">{{product.price | currency}}</p>
@@ -45,7 +54,7 @@
     class="card" (click)="viewProduct(product)"
     *ngFor="let product of products; let i = index"
     >
-      <button class="product-button" (click)="scrollToTop()">
+      <!-- <button class="product-button" (click)="scrollToTop()">
         <div
         [ngStyle]="{
           'background-image': 'url(' + product.image + ')'
@@ -54,6 +63,13 @@
         id="varImage{{i}}"
         (mouseover)="changeToAltImage(product, i)"
         (mouseout)="changeToReg(product,i)"
+       > -->
+       <button class="product-button" (click)="scrollToTop()">
+        <div
+        [ngStyle]="{
+          'background-image': 'url(' + product.image + ')'
+        }"
+        class="card-img"
        >
       </div>
         <div class="content">
@@ -68,3 +84,4 @@
     Save 15% off with code 'coffee'
   </div>
 </div>
+

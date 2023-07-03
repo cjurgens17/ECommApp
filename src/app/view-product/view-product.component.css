@@ -16,6 +16,11 @@ body {
   font-weight: var(--font-weight-light);
 }
 
+.no-product {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
 .product-grid {
   display: grid;
   grid-template-columns: 100px 1fr 1fr;
@@ -24,6 +29,12 @@ body {
   justify-items: center;
   align-items: start;
   height: fit-content;
+}
+
+.featured-product::before {
+  content: '>';
+  margin-left: 6px;
+  margin-right: 6px;
 }
 
 aside {
@@ -94,6 +105,7 @@ main h1:first-of-type {
   line-height: 1.5rem;
   text-align: justify;
   hyphens: auto;
+  width: 75ch;
   word-break: break-word;
 }
 
@@ -221,10 +233,10 @@ animation: fadeIn 200ms ease-in-out forwards;
   }
 }
 
-.card-img:hover {
-  animation: fade-in 600ms ease-in-out;
-  transform: scale(1.05);
-}
+/* .card-img:hover { */
+  /* animation: fade-in 600ms ease-in-out; */
+  /* transform: scale(1.05); */
+/* } */
 
 .card-img {
   background-color: white;
@@ -234,9 +246,9 @@ animation: fadeIn 200ms ease-in-out forwards;
   background-position: center;
   height: 214px;
   width: 100%;
-  will-change: transform;
-  transition: transform 500ms ease-in;
-  overflow: hidden;
+  /* will-change: transform;
+  transition: transform 200ms ease-in;
+  overflow: hidden; */
 }
 
 .content {

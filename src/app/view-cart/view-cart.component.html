@@ -1,6 +1,6 @@
-<div class="wrapper">
-<table
-*ngIf="cart$ | async as c"
+<div class="wrapper" *ngIf="cart$ | async as c">
+  <!-- <table
+*ngIf="c.size > 0; else emptyCart"
 class="min-w-full bg-white border border-gray-300">
   <thead>
     <tr>
@@ -38,7 +38,35 @@ class="min-w-full bg-white border border-gray-300">
     <button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" (click)="checkout(c)">Checkout</button>
   </div>
 </table>
-</div>
+</div> -->
+  <div class="cart-container" *ngIf="c.size > 0; else emptyCart">
+    <div *ngFor="let product of c.products" class="cart-flex">
+      <div class="img-container">
+      <img class="p-image" [src]="product.image">
+    </div>
+      <div class="p.details">
+        <h1>{{product.name | titlecase}}</h1>
+        <h1>{{product.price | currency}}</h1>
+      </div>
+      <div class="p.quantity">
+        <div class="quantity-design">
+          <button class="p-2 bg-white text-black rounded-full text-3xl"
+            (click)="decrementQuantity(product.quantity)">-</button>
+          <span>{{ 1 }}</span>
+          <button class="p-2 bg-white text-black rounded-full text-3xl"
+            (click)="incrementQuantity(product.quantity)">+</button>
+        </div>
+        <button (click)="removeFromCart(c.products,product)"><i-feather name="trash"></i-feather></button>
+      </div>
+      <div class="p.total">
+        {{ product.price * product.quantity | currency}}
+      </div>
+    </div>
+  </div>
 
-
-
+  <ng-template #emptyCart>
+    <main class="empty-wrapper">
+      <h1 class="empty-heading">Your cart is empty</h1>
+      <button class="shop-button" routerLink="/products">Continue Shopping</button>
+    </main>
+  </ng-template>

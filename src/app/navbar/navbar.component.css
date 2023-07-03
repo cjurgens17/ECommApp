@@ -2,6 +2,17 @@ body {
   width: 100%;
 }
 
+.super-header::before {
+  content: '-->';
+  margin-right: 8px;
+}
+
+.super-header::after {
+  content: '<--';
+  margin-left: 8px;
+}
+
+
 .super-header {
   display: flex;
   background: hsl(200deg, 90%, 15%);

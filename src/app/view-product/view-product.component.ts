@@ -90,19 +90,19 @@ export class ViewProductComponent implements OnInit, OnDestroy {
 
   //Changing the styling of background image for .products-grid .card-img div container dynamically with
   //mouseover and mouseout events
-  changeToAltImage(product: Product, index: number): void {
-    const varImage = document.getElementById(`varImage${index}`) as HTMLElement;
-    if (varImage) {
-      varImage.style.backgroundImage = `url(${product.altImage})`;
-    }
-  }
+  // changeToAltImage(product: Product, index: number): void {
+  //   const varImage = document.getElementById(`varImage${index}`) as HTMLElement;
+  //   if (varImage) {
+  //     varImage.style.backgroundImage = `url(${product.altImage})`;
+  //   }
+  // }
 
-  changeToReg(product: Product, index: number): void {
-    const varImage = document.getElementById(`varImage${index}`) as HTMLElement;
-    if (varImage) {
-      varImage.style.backgroundImage = `url(${product.image})`;
-    }
-  }
+  // changeToReg(product: Product, index: number): void {
+  //   const varImage = document.getElementById(`varImage${index}`) as HTMLElement;
+  //   if (varImage) {
+  //     varImage.style.backgroundImage = `url(${product.image})`;
+  //   }
+  // }
   //End of last comment, keep these methods jumbled together for better identity and seperation of concerns
 
   scrollToTop(): void {
