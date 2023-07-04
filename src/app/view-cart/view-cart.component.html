@@ -1,3 +1,4 @@
+<main>
 <div class="wrapper" *ngIf="cart$ | async as c">
   <div
   *ngIf="c.size > 0"
@@ -10,46 +11,6 @@
     <h1 class="cart-header-title">Your Cart</h1>
     <a class="cart-header-link" routerLink="/products">Continue Shopping</a>
   </div>
-  <!-- <table
-*ngIf="c.size > 0; else emptyCart"
-class="min-w-full bg-white border border-gray-300">
-  <thead>
-    <tr>
-      <th class="px-6 py-3 border-b">Product</th>
-      <th class="px-6 py-3 border-b">Quantity</th>
-      <th class="px-6 py-3 border-b">Price</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr
-     *ngFor="let product of c.products"
-     >
-      <td class="px-6 py-4 whitespace-nowrap border-b">{{ product.name | titlecase }}<img [src]="product.image"></td>
-      <div class="flex items-center">
-        <button class="px-2 py-1 bg-blue-500 text-white rounded" (click)="decrementQuantity(product)">-</button>
-        <span class="px-2">{{ product.quantity }}</span>
-        <button class="px-2 py-1 bg-blue-500 text-white rounded" (click)="incrementQuantity(product)">+</button>
-      </div>
-      <td class="px-6 py-4 whitespace-nowrap border-b">{{ product.price * product.quantity | currency}}</td>
-      <td class="px-6 py-4 whitespace-nowrap border-b">
-        <button href="#" (click)="removeFromCart(c.products,product)">Remove</button>
-      </td>
-    </tr>
-  </tbody>
-  <tfoot>
-    <tr>
-      <td class="px-6 py-4 whitespace-nowrap" colspan="2">Total</td>
-      <td class="px-6 py-4 whitespace-nowrap border-b">
-        {{ getTotalAmount(c.products) | currency:'USD' }}
-      </td>
-    </tr>
-  </tfoot>
-
-  <div class="flex justify-center mt-8">
-    <button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" (click)="checkout(c)">Checkout</button>
-  </div>
-</table>
-</div> -->
   <div class="cart-container" *ngIf="c.size > 0; else emptyCart">
     <div class="spacer"></div>
     <div class="product-header">
@@ -76,7 +37,10 @@ class="min-w-full bg-white border border-gray-300">
         <h1>{{product.name | titlecase}}</h1>
         <h1>{{product.price | currency}}</h1>
       </div>
-      <div class="p.quantity" [ngStyle]="{display: 'flex', gap: '24px'}">
+      <div class="p.quantity"
+      [ngStyle]="{display: 'flex', gap: '24px', padding: '16px'}"
+      [ngClass]="{'flex-column' : isMobile()}"
+      >
         <div
          [ngStyle]="{
           'display': 'flex',
@@ -96,11 +60,10 @@ class="min-w-full bg-white border border-gray-300">
         <button (click)="removeFromCart(c.products,product)"><i-feather name="trash"></i-feather></button>
       </div>
       <div class="p.total">
-        {{ product.price * product.quantity | currency}}
+      Total: {{ product.price * product.quantity | currency}}
       </div>
     </div>
   </div>
-
   <div
   *ngIf="c.size > 0"
   class="flex-total">
@@ -110,6 +73,8 @@ class="min-w-full bg-white border border-gray-300">
     </p>
     <button class="shop-button" (click)="checkout(c)">Checkout</button>
   </div>
+</div>
+</main>
 
   <ng-template
    #emptyCart

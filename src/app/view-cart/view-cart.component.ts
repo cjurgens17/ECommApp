@@ -12,7 +12,7 @@ import { ViewProductService } from '../view-product/view-product.service';
   styleUrls: ['./view-cart.component.css']
 })
 export class ViewCartComponent implements OnInit, OnDestroy{
-
+  screenWidth!: number;
   products !: Product[];
   cart$ = this.productsService.cart$;
   private ngUnSubscribe = new Subject<void>();
@@ -60,9 +60,20 @@ export class ViewCartComponent implements OnInit, OnDestroy{
     this.router.navigate(['/viewproduct']);
   }
 
+  onResize() {
+    this.screenWidth = window.innerWidth;
+  }
+
+  isMobile() {
+    return this.screenWidth <= 550;
+  }
+
 
   //Lifecycle hooks--------------------
   ngOnInit(): void {
+
+    this.screenWidth = window.innerWidth;
+    window.addEventListener('resize', this.onResize.bind(this));
 
     this.productsService
     .getProducts()
