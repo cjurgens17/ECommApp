@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { ProductsService } from '../products/products.service';
 import { Product } from '../products/products';
 import { Router } from '@angular/router';
 import { Cart } from '../products/cart';
+import { ViewProductService } from '../view-product/view-product.service';
 
 @Component({
   selector: 'app-view-cart',
@@ -12,12 +13,13 @@ import { Cart } from '../products/cart';
 })
 export class ViewCartComponent implements OnInit, OnDestroy{
 
-
+  products !: Product[];
   cart$ = this.productsService.cart$;
   private ngUnSubscribe = new Subject<void>();
   constructor(
     private productsService: ProductsService,
-    private Router: Router
+    private router: Router,
+    private viewProductService: ViewProductService
     ){}
 
 
@@ -50,12 +52,24 @@ export class ViewCartComponent implements OnInit, OnDestroy{
   checkout(cart: Cart): void {
     console.log(cart);
     this.productsService.setNextCart(cart);
-    this.Router.navigate(['/checkout']);
+    this.router.navigate(['/checkout']);
+  }
+
+  viewProduct(product: Product): void {
+    this.viewProductService.swappingProductSubject(product);
+    this.router.navigate(['/viewproduct']);
   }
 
 
   //Lifecycle hooks--------------------
   ngOnInit(): void {
+
+    this.productsService
+    .getProducts()
+    .pipe(takeUntil(this.ngUnSubscribe))
+    .subscribe({
+      next: (products) => (this.products = products),
+    });
 
   }
   ngOnDestroy(): void {

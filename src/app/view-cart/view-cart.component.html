@@ -1,4 +1,15 @@
 <div class="wrapper" *ngIf="cart$ | async as c">
+  <div
+  *ngIf="c.size > 0"
+  class="cart-shipping">
+    <p><i-feather name="thumbs-up"></i-feather>Awesome! Your order qualifies for Free Standard Shipping</p>
+  </div>
+  <div
+  *ngIf="c.size > 0"
+  class="cart-header">
+    <h1 class="cart-header-title">Your Cart</h1>
+    <a class="cart-header-link" routerLink="/products">Continue Shopping</a>
+  </div>
   <!-- <table
 *ngIf="c.size > 0; else emptyCart"
 class="min-w-full bg-white border border-gray-300">
@@ -40,21 +51,47 @@ class="min-w-full bg-white border border-gray-300">
 </table>
 </div> -->
   <div class="cart-container" *ngIf="c.size > 0; else emptyCart">
+    <div class="spacer"></div>
+    <div class="product-header">
+      <h3 class="product-header-text">product</h3>
+      <h3 class="product-header-text">total</h3>
+    </div>
     <div *ngFor="let product of c.products" class="cart-flex">
       <div class="img-container">
       <img class="p-image" [src]="product.image">
     </div>
-      <div class="p.details">
+      <div
+      class="p.details"
+      [ngStyle]="{
+        'display' : 'flex',
+        'flex-direction' : 'column',
+        'gap' : '16px',
+        'justify-content' : 'center',
+        'align-items': 'center',
+        'width': '50ch',
+        'word-wrap': 'break-word',
+        'hyphens': 'auto'
+      }"
+      >
         <h1>{{product.name | titlecase}}</h1>
         <h1>{{product.price | currency}}</h1>
       </div>
-      <div class="p.quantity">
-        <div class="quantity-design">
-          <button class="p-2 bg-white text-black rounded-full text-3xl"
-            (click)="decrementQuantity(product.quantity)">-</button>
+      <div class="p.quantity" [ngStyle]="{display: 'flex', gap: '24px'}">
+        <div
+         [ngStyle]="{
+          'display': 'flex',
+          'justify-content': 'space-evenly',
+          'align-items': 'center',
+          'width': '150px',
+          'height': '50px',
+          'border': '1px solid black'
+        }"
+         >
+          <button class="p-2 bg-white text-black rounded-full text-3xl button-1"
+            (click)="decrementQuantity(product.quantity)"></button>
           <span>{{ 1 }}</span>
-          <button class="p-2 bg-white text-black rounded-full text-3xl"
-            (click)="incrementQuantity(product.quantity)">+</button>
+          <button class="p-2 bg-white text-black rounded-full text-3xl button-2"
+            (click)="incrementQuantity(product.quantity)"></button>
         </div>
         <button (click)="removeFromCart(c.products,product)"><i-feather name="trash"></i-feather></button>
       </div>
@@ -64,7 +101,19 @@ class="min-w-full bg-white border border-gray-300">
     </div>
   </div>
 
-  <ng-template #emptyCart>
+  <div
+  *ngIf="c.size > 0"
+  class="flex-total">
+    <h1 class="total-title">Subtotal</h1>
+    <p class="total">
+      {{ getTotalAmount(c.products) | currency:'USD' }}
+    </p>
+    <button class="shop-button" (click)="checkout(c)">Checkout</button>
+  </div>
+
+  <ng-template
+   #emptyCart
+   >
     <main class="empty-wrapper">
       <h1 class="empty-heading">Your cart is empty</h1>
       <button class="shop-button" routerLink="/products">Continue Shopping</button>
