@@ -105,7 +105,6 @@ main h1:first-of-type {
   line-height: 1.5rem;
   text-align: justify;
   hyphens: auto;
-  width: 75ch;
   word-break: break-word;
 }
 
@@ -233,11 +232,6 @@ animation: fadeIn 200ms ease-in-out forwards;
   }
 }
 
-/* .card-img:hover { */
-  /* animation: fade-in 600ms ease-in-out; */
-  /* transform: scale(1.05); */
-/* } */
-
 .card-img {
   background-color: white;
   padding: 16px;
@@ -246,9 +240,6 @@ animation: fadeIn 200ms ease-in-out forwards;
   background-position: center;
   height: 214px;
   width: 100%;
-  /* will-change: transform;
-  transition: transform 200ms ease-in;
-  overflow: hidden; */
 }
 
 .content {
@@ -291,6 +282,55 @@ animation: fadeIn 200ms ease-in-out forwards;
 .show {
   display: block;
   opacity: 1;
+}
+
+@media (max-width: 900px) {
+
+  .product-grid {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .cart-button {
+    font-size: 1.25rem;
+    padding: 0;
+    margin: 0;
+  }
+
+  .sub-header {
+    font-size: .95rem;
+    justify-content: center;
+  }
+
+  .also-like {
+    justify-content: center;
+    font-size: 1.40rem;
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .main-name {
+    text-align: center;
+  }
+
+  aside {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  figure {
+    margin-top: 32px;
+    margin-bottom: 32px;
+  }
+
 }
 
 
