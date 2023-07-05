@@ -284,6 +284,7 @@ animation: fadeIn 200ms ease-in-out forwards;
   opacity: 1;
 }
 
+/* Desktop to mobile styles */
 @media (max-width: 900px) {
 
   .product-grid {
