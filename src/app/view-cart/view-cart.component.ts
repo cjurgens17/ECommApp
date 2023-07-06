@@ -24,13 +24,13 @@ export class ViewCartComponent implements OnInit, OnDestroy{
 
 
   //functions----
-  decrementQuantity(product: any) {
+  decrementQuantity(product: Product) {
     if (product.quantity > 1) {
       product.quantity--;
     }
   }
 
-  incrementQuantity(product: any) {
+  incrementQuantity(product: Product) {
     product.quantity++;
   }
 
@@ -42,11 +42,14 @@ export class ViewCartComponent implements OnInit, OnDestroy{
     return total;
   }
 
-  removeFromCart(products: Product[], product:Product){
+  removeFromCart(products: Product[], product:Product, cart: Cart){
     const findIndex = products.findIndex((item) => item === product);
     if(findIndex !== -1){
       products.splice(findIndex,1);
     }
+    cart.size--;
+    this.productsService.setNextCart(cart);
+    console.log(cart);
   }
 
   checkout(cart: Cart): void {

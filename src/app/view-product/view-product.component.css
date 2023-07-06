@@ -113,7 +113,7 @@ main h1:first-of-type {
   font-weight: var(--font-weight-light);
 }
 
-.max-quan {
+/* .max-quan {
   position: absolute;
   right: -125%;
   width: fit-content;
@@ -126,7 +126,7 @@ main h1:first-of-type {
   color: white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
   text-align: center;
-}
+} */
 
 .box-container {
   position: relative;
@@ -172,6 +172,7 @@ font-weight: var(--font-weight-medium);
 color: white;
 will-change: transform;
 animation: fadeIn 200ms ease-in-out forwards;
+cursor:default;
 }
 
 .cart-button:hover {

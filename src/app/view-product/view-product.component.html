@@ -31,15 +31,15 @@
       <div class="box-container">
         <button class="p-2 bg-white text-black rounded-full text-3xl" (click)="decrementQuantity()">-</button>
         <span>{{ quantity }}</span>
-        <button class="p-2 bg-white text-black rounded-full text-3xl" (click)="incrementQuantity(product.quantity)">+</button>
-        <div
+        <button class="p-2 bg-white text-black rounded-full text-3xl" (click)="incrementQuantity(product)">+</button>
+        <!-- <div
         *ngIf="quantity == product.quantity"
         class="max-quan"
         >
         Max Available!
+      </div> -->
       </div>
-      </div>
-      <button class="cart-button" (click)="addToCart(product)" (click)="showElement()">
+      <button class="cart-button" (click)="addToCart(product)" (click)="showElement(product)">
         <div id="appear" class="added-to-cart">
           Added to Cart!
         </div>

@@ -35,8 +35,8 @@ export class ViewProductComponent implements OnInit, OnDestroy {
     private router: Router
   ) {}
   //functions-------
-  incrementQuantity(maxQuan: number) {
-    if (this.quantity < maxQuan) {
+  incrementQuantity(product:Product) {
+    if(product.name.length > 0){
       this.quantity++;
     }
   }
@@ -68,8 +68,9 @@ export class ViewProductComponent implements OnInit, OnDestroy {
     this.quantity = 1;
   }
 
-  showElement(): void {
+  showElement(product: Product) {
      //adding css class for user feedback element of adding to the cart
+     if(product.name.length > 0){
      const addElement = document.getElementById('appear');
      addElement?.classList.add('show');
 
@@ -77,6 +78,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
      setTimeout(() => {
       addElement?.classList.remove('show');
      }, 3000);
+    }
   }
 
   viewProduct(product: Product): void {

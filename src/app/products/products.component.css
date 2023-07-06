@@ -278,6 +278,7 @@ body {
   gap: 16px;
   will-change: transform;
   transition: transform 300ms ease-in-out;
+  cursor: pointer;
 }
 
 .blend:hover img {
@@ -302,6 +303,7 @@ body {
   height: 80%;
   width: fit-content;
   gap: 16px;
+  cursor: pointer;
 }
 
 .bottle:hover img {

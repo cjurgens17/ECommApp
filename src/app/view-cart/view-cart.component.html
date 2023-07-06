@@ -52,12 +52,12 @@
         }"
          >
           <button class="p-2 bg-white text-black rounded-full text-3xl button-1"
-            (click)="decrementQuantity(product.quantity)"></button>
-          <span>{{ 1 }}</span>
+            (click)="decrementQuantity(product)"></button>
+          <span>{{ product.quantity }}</span>
           <button class="p-2 bg-white text-black rounded-full text-3xl button-2"
-            (click)="incrementQuantity(product.quantity)"></button>
+            (click)="incrementQuantity(product)"></button>
         </div>
-        <button (click)="removeFromCart(c.products,product)"><i-feather name="trash"></i-feather></button>
+        <button (click)="removeFromCart(c.products,product, c)"><i-feather name="trash"></i-feather></button>
       </div>
       <div class="p.total">
       Total: {{ product.price * product.quantity | currency}}

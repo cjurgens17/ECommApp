@@ -24,17 +24,10 @@ export class InMemoryService implements InMemoryDbService {
      { id: 10, name: 'Dunkin Original Blend', price: 11.99, image: 'https://m.media-amazon.com/images/I/71wkHYqWOgL._AC_UL400_.jpg', quantity: 7, altImage:'https://m.media-amazon.com/images/I/71pwIY881dL._SX679_.jpg'},
     ];
 
-    let service = [
-      {id: 1, name: 'Pool Opening', price: 275},
-      {id: 2, name: 'Pool Closing', price: 275},
-      {id: 3, name: 'Power Vacuum', price: 95},
-      {id: 4, name: 'Service Call', price: 250},
-    ];
-
     let advertisedProducts = [
-      { id: 1, name: 'Light Roast', price: 10, image: 'https://cdn.shopify.com/s/files/1/0615/7785/5151/products/coffee-bros-light-roast-coffee-beans-jpg.jpg?v=1676560390'},
-     { id: 2, name: 'Peach Delight', price: 20, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShpF6NrJ1jclX7TmczLwhXEAEKQs-6nXQNCNeMuIFjwiUo0kpAYCCsG1Y9XjdNxjEySdg&usqp=CAU'},
-     {id: 3, name: 'Stark Brew', price: 30, image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_F4EL5gL7Ea4oqKEHfPFRCgAeEUekbUq0sw&usqp=CAU'}
+      { id: 11, name: 'Valhalla Java', price: 10.99, image: 'https://m.media-amazon.com/images/I/61BnSZMLBvL._SX679_.jpg', altImage: 'https://m.media-amazon.com/images/I/714EN0WLKOL._SX679_.jpg'},
+     { id: 12, name: 'Kicking Horse', price: 20.99, image: 'https://m.media-amazon.com/images/I/61FTRgES9yL._SX679_.jpg', altImage: 'https://m.media-amazon.com/images/I/71j9EVleRLL._SX679_.jpg'},
+     {id: 13, name: 'Jims Organic Coffee', price: 30.99, image:'https://m.media-amazon.com/images/I/61Dsz0kpbWL._SX679_.jpg', altImage: 'https://m.media-amazon.com/images/I/613XZLFH+bL._SX679_.jpg'}
     ];
 
 
@@ -45,10 +38,10 @@ export class InMemoryService implements InMemoryDbService {
     ];
 
     let coldBrew = [
-      { id: 1, name: `Bizzy Organic Cold Brew Coffee`, price: 12.99, image: 'https://m.media-amazon.com/images/I/71iJbtnINAL._AC_UL400_.jpg', quantity: 10, altImage: 'https://m.media-amazon.com/images/I/71P7qumwVxL._SX679_.jpg', type:"bottle"},
-      { id: 2, name: `Tronco 16 oz glass Tumbler`, price: 15.99, image: 'https://m.media-amazon.com/images/I/61VnlnKfILS._AC_SX522_.jpg', quantity: 15, altImage: 'https://m.media-amazon.com/images/I/61VnlnKfILS._AC_SX522_.jpg', type:"blend"}
+      { id: 14, name: `Bizzy Organic Cold Brew Coffee`, price: 12.99, image: 'https://m.media-amazon.com/images/I/71iJbtnINAL._AC_UL400_.jpg', quantity: 10, altImage: 'https://m.media-amazon.com/images/I/71P7qumwVxL._SX679_.jpg', type:"bottle"},
+      { id: 15, name: `Tronco 16 oz glass Tumbler`, price: 15.99, image: 'https://m.media-amazon.com/images/I/61VnlnKfILS._AC_SX522_.jpg', quantity: 15, altImage: 'https://m.media-amazon.com/images/I/61VnlnKfILS._AC_SX522_.jpg', type:"blend"}
     ]
 
-    return {products, service, advertisedProducts, awardProducts, coldBrew};
+    return {products, advertisedProducts, awardProducts, coldBrew};
   }
 }
