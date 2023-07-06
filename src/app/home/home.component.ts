@@ -15,6 +15,10 @@ private ngUnSubscribe = new Subject<void>();
 
 constructor(private productService: ProductsService) {}
 
+scrollToTop(){
+  window.scroll(0,0);
+}
+
   ////Lifecycle Hooks
   ngOnInit(): void {
     this.productService.getAdvertisedProducts()

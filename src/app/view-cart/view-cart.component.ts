@@ -24,6 +24,10 @@ export class ViewCartComponent implements OnInit, OnDestroy{
 
 
   //functions----
+    scrollToTop(){
+      window.scroll(0,0);
+    }
+
   decrementQuantity(product: Product) {
     if (product.quantity > 1) {
       product.quantity--;

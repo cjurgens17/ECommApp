@@ -5,15 +5,26 @@ body {
 footer {
   --min-foot-size: 200px;
   width: 100%;
-  display: grid;
-  height: fit-content;
   background-color: hsl(200deg, 73%, 44%);
-  grid-template-columns:
-  1fr 1fr;
-  grid-template-rows: 1fr;
   padding: 32px;
 }
 
+.wrapper {
+  width: 100%;
+  display: flex;
+  height: fit-content;
+  padding: 32px;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+
+.spacer {
+  margin-top: 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  width: 100%;
+
+}
 
 .col {
   display: flex;
@@ -47,4 +58,75 @@ footer {
   color: white;
   padding: 8px;
   margin-left: auto;
+}
+
+.col.two > button i-feather:hover {
+  color: black;
+}
+
+.col.three {
+  gap:16px;
+}
+
+.col.four {
+  gap: 16px;
+}
+
+.col.four h1:first-of-type{
+  font-weight: 500;
+  font-size: 2rem;
+  color: white;
+}
+
+.col.four > a {
+  color: white;
+  cursor: pointer;
+  font-weight: 300;
+}
+
+.col.four > a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.col.three h1:first-of-type{
+  font-weight: 500;
+  font-size: 2rem;
+  color: white;
+}
+
+.col.three > a {
+  color: white;
+  cursor: pointer;
+  font-weight: 300;
+}
+
+.col.three > a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+
+.bottom-foot {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  padding: 24px;
+}
+
+.bottom-foot div:last-of-type {
+  color: white;
+}
+
+.svg-payments {
+  padding: 8px;
+  background-color: white;
+  display: flex;
+  gap: 16px;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }

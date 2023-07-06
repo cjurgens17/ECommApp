@@ -39,7 +39,7 @@ export class InMemoryService implements InMemoryDbService {
 
     let coldBrew = [
       { id: 14, name: `Bizzy Organic Cold Brew Coffee`, price: 12.99, image: 'https://m.media-amazon.com/images/I/71iJbtnINAL._AC_UL400_.jpg', quantity: 10, altImage: 'https://m.media-amazon.com/images/I/71P7qumwVxL._SX679_.jpg', type:"bottle"},
-      { id: 15, name: `Tronco 16 oz glass Tumbler`, price: 15.99, image: 'https://m.media-amazon.com/images/I/61VnlnKfILS._AC_SX522_.jpg', quantity: 15, altImage: 'https://m.media-amazon.com/images/I/61VnlnKfILS._AC_SX522_.jpg', type:"blend"}
+      { id: 15, name: `Tronco 16 oz glass Tumbler`, price: 15.99, image: 'https://m.media-amazon.com/images/I/61VnlnKfILS._AC_SX522_.jpg', quantity: 15, altImage: 'https://m.media-amazon.com/images/I/61IbRFxdDjS._AC_SX522_.jpg', type:"blend"}
     ]
 
     return {products, advertisedProducts, awardProducts, coldBrew};

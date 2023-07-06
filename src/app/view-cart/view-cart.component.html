@@ -74,13 +74,13 @@
     <button class="shop-button" (click)="checkout(c)">Checkout</button>
   </div>
 </div>
+
+<ng-template #emptyCart>
+  <main class="empty-wrapper">
+    <h1 class="empty-heading">Your cart is empty</h1>
+    <button (click)="scrollToTop()" class="shop-button" routerLink="/products">Continue Shopping</button>
+  </main>
+</ng-template>
 </main>
 
-  <ng-template
-   #emptyCart
-   >
-    <main class="empty-wrapper">
-      <h1 class="empty-heading">Your cart is empty</h1>
-      <button class="shop-button" routerLink="/products">Continue Shopping</button>
-    </main>
-  </ng-template>
+
