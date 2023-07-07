@@ -25,8 +25,7 @@
     <main>
       <h1 class="main-name">{{product.name}}</h1>
       <p class="price">{{product.price | currency}}</p>
-      <p class="product-description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit incidunt nulla natus unde voluptates laborum,
-        ipsa atque dolorum aperiam harum? Ex, ipsum optio. Quisquam corrupti, repellat pariatur saepe in blanditiis.</p>
+      <p class="product-description">Welcome to our coffee world, where every sip tells a story. Experience the charm of our {{product.name || 'Coffee'}} blend crafted for true coffee lovers. Our expertly selected beans and perfected roasting process deliver the essence of perfection. Immerse yourself in the soulful aroma, indulge in the smoothness of our {{product.name || 'Coffee'}}, handcrafted just for you. Join us on this delightful journey and embrace our coffee culture.</p>
       <p class="quantity">Quantity:</p>
       <div class="box-container">
         <button class="p-2 bg-white text-black rounded-full text-3xl" (click)="decrementQuantity()">-</button>

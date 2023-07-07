@@ -224,6 +224,7 @@ body {
 
 .bottom-border {
   border-bottom: 1px solid gray;
+  padding-bottom: 32px;
 }
 
 .cold-grid {

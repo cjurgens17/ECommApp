@@ -11,7 +11,7 @@
       </div>
       <div class="title-header">Coffee Brothers</div>
       <div class="options">
-        <button class="cool-link">Checkout</button>
+        <button class="cool-link" routerLink="/checkout">Checkout</button>
         <button [ngStyle]="{'position' : 'relative'}" class=" icon cool-link" routerLink="/viewcart">
           <div *ngIf="currentCart$ | async as cart">
             <div *ngIf="cart.size > 0" class="cart-size">

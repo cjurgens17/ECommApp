@@ -122,11 +122,30 @@ footer {
 
 .svg-payments {
   padding: 8px;
-  background-color: white;
+  /* background-color: white; */
   display: flex;
   gap: 16px;
   justify-content: space-around;
   align-items: center;
   border-radius: 4px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
+}
+
+.footer-a {
+  font-size: 1.15rem;
+  font-weight: var(--font-weight-light);
+}
+
+@media (max-width: 860px){
+
+  .wrapper {
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: center;
+  }
+
+  .svg-payments {
+    flex-wrap: wrap;
+  }
+
 }
