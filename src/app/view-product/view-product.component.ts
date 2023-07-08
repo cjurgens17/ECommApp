@@ -49,6 +49,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
 
   addToCart(product: Product): void {
     //if we already have item in cart
+    if(product.name.length <= 0) return;
     let check = false;
     this.cart.products.find((item) => {
       if (item.name === product.name) {
