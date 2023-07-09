@@ -5,7 +5,7 @@ body {
 footer {
   --min-foot-size: 200px;
   width: 100%;
-  background-color: hsl(200deg, 73%, 44%);
+  background-color: hsl(165.56,79.41%,23.33%);
   padding: 32px;
 }
 
@@ -122,13 +122,11 @@ footer {
 
 .svg-payments {
   padding: 8px;
-  /* background-color: white; */
   display: flex;
   gap: 16px;
   justify-content: space-around;
   align-items: center;
   border-radius: 4px;
-  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
 }
 
 .footer-a {
@@ -148,4 +146,10 @@ footer {
     flex-wrap: wrap;
   }
 
+}
+
+@media(max-width: 300px){
+  .wrapper {
+    align-items: center;
+  }
 }

@@ -200,8 +200,10 @@ svg {
   }
 
   .menu-bar {
-    display: block;
-    margin-left: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
   }
 
   nav {
@@ -220,8 +222,9 @@ svg {
   }
 
   .menu-bar {
-    display: block;
-    margin-left: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   nav {

@@ -62,11 +62,11 @@ body {
 }
 
 .rotate-right {
-  transform: rotate(5deg);
+  transform: rotate(5deg) translateX(-10px);
 }
 
 .rotate-left {
-  transform: rotate(-5deg);
+  transform: rotate(-5deg) translateX(10px);
   background: hsl(165.56,79.41%,13.33%, 1);
 }
 
@@ -89,6 +89,13 @@ body {
   gap: 16px;
   background: hsl(42.35,54.84%,93.92%);
   border-radius: 8px;
+  overflow: hidden;
+  will-change: transform;
+  transition: 250ms ease-out;
+}
+
+.item:hover {
+  transform: scale(1.2);
 }
 
 .item-small {
@@ -186,7 +193,7 @@ body {
   justify-content: center;
   align-items: center;
   padding: 16px;
-  background-color: hsl(200deg, 73%, 90%);
+  background-color: hsl(165.56,79.41%,47.33%, 1);
   width: 100%;
 }
 
@@ -202,9 +209,9 @@ body {
 }
 
 .statements p {
-  font-weight: var(--font-weight-light);
   font-size: 1.15rem;
   text-align: justify;
+  font-weight: 400;
 }
 
 .statements button {
@@ -315,7 +322,7 @@ body {
   place-content: center;
   padding: 32px;
   gap: 32px;
-  background-color: hsl(200deg, 73%, 75%);
+  background-color: hsl(50.48,96.6%,53.92%,1);;
   width: 100%;
 }
 
@@ -348,22 +355,20 @@ body {
 
 /* Laptop styles */
 @media (max-width: 1150px ) {
-  .wrapper {
-    background-image:  linear-gradient(
-      rgba(0, 0, 0, 0.5),
-      rgba(0, 0, 0, 0.5)
-    ), url('src\assets\static\images\christina-rumpf-LMzwJDu6hTE-unsplash-900_x_900.jpg');
+    .wrapper {
+      background-color: hsl(50.48,96.6%,53.92%,1);
+      display:flex;
+      flex-direction: column;
+      gap: 64px;
+    }
   }
-}
+
 
 /* Tablet Styles */
 
 @media (max-width: 950px){
   .wrapper {
-    background-image:   linear-gradient(
-      rgba(0, 0, 0, 0.5),
-      rgba(0, 0, 0, 0.5)
-    ), url('src\assets\static\images\christina-rumpf-LMzwJDu6hTE-unsplash-600_x_600.jpg');
+    background-color: hsl(50.48,96.6%,53.92%,1);
   }
 
   .product-advertise {
@@ -371,10 +376,47 @@ body {
     gap: 200px;
   }
 }
+/* for coffee items on landing view */
+@media (max-width: 630px){
+  .center-content-2 {
+    place-content: center;
+  }
+  .item {
+    justify-self: center;
+  }
+
+  .item-large {
+    margin-bottom: 15px;
+  }
+}
 
 /* Mobile Styles */
 @media (max-width: 550px){
 /* not much to put for now, design is pretty fluid at the moment */
+    .item {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .img-container-hero {
+      width: 75%;
+      height: 75%;
+    }
+
+    .photo-info {
+      flex-shrink: 100;
+      font-size: 1rem;
+    }
+
+    .img-container-hero > img {
+      border-radius: 4px;
+    }
+
+    .word {
+      font-size: 1.5rem;
+    }
 }
 
 /* miscellanous query -- to adjust position of middle spanned image--coffee mug*/
@@ -389,8 +431,6 @@ body {
 @media (max-width: 350px) {
   .home-welcome {
     width: 100%;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    font-size: 4rem;
   }
 }
