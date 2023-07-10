@@ -22,7 +22,10 @@
       </div>
       </div>
       <div class="menu-bar" id="menubar"><button (click)="showOptions()"><i-feather name="menu"
-            class="imenu"></i-feather></button></div>
+            class="imenu"
+            [ngClass]="{
+            'black-menu' : !transparent
+            }"></i-feather></button></div>
       <div class="b-options" id="burgerOptions">
         <button (click)="backToBurger()"><i-feather name="x" class="X"></i-feather></button>
         <button class="text-white cool-link" routerLink="/home">Home</button>

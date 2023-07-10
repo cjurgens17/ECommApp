@@ -122,6 +122,10 @@ svg {
   height: 50px;
 }
 
+.black-menu {
+  color: black;
+}
+
 .menu-bar {
   display: none;
   margin-bottom: 2px;
