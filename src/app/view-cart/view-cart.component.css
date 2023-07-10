@@ -232,7 +232,7 @@ p.total {
 }
 
 .shop-button:hover {
- background-color: lightgray;
+ background-color: hsl(50.48,96.6%,53.92%,1);;
  color: black;
 }
 

@@ -68,6 +68,7 @@ body {
   max-width: 344px;
 }
 
+
 .shadow {
   box-shadow: 0 8px 6px -2px lightblue;
   will-change: transform;
