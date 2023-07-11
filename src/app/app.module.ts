@@ -14,6 +14,10 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { IconsModule } from './icons/icons.module';
+import { CarouselComponent } from './carousel/carousel.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HammerModule } from '@angular/platform-browser';
+import { IgxCarouselModule } from 'igniteui-angular';
 
 @NgModule({
   declarations: [
@@ -24,26 +28,30 @@ import { IconsModule } from './icons/icons.module';
     ViewCartComponent,
     CheckoutComponent,
     HomeComponent,
-    FooterComponent
+    FooterComponent,
+    CarouselComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    HammerModule,
+    IgxCarouselModule,
     HttpClientInMemoryWebApiModule.forRoot(InMemoryService),
     RouterModule.forRoot([
-      {path: 'home', component: HomeComponent},
-      {path: 'products', component: ProductsComponent},
-      {path: 'viewproduct', component: ViewProductComponent},
-      {path: 'viewcart', component: ViewCartComponent},
-      {path: 'checkout', component: CheckoutComponent},
-      {path: '', redirectTo:'home', pathMatch: 'full'},
-      {path: '**', redirectTo: 'home', pathMatch: 'full'},
+      { path: 'home', component: HomeComponent },
+      { path: 'products', component: ProductsComponent },
+      { path: 'viewproduct', component: ViewProductComponent },
+      { path: 'viewcart', component: ViewCartComponent },
+      { path: 'checkout', component: CheckoutComponent },
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: '**', redirectTo: 'home', pathMatch: 'full' },
 
     ]),
-    IconsModule
-
+    IconsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
