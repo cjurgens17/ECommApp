@@ -70,9 +70,12 @@ Discover the power of coffee
   <button (click)="scrollToTop()"  routerLink="/products">Shop Now</button>
 </div>
 <div class="spacer"></div>
-<!-- <div class="cool-image-container"></div> -->
+<div id="carousel" class="cool-image-container">
+  <button class="carousel-btn" (click)="moveLeft()" (click)="updateCarouselBackground()">Left</button>
+  <button class="carousel-btn" (click)="moveRight()" (click)="updateCarouselBackground()">Right</button>
+</div>
 <!-- carousel -->
-<app-carousel></app-carousel>
+<!-- <app-carousel></app-carousel> -->
 <div class="spacer"></div>
 <div class="statements two">
   <h1>Wheres the Coffee?</h1>

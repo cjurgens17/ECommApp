@@ -299,6 +299,8 @@ body {
 
 .cool-image-container {
   display: flex;
+  justify-content: space-around;
+  align-items: center;
   height: 800px;
   width: 100%;
   background-image:
@@ -308,7 +310,15 @@ body {
   ),
    url('src\assets\static\images\mike-kenneally-tNALoIZhqVM-unsplash.jpg');
   background-size: cover;
-  background-position: 10%;
+  background-position: center;
+}
+
+.carousel-btn {
+  height: 100px;
+  width: 200px;
+  border: 2px solid red;
+  padding: 16px;
+  color: white;
 }
 
 
