@@ -10,13 +10,20 @@ import { Subject, takeUntil } from 'rxjs';
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
+carouselElement!: HTMLElement;
+carouselImage!: HTMLImageElement;
 carouselIndex: number = 0;
+colorIndex: number = 0;
 advertisedProducts!: Product[];
 private ngUnSubscribe = new Subject<void>();
 carouselImages: string[] = [
-  'https://images.unsplash.com/photo-1536914629078-6fda32a00cd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Y29mZmVlJTIwcG93ZXJ8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60',
-  'https://media.istockphoto.com/id/627331730/photo/successful-middle-age-businessman.webp?b=1&s=170667a&w=0&k=20&c=5irIXSfOtmUQrQLH18gLiUP7lgsghRD_OvgjdGrVLAQ=',
-  'https://media.istockphoto.com/id/1414977595/photo/woman-stir-coffee-with-coffee-spoon-coffee-cup-hot-drink-in-a-mug-beige-and-marble-background.webp?b=1&s=170667a&w=0&k=20&c=1N2xzyo7raTnkLarL2Rzw_JbZ7UN8L6q1sBSIy_OjLY='
+  "https://i.insider.com/5981c995b50ab126008b6605?width=700",
+  'https://spice4life.co.za/wp-content/uploads/2022/09/Screenshot-2022-09-26-at-09.36.38.png',
+  'https://www.medianews4u.com/wp-content/uploads/2023/05/Mothers-Day-Campaigns-Part-2-1.jpg'
+];
+
+carouselColors: string[] = [
+  'hsl(165.56,79.41%,47.33%, 1)', 'hsl(50.48,96.6%,53.92%,1)', '#FF8DBD'
 ];
 
 constructor(private productService: ProductsService) {}
@@ -24,6 +31,7 @@ constructor(private productService: ProductsService) {}
 scrollToTop(){
   window.scroll(0,0);
 }
+//for carousel-----------------------------------------
 
 moveLeft(){
   if(this.carouselIndex === this.carouselImages.length - 1){
@@ -43,9 +51,59 @@ moveRight(){
 }
 
 updateCarouselBackground(){
-  let carouselItem = document.getElementById('carousel') as HTMLElement;
-  carouselItem.style.backgroundImage = "url(" + this.carouselImages[this.carouselIndex] + ")";
+  this.carouselImage.classList.remove('fade-in');
+  this.carouselImage.classList.add('fade-out');
+
+  setTimeout(() => {
+    this.carouselImage.src = `${this.carouselImages[this.carouselIndex]}`;
+
+    this.carouselImage.classList.remove('fade-out');
+    this.carouselImage.classList.add('fade-in');
+  }, 400);
 }
+
+moveLeftColor(){
+  if(this.colorIndex === this.carouselColors.length - 1){
+    this.colorIndex = 0;
+  }else{
+    this.colorIndex++;
+  }
+}
+
+moveRightColor(){
+  if(this.colorIndex === 0){
+    this.colorIndex = this.carouselColors.length-1;
+  }else{
+    this.colorIndex--;
+  }
+}
+
+updateCarouselBackgroundColor(){
+  let colorItem = document.getElementById('color') as HTMLElement;
+  colorItem.style.backgroundColor = `${this.carouselColors[this.colorIndex]}`;
+  colorItem.style.transition = `background-color 800ms ease-in`;
+  let carouselImageTitle = document.getElementById('carousel-image-title') as HTMLElement;
+  carouselImageTitle.style.transition = `background-color 800ms ease-in`;
+  //styles for different background colors
+  switch(this.colorIndex){
+    case 0:
+      carouselImageTitle.textContent = 'Have A Blast';
+      carouselImageTitle.style.backgroundColor = '#FF8DBD';
+      break;
+    case 1:
+      carouselImageTitle.textContent = 'Feel Energized';
+      carouselImageTitle.style.backgroundColor = '#7CE993';
+      break;
+    case 2:
+      carouselImageTitle.textContent = 'Warm Up';
+      carouselImageTitle.style.backgroundColor = 'hsl(50.48,96.6%,53.92%,1)';
+      break;
+     default:
+      break;
+  }
+}
+
+//----end of carousel
 
   ////Lifecycle Hooks
   ngOnInit(): void {
@@ -59,6 +117,11 @@ updateCarouselBackground(){
       },
       error: err => console.log(`Error: ${err}`)
   })
+  //setting initial background color for carousel item
+  this.carouselElement = document.getElementById('color') as HTMLElement;
+  this.carouselElement.style.background = `${this.carouselColors[this.colorIndex]}`;
+  this.carouselImage = document.getElementById('carousel-image') as HTMLImageElement;
+  this.carouselImage.src = `${this.carouselImages[this.carouselIndex]}`;
   }
   ngOnDestroy(): void {
     this.ngUnSubscribe.next();
