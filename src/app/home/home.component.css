@@ -331,6 +331,7 @@ body {
   border-radius: 8px;
   letter-spacing: 0.02em;
   box-shadow: 0 2px 24px rgba(0, 0, 0, 0.2);
+  border: 2px solid white;
 }
 
 .fade-out {
@@ -349,6 +350,29 @@ body {
   object-fit: cover;
   object-position: center;
   border-radius: 8px;
+  border: 2px solid white;
+}
+
+.carousel-current {
+  position: absolute;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  gap: 16px;
+  bottom: 0;
+  transform: translateY(125%);
+  padding: 4px;
+}
+
+.circle {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+.carousel-fill-circle {
+  background-color: white;
 }
 
 .carousel-btn {

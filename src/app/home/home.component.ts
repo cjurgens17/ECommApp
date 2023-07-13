@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Product } from '../products/products';
 import { ProductsService } from '../products/products.service';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, takeUntil} from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +9,7 @@ import { Subject, takeUntil } from 'rxjs';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit, OnDestroy {
-
+intervalController: number | null = null;
 carouselElement!: HTMLElement;
 carouselImage!: HTMLImageElement;
 carouselIndex: number = 0;
@@ -60,6 +60,7 @@ updateCarouselBackground(){
     this.carouselImage.classList.remove('fade-out');
     this.carouselImage.classList.add('fade-in');
   }, 400);
+
 }
 
 moveLeftColor(){
@@ -102,6 +103,27 @@ updateCarouselBackgroundColor(){
       break;
   }
 }
+//updates the background of carousel circle to match the current index of image that is being displayed
+updateCircle(){
+let circles = document.getElementsByClassName('circle');
+let fullCircle = document.getElementsByClassName('carousel-fill-circle');
+fullCircle[0].classList.remove('carousel-fill-circle');
+circles[this.carouselIndex].classList.add('carousel-fill-circle');
+}
+
+
+//------automation for the carousel
+startInterval(carouselFunctions: Function[]): void{
+  if(this.intervalController === null){
+    console.log('Interval Triggered');
+    console.log(this.colorIndex);
+    this.intervalController = window.setInterval(() => {
+      for(let cfunction of carouselFunctions){
+        cfunction();
+      }
+    }, 3000);
+  }
+}
 
 //----end of carousel
 
@@ -116,12 +138,22 @@ updateCarouselBackgroundColor(){
         this.advertisedProducts = products;
       },
       error: err => console.log(`Error: ${err}`)
-  })
+  });
+
   //setting initial background color for carousel item
   this.carouselElement = document.getElementById('color') as HTMLElement;
   this.carouselElement.style.background = `${this.carouselColors[this.colorIndex]}`;
   this.carouselImage = document.getElementById('carousel-image') as HTMLImageElement;
   this.carouselImage.src = `${this.carouselImages[this.carouselIndex]}`;
+  //starting the carousel
+  this.startInterval([
+    this.moveRightColor,
+    this.updateCarouselBackgroundColor,
+    this.moveRight,
+    this.updateCarouselBackground,
+    this.updateCircle
+  ]);
+
   }
   ngOnDestroy(): void {
     this.ngUnSubscribe.next();

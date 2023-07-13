@@ -73,21 +73,28 @@ Discover the power of coffee
 <!-- carousel -->
 <div id="color" class="cool-image-container">
   <button class="carousel-btn"
-   (click)="moveLeftColor()"
+   (click)="moveRightColor()"
    (click)="updateCarouselBackgroundColor()"
-   (click)="moveLeft()"
-   (click)="updateCarouselBackground()">
+   (click)="moveRight()"
+   (click)="updateCarouselBackground()"
+   (click)="updateCircle()">
     <i class="fa-solid fa-arrow-left fa-2xl"></i>
   </button>
   <div class="carousel-img-container">
     <div id="carousel-image-title" class='carousel-img-title'>Have A Blast!</div>
     <img id="carousel-image">
+    <div class="carousel-current">
+      <div class="circle carousel-fill-circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+    </div>
   </div>
   <button class="carousel-btn"
-  (click)="moveRightColor()"
+  (click)="moveLeftColor()"
   (click)="updateCarouselBackgroundColor()"
-  (click)="moveRight()"
-  (click)="updateCarouselBackground()">
+  (click)="moveLeft()"
+  (click)="updateCarouselBackground()"
+  (click)="updateCircle()">
     <i class="fa-solid fa-arrow-right fa-2xl"></i>
   </button>
 </div>
