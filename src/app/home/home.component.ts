@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Product } from '../products/products';
 import { ProductsService } from '../products/products.service';
 import { Subject, takeUntil} from 'rxjs';
@@ -9,7 +9,10 @@ import { Subject, takeUntil} from 'rxjs';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
+
+  @ViewChild('flexContainer') flexContainer!: ElementRef;
+
 intervalController: ReturnType<typeof setInterval>  = setInterval(() => {
   this.moveLeftColor(),
   this.updateCarouselBackgroundColor(),
@@ -31,6 +34,8 @@ carouselImages: string[] = [
 carouselColors: string[] = [
   'hsl(165.56,79.41%,47.33%, 1)', 'hsl(50.48,96.6%,53.92%,1)', '#FF8DBD'
 ];
+
+products!: Product[];
 
 
 constructor(private productService: ProductsService) {}
@@ -132,6 +137,7 @@ restartCarousel(): ReturnType<typeof setInterval>  {
 }
 
 //----end of carousel
+
   ////Lifecycle Hooks
   ngOnInit(): void {
     this.productService.getAdvertisedProducts()
@@ -145,12 +151,50 @@ restartCarousel(): ReturnType<typeof setInterval>  {
       error: err => console.log(`Error: ${err}`)
   });
 
+  this.productService.getProducts()
+  .pipe(
+    takeUntil(this.ngUnSubscribe)
+  )
+  .subscribe({
+    next: products => {
+      this.products = products;
+    },
+    error: e => console.error('Error on getProducts OnInit: ', e)
+  });
+
   //setting initial background color for carousel item
   this.carouselElement = document.getElementById('color') as HTMLElement;
   this.carouselElement.style.background = `${this.carouselColors[this.colorIndex]}`;
   this.carouselImage = document.getElementById('carousel-image') as HTMLImageElement;
   this.carouselImage.src = `${this.carouselImages[this.carouselIndex]}`;
   }
+
+  ngAfterViewInit(): void {
+    //animation
+    const flexContainer = this.flexContainer.nativeElement;
+    const flexContainerChildren = flexContainer.children;
+    console.log(flexContainerChildren)
+    //this is the full width of the flexcontainer grabbed from browser devtools
+    const offsetWidth = 928
+    console.log(offsetWidth);
+    let offset = 0;
+
+    function animate() {
+      offset -= 0.4;
+      for(let child of flexContainerChildren){
+        if(offset != -offsetWidth){
+          (child as HTMLElement).style.transform = `translateX(${offset}px)`;
+        }else{
+          offset = 0;
+        }
+      }
+      console.log(`offset: ${offset} and offsetwidth: ${offsetWidth}`);
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  }
+
   ngOnDestroy(): void {
     this.ngUnSubscribe.next();
     this.ngUnSubscribe.complete();

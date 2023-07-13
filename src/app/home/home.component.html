@@ -108,6 +108,14 @@ Discover the power of coffee
   <button (click)="scrollToTop()" routerLink="/products">Subscribe</button>
 </div>
 <div class="spacer"></div>
+<!-- testing for product animation -->
+<div class="flex-animation" #flexContainer>
+  <div
+  *ngFor="let product of products"
+   class="flex-animation-product-container">
+    <img class="flex-animation-product-img" [src]="product.image">
+  </div>
+</div>
 <div class="spacer"></div>
 <div class="product-end">
 

@@ -514,3 +514,35 @@ body {
     font-size: 4rem;
   }
 }
+
+
+
+
+/* testing for flex animation */
+.flex-animation {
+  max-width: 100%;
+  height: fit-content;
+  padding: 16px;
+  gap: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.flex-animation-product-container {
+  height: 200px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 auto;
+}
+
+.flex-animation-product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
