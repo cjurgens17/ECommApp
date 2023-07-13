@@ -179,20 +179,32 @@ restartCarousel(): ReturnType<typeof setInterval>  {
     console.log(offsetWidth);
     let offset = 0;
 
-    function animate() {
-      offset -= 0.4;
+    function productAnimate() {
       for(let child of flexContainerChildren){
-        if(offset != -offsetWidth){
-          (child as HTMLElement).style.transform = `translateX(${offset}px)`;
+        const childRect = child.getBoundingClientRect();
+        const childRight = childRect.right;
+        const windowWidth = window.innerWidth;
+        const childWidth = childRect.width;
+        const newPosition = windowWidth - childWidth + 1;
+        if(childRight < 0){
+          (child as HTMLElement).style.left = `${newPosition}px`;
+          (child as HTMLElement).style.transform = `translateX(0px)`;
         }else{
-          offset = 0;
+          const element = child;
+          const styles = getComputedStyle(element);
+          const transformValue = styles.getPropertyValue('transform');
+          const matrix = new DOMMatrix(transformValue);
+          const translateX = matrix.m41;
+
+          console.log(translateX);
+          (child as HTMLElement).style.transform = `translateX(${translateX - 1}px)`;
         }
       }
-      console.log(`offset: ${offset} and offsetwidth: ${offsetWidth}`);
-      requestAnimationFrame(animate);
+      // console.log(`offset: ${offset} and offsetwidth: ${offsetWidth}`);
+      requestAnimationFrame(productAnimate);
     }
 
-    animate();
+    productAnimate();
   }
 
   ngOnDestroy(): void {

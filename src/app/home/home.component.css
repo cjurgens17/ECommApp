@@ -531,6 +531,7 @@ body {
 }
 
 .flex-animation-product-container {
+  position: relative;
   height: 200px;
   width: 200px;
   display: flex;
@@ -538,6 +539,7 @@ body {
   justify-content: center;
   align-items: center;
   flex: 0 0 auto;
+  transform: translateX(0px);
 }
 
 .flex-animation-product-img {
