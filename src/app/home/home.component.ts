@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } fr
 import { Product } from '../products/products';
 import { ProductsService } from '../products/products.service';
 import { Subject, takeUntil} from 'rxjs';
+import { MovingProduct } from './movingproduct';
 
 
 @Component({
@@ -34,8 +35,8 @@ carouselImages: string[] = [
 carouselColors: string[] = [
   'hsl(165.56,79.41%,47.33%, 1)', 'hsl(50.48,96.6%,53.92%,1)', '#FF8DBD'
 ];
-
 products!: Product[];
+
 
 
 constructor(private productService: ProductsService) {}
@@ -170,41 +171,81 @@ restartCarousel(): ReturnType<typeof setInterval>  {
   }
 
   ngAfterViewInit(): void {
-    //animation
-    const flexContainer = this.flexContainer.nativeElement;
-    const flexContainerChildren: HTMLElement[] = Array.from(flexContainer.children);
-    console.log(flexContainerChildren)
-    //this is the full width of the flexcontainer grabbed from browser devtools
-    const offsetWidth = 928;
-    let windowWidth!: number;
-    let childrenPositions: DOMRect[] = flexContainerChildren.map(child => child.getBoundingClientRect());
+    // Product Animation Logic -----------------------------
+    // Extend the prototype of HTMLCollection
 
-    function productAnimate() {
-      for(let child of flexContainerChildren){
-        const childRect = child.getBoundingClientRect();
-        const childRight = childRect.right;
-        const windowWidth = window.innerWidth;
-        const childWidth = childRect.width;
-        const newPosition = windowWidth - childWidth + 1;
-        if(childRight < 0){
-          (child as HTMLElement).style.left = `${newPosition}px`;
-          (child as HTMLElement).style.transform = `translateX(0px)`;
-        }else{
-          const element = child;
-          const styles = getComputedStyle(element);
-          const transformValue = styles.getPropertyValue('transform');
-          const matrix = new DOMMatrix(transformValue);
-          const translateX = matrix.m41;
+    let movingChildren: MovingProduct[] = [];
+    let animationPause: boolean = false;
+    let animationParent = this.flexContainer.nativeElement;
+    console.log('animation parent',animationParent);
+    let animationParentWidth = parseInt(getComputedStyle(animationParent).getPropertyValue('width'));
+    console.log(animationParentWidth)
+    let animationParentGap = parseInt(getComputedStyle(animationParent).getPropertyValue('gap'));
+    console.log(animationParentGap);
+    let animateContainers = document.getElementsByClassName('.flex-animation-product-container');
+    console.log('animation containers',animateContainers);
 
-          console.log(translateX);
-          (child as HTMLElement).style.transform = `translateX(${translateX - 1}px)`;
+    //functions for Product Animation
+function fillMovingChildren(products: any, parentWidth: number){
+  console.log('in movingchildren function: products:', products);
+
+  // products.forEach((product) => {
+
+  //   let animatedProduct: MovingProduct = {
+  //     child: product,
+  //     offsetLeft: product.offsetLeft,
+  //     parentoffsetWidth: parentWidth
+  //   };
+
+  //   console.log('animatedProduct',animatedProduct);
+
+  //   movingChildren.push(animatedProduct);
+  // });
+};
+
+
+    //adding listeners for animation functionality
+    // function addEventListenersToProductAnimation(containers: HTMLCollection){
+    //     Array.from(containers).forEach((container) => {
+    //       (function(){
+    //         container.addEventListener('mouseenter', () => {
+    //           container.style.transform = 'scale(1.1)';
+    //           animationPause = true;
+    //         });
+    //         container.addEventListener('mouseleave', () => {
+    //           container.style.transform = 'scale(1)';
+    //           animationPause = false;
+    //           requestAnimationFrame(productFlow);
+    //         });
+    //       })();
+    //     })
+    // }
+
+    //Main Animation function
+    function productFlow(time: DOMHighResTimeStamp){
+      console.log('movingchildren',movingChildren);
+      for(let i = 0;i<movingChildren.length;i++){
+        let movingChild = movingChildren[i];
+        let currentLeftValue = parseInt(getComputedStyle(movingChild.child).getPropertyValue('left'));
+        let currentObjectWidth = parseInt(getComputedStyle(movingChild.child).getPropertyValue('width'));
+        let speed = currentLeftValue - 1;
+        movingChild.child.style.left = `${speed}px`;
+
+        if(speed <= -(movingChild.offsetLeft + currentObjectWidth + animationParentGap)){
+          movingChild.child.style.left = `${-movingChild.offsetLeft + movingChild.parentoffsetWidth + animationParentGap}px`;
+        }
+
+        if(!animationPause){
+          requestAnimationFrame(productFlow);
         }
       }
-      // console.log(`offset: ${offset} and offsetwidth: ${offsetWidth}`);
-      requestAnimationFrame(productAnimate);
     }
+    //End Animation Logic--------------------
 
-    productAnimate();
+    fillMovingChildren(animateContainers,animationParentWidth);
+    // addEventListenersToProductAnimation(animateContainers);
+    requestAnimationFrame(productFlow);
+
   }
 
   ngOnDestroy(): void {
