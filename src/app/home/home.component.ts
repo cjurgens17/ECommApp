@@ -172,12 +172,12 @@ restartCarousel(): ReturnType<typeof setInterval>  {
   ngAfterViewInit(): void {
     //animation
     const flexContainer = this.flexContainer.nativeElement;
-    const flexContainerChildren = flexContainer.children;
+    const flexContainerChildren: HTMLElement[] = Array.from(flexContainer.children);
     console.log(flexContainerChildren)
     //this is the full width of the flexcontainer grabbed from browser devtools
-    const offsetWidth = 928
-    console.log(offsetWidth);
-    let offset = 0;
+    const offsetWidth = 928;
+    let windowWidth!: number;
+    let childrenPositions: DOMRect[] = flexContainerChildren.map(child => child.getBoundingClientRect());
 
     function productAnimate() {
       for(let child of flexContainerChildren){
