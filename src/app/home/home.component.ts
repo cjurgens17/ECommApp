@@ -12,15 +12,16 @@ import { MovingProduct } from './movingproduct';
 })
 export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
-  @ViewChild('flexContainer') flexContainer!: ElementRef;
+@ViewChild('flexContainer') flexContainer!: ElementRef;
 animateContainers: HTMLElement[] = [];
-intervalController: ReturnType<typeof setInterval>  = setInterval(() => {
-  this.moveLeftColor(),
-  this.updateCarouselBackgroundColor(),
-  this.moveLeft(),
-  this.updateCarouselBackground(),
-  this.updateCircle()
-}, 4300);
+animationImages: HTMLImageElement[] = [];
+// intervalController: ReturnType<typeof setInterval>  = setInterval(() => {
+//   this.moveLeftColor(),
+//   this.updateCarouselBackgroundColor(),
+//   this.moveLeft(),
+//   this.updateCarouselBackground(),
+//   this.updateCircle()
+// }, 4300);
 carouselElement!: HTMLElement;
 carouselImage!: HTMLImageElement;
 carouselIndex: number = 0;
@@ -125,17 +126,17 @@ fullCircle[0].classList.remove('carousel-fill-circle');
 circles[this.carouselIndex].classList.add('carousel-fill-circle');
 }
 
-restartCarousel(): ReturnType<typeof setInterval>  {
-  clearInterval(this.intervalController);
-  this.intervalController = setInterval(() => {
-    this.moveLeftColor(),
-    this.updateCarouselBackgroundColor(),
-    this.moveLeft(),
-    this.updateCarouselBackground(),
-    this.updateCircle()
-  }, 4300);
-  return this.intervalController;
-}
+// restartCarousel(): ReturnType<typeof setInterval>  {
+//   clearInterval(this.intervalController);
+//   this.intervalController = setInterval(() => {
+//     this.moveLeftColor(),
+//     this.updateCarouselBackgroundColor(),
+//     this.moveLeft(),
+//     this.updateCarouselBackground(),
+//     this.updateCircle()
+//   }, 4300);
+//   return this.intervalController;
+// }
 
 //----end of carousel
 
@@ -164,95 +165,92 @@ restartCarousel(): ReturnType<typeof setInterval>  {
   // });
 
   //setting initial background color for carousel item
-  this.carouselElement = document.getElementById('color') as HTMLElement;
-  this.carouselElement.style.background = `${this.carouselColors[this.colorIndex]}`;
-  this.carouselImage = document.getElementById('carousel-image') as HTMLImageElement;
-  this.carouselImage.src = `${this.carouselImages[this.carouselIndex]}`;
+  // this.carouselElement = document.getElementById('color') as HTMLElement;
+  // this.carouselElement.style.background = `${this.carouselColors[this.colorIndex]}`;
+  // this.carouselImage = document.getElementById('carousel-image') as HTMLImageElement;
+  // this.carouselImage.src = `${this.carouselImages[this.carouselIndex]}`;
   }
 
   ngAfterViewInit(): void {
     // Product Animation Logic -----------------------------
-    // Extend the prototype of HTMLCollection
-
     let movingChildren: MovingProduct[] = [];
     let animationPause: boolean = false;
     let animationParent = this.flexContainer.nativeElement;
-    console.log('animation parent',animationParent);
     let animationParentWidth = parseInt(getComputedStyle(animationParent).getPropertyValue('width'));
-    console.log(animationParentWidth)
     let animationParentGap = parseInt(getComputedStyle(animationParent).getPropertyValue('gap'));
-    console.log(animationParentGap);
     setTimeout(() => {
        this.animateContainers = Array.from(animationParent.children) as HTMLElement[];
-      console.log('Animated Containers',this.animateContainers);
-    }, 2000);
-    console.log('animation containers',this.animateContainers);
-
+       this.animationImages = Array.from(document.querySelectorAll('.flex-animation-product-img')) as HTMLImageElement[];
+       addEventListenersToProductAnimation(this.animationImages);
+    }, 500);
     //functions for Product Animation
+
+    //giving state to each animated product
 function fillMovingChildren(products: HTMLElement[], parentWidth: number){
-  console.log('in movingchildren function: products:', products);
-  for(let product of products){
-    console.log(product);
-  }
-
   products.forEach((product) => {
-
     let animatedProduct: MovingProduct = {
       child: product,
       offsetLeft: product.offsetLeft,
-      parentoffsetWidth: parentWidth
+      parentoffsetWidth: parentWidth,
+      checkoffsetLeft: product.offsetLeft,
+      pastRotationOne: false
     };
-
-    console.log('animatedProduct',animatedProduct);
-
     movingChildren.push(animatedProduct);
   });
 };
+    // adding listeners for animation images
+    function addEventListenersToProductAnimation(animationImages: HTMLImageElement[]){
+      //IIFE
+      (function(movingChildren: HTMLImageElement[]){
+        for(let child of movingChildren){
+       child.addEventListener('mouseenter', () => {
+            console.log('mouseenter working');
+            child.style.transform = 'scale(1.1)';
+            animationPause = true;
+        });
 
-
-    // adding listeners for animation functionality
-    function addEventListenersToProductAnimation(containers: HTMLElement[]){
-        Array.from(containers).forEach((container) => {
-          (function(){
-            container.addEventListener('mouseenter', () => {
-              container.style.transform = 'scale(1.1)';
-              animationPause = true;
-            });
-            container.addEventListener('mouseleave', () => {
-              container.style.transform = 'scale(1)';
-              animationPause = false;
-              requestAnimationFrame(productFlow);
-            });
-          })();
-        })
+        child.addEventListener('mouseleave', () => {
+            console.log('mouseleave working');
+            child.style.transform = 'scale(1)';
+            animationPause = false;
+            requestAnimationFrame(productFlow);
+        });
+      }
+      })(animationImages);
+      ///end IIFE
     }
-
     //Main Animation function
-    function productFlow(time: DOMHighResTimeStamp){
-      console.log('movingchildren',movingChildren);
+    function productFlow(){
+      //200 is the width of movingChild -- update if width of element is updated in css file
       for(let i = 0;i<movingChildren.length;i++){
         let movingChild = movingChildren[i];
-        let currentLeftValue = parseInt(getComputedStyle(movingChild.child).getPropertyValue('left'));
-        let currentObjectWidth = parseInt(getComputedStyle(movingChild.child).getPropertyValue('width'));
-        let speed = currentLeftValue - 1;
-        movingChild.child.style.left = `${speed}px`;
+        let firstResetValue = movingChild.offsetLeft + 200 + animationParentGap;
+        let speed = movingChild.checkoffsetLeft - 1;
+        movingChild.checkoffsetLeft--;
+        movingChild.child.style.transform = `translateX(${speed}px)`;
+        //solition might be adding this to itself for the new translate value
+        let afterFirstResetValue = (movingChild.parentoffsetWidth + animationParentGap + 200);
 
-        if(speed <= -(movingChild.offsetLeft + currentObjectWidth + animationParentGap)){
-          movingChild.child.style.left = `${-movingChild.offsetLeft + movingChild.parentoffsetWidth + animationParentGap}px`;
+        if(speed <= -firstResetValue && movingChild.pastRotationOne === false){
+          movingChild.child.style.transform = `translateX(${afterFirstResetValue}px)`;
+          movingChild.checkoffsetLeft = afterFirstResetValue;
+          movingChild.pastRotationOne = true;
+        } else if(movingChild.pastRotationOne === true && speed <= -afterFirstResetValue){
+          movingChild.child.style.transform = `translateX(${afterFirstResetValue}px)`;
+          movingChild.checkoffsetLeft = afterFirstResetValue;
         }
+      }
 
-        if(!animationPause){
-          requestAnimationFrame(productFlow);
-        }
+      if(!animationPause){
+        requestAnimationFrame(productFlow);
       }
     }
     //End Animation Logic--------------------
-    //calling functinos, waiting for async data to load so func param are sufficient
+    //calling functions, waiting for async data to load so function param are sufficient
     setTimeout(() => {
       fillMovingChildren(this.animateContainers,animationParentWidth);
-      addEventListenersToProductAnimation(this.animateContainers);
       requestAnimationFrame(productFlow);
-    },2500);
+    },1000);
   }
 
   ngOnDestroy(): void {

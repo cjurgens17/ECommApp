@@ -71,7 +71,7 @@ Discover the power of coffee
 </div>
 <div class="spacer"></div>
 <!-- carousel -->
-<div id="color" class="cool-image-container">
+<!-- <div id="color" class="cool-image-container">
   <button class="carousel-btn"
    (click)="moveRightColor()"
    (click)="updateCarouselBackgroundColor()"
@@ -99,7 +99,7 @@ Discover the power of coffee
   (click)="restartCarousel()">
     <i class="fa-solid fa-arrow-right fa-2xl"></i>
   </button>
-</div>
+</div> -->
 <!-- carousel -->
 <div class="spacer"></div>
 <div class="statements two">
@@ -112,7 +112,8 @@ Discover the power of coffee
 <div class="flex-animation" #flexContainer>
   <div
   *ngFor="let product of advertisedProducts"
-   class="flex-animation-product-container">
+   class="flex-animation-product-container"
+   >
     <img class="flex-animation-product-img" [src]="product.image">
   </div>
 </div>

@@ -531,11 +531,13 @@ body {
 }
 
 .flex-animation-product-container {
-  position: relative;
   height: 200px;
   width: 200px;
   padding: 8px;
   overflow: hidden;
+  flex: 0 0 200px;
+  will-change: transform;
+  transform: translateX(0px);
 }
 
 .flex-animation-product-img {
