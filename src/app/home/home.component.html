@@ -113,6 +113,7 @@ Discover the power of coffee
   <div
   *ngFor="let product of advertisedProducts"
    class="flex-animation-product-container"
+   (click)="passProduct(product)"
    >
     <img class="flex-animation-product-img" [src]="product.image">
   </div>

@@ -1,8 +1,10 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Product } from '../products/products';
 import { ProductsService } from '../products/products.service';
 import { Subject, takeUntil} from 'rxjs';
 import { MovingProduct } from './movingproduct';
+import { ViewProductService } from '../view-product/view-product.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -12,7 +14,7 @@ import { MovingProduct } from './movingproduct';
 })
 export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
-@ViewChild('flexContainer') flexContainer!: ElementRef;
+animationParent!: HTMLElement;
 animateContainers: HTMLElement[] = [];
 animationImages: HTMLImageElement[] = [];
 // intervalController: ReturnType<typeof setInterval>  = setInterval(() => {
@@ -40,7 +42,15 @@ products!: Product[];
 
 
 
-constructor(private productService: ProductsService) {}
+
+constructor(private productService: ProductsService, private elementRef: ElementRef, private viewProductService: ViewProductService, private router: Router) {}
+
+passProduct(product: Product){
+  this.viewProductService.swappingProductSubject(product);
+  this.router.navigate(['/viewproduct']).then(() => {
+    window.scrollTo(0, 0);
+  });
+}
 
 scrollToTop(){
   window.scroll(0,0);
@@ -140,6 +150,8 @@ circles[this.carouselIndex].classList.add('carousel-fill-circle');
 
 //----end of carousel
 
+
+
   ////Lifecycle Hooks
   ngOnInit(): void {
     this.productService.getAdvertisedProducts()
@@ -153,17 +165,6 @@ circles[this.carouselIndex].classList.add('carousel-fill-circle');
       error: err => console.log(`Error: ${err}`)
   });
 
-  // this.productService.getProducts()
-  // .pipe(
-  //   takeUntil(this.ngUnSubscribe)
-  // )
-  // .subscribe({
-  //   next: products => {
-  //     this.products = products;
-  //   },
-  //   error: e => console.error('Error on getProducts OnInit: ', e)
-  // });
-
   //setting initial background color for carousel item
   // this.carouselElement = document.getElementById('color') as HTMLElement;
   // this.carouselElement.style.background = `${this.carouselColors[this.colorIndex]}`;
@@ -175,33 +176,67 @@ circles[this.carouselIndex].classList.add('carousel-fill-circle');
     // Product Animation Logic -----------------------------
     let movingChildren: MovingProduct[] = [];
     let animationPause: boolean = false;
-    let animationParent = this.flexContainer.nativeElement;
-    let animationParentWidth = parseInt(getComputedStyle(animationParent).getPropertyValue('width'));
-    let animationParentGap = parseInt(getComputedStyle(animationParent).getPropertyValue('gap'));
+    this.animationParent = this.elementRef.nativeElement.querySelector('.flex-animation');
     setTimeout(() => {
-       this.animateContainers = Array.from(animationParent.children) as HTMLElement[];
+       this.animateContainers = Array.from(this.animationParent.children) as HTMLElement[];
        this.animationImages = Array.from(document.querySelectorAll('.flex-animation-product-img')) as HTMLImageElement[];
        addEventListenersToProductAnimation(this.animationImages);
     }, 500);
     //functions for Product Animation
 
     //giving state to each animated product
-function fillMovingChildren(products: HTMLElement[], parentWidth: number){
+function fillMovingChildren(products: HTMLElement[]){
   products.forEach((product) => {
     let animatedProduct: MovingProduct = {
       child: product,
       offsetLeft: product.offsetLeft,
-      parentoffsetWidth: parentWidth,
-      checkoffsetLeft: product.offsetLeft,
-      pastRotationOne: false
+      pastRotationOne: false,
+      speed: product.offsetLeft + 200 + 40
     };
     movingChildren.push(animatedProduct);
   });
 };
-    // adding listeners for animation images
+    //SetUp Animation function
+    function productFlow(){
+
+      let initialOffset = 0;
+
+      movingChildren.forEach((movingChild) => {
+        movingChild.child.style.transform = `translateX(${initialOffset}px)`;
+        initialOffset += movingChild.child.offsetWidth;
+      });
+    }
+      //main animation function
+      function frame(){
+        let parentContainer = document.querySelector('.flex-animation') as HTMLElement;
+        let containerWidth = parentContainer.offsetWidth;
+        movingChildren.forEach((movingChild) => {
+          const currentTransform = getComputedStyle(movingChild.child).transform;
+          const matrix = new DOMMatrixReadOnly(currentTransform); //creates a matrix of all the transform on the element
+          const currentTranslateX = matrix.m41; // this applies the currentTranslate to  the matrix, which affects the element. m41 is 4th column first row
+          const speed = 1; //we can adjust speed here
+
+          //moving each container to the left
+          const newTranslateX = currentTranslateX - speed;
+          movingChild.child.style.transform = `translateX(${newTranslateX}px)`;
+
+          //check if off screen, if so we reposition to other side of screen
+          if(newTranslateX + movingChild.child.offsetWidth < 0){
+            //reposition
+            const resetTranslateX = containerWidth - speed;
+            movingChild.child.style.transform = `translateX(${resetTranslateX}px)`;
+          }
+        });
+
+          if(!animationPause){
+          requestAnimationFrame(frame);
+          }
+      }
+
+      // adding listeners for animation images
     function addEventListenersToProductAnimation(animationImages: HTMLImageElement[]){
       //IIFE
-      (function(movingChildren: HTMLImageElement[]){
+      (function (movingChildren: HTMLImageElement[]){
         for(let child of movingChildren){
        child.addEventListener('mouseenter', () => {
             console.log('mouseenter working');
@@ -213,43 +248,19 @@ function fillMovingChildren(products: HTMLElement[], parentWidth: number){
             console.log('mouseleave working');
             child.style.transform = 'scale(1)';
             animationPause = false;
-            requestAnimationFrame(productFlow);
+            requestAnimationFrame(frame);
         });
       }
       })(animationImages);
       ///end IIFE
     }
-    //Main Animation function
-    function productFlow(){
-      //200 is the width of movingChild -- update if width of element is updated in css file
-      for(let i = 0;i<movingChildren.length;i++){
-        let movingChild = movingChildren[i];
-        let firstResetValue = movingChild.offsetLeft + 200 + animationParentGap;
-        let speed = movingChild.checkoffsetLeft - 1;
-        movingChild.checkoffsetLeft--;
-        movingChild.child.style.transform = `translateX(${speed}px)`;
-        //solition might be adding this to itself for the new translate value
-        let afterFirstResetValue = (movingChild.parentoffsetWidth + animationParentGap + 200);
 
-        if(speed <= -firstResetValue && movingChild.pastRotationOne === false){
-          movingChild.child.style.transform = `translateX(${afterFirstResetValue}px)`;
-          movingChild.checkoffsetLeft = afterFirstResetValue;
-          movingChild.pastRotationOne = true;
-        } else if(movingChild.pastRotationOne === true && speed <= -afterFirstResetValue){
-          movingChild.child.style.transform = `translateX(${afterFirstResetValue}px)`;
-          movingChild.checkoffsetLeft = afterFirstResetValue;
-        }
-      }
-
-      if(!animationPause){
-        requestAnimationFrame(productFlow);
-      }
-    }
     //End Animation Logic--------------------
     //calling functions, waiting for async data to load so function param are sufficient
     setTimeout(() => {
-      fillMovingChildren(this.animateContainers,animationParentWidth);
-      requestAnimationFrame(productFlow);
+      fillMovingChildren(this.animateContainers);
+      productFlow();
+      requestAnimationFrame(frame);
     },1000);
   }
 
@@ -258,4 +269,12 @@ function fillMovingChildren(products: HTMLElement[], parentWidth: number){
     this.ngUnSubscribe.complete();
   }
 
+  @HostListener('window:resize')
+  onWindowResize() {
+
+    // Perform logic based on the updated window width
+    // ...
+  }
 }
+
+
