@@ -2,7 +2,6 @@ import { AfterViewInit, Component, ElementRef, HostListener, OnDestroy, OnInit, 
 import { Product } from '../products/products';
 import { ProductsService } from '../products/products.service';
 import { Subject, takeUntil} from 'rxjs';
-import { MovingProduct } from './movingproduct';
 import { ViewProductService } from '../view-product/view-product.service';
 import { Router } from '@angular/router';
 
@@ -14,8 +13,7 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
-animationParent!: HTMLElement;
-animateContainers: HTMLElement[] = [];
+
 animationImages: HTMLImageElement[] = [];
 // intervalController: ReturnType<typeof setInterval>  = setInterval(() => {
 //   this.moveLeftColor(),
@@ -166,6 +164,9 @@ circles[this.carouselIndex].classList.add('carousel-fill-circle');
       error: err => console.log(`Error: ${err}`)
   });
 
+
+
+
   //setting initial background color for carousel item
   // this.carouselElement = document.getElementById('color') as HTMLElement;
   // this.carouselElement.style.background = `${this.carouselColors[this.colorIndex]}`;
@@ -175,56 +176,45 @@ circles[this.carouselIndex].classList.add('carousel-fill-circle');
 
   ngAfterViewInit(): void {
     // Product Animation Logic -----------------------------
-    let movingChildren: MovingProduct[] = [];
+    let animationParent = this.elementRef.nativeElement.querySelector('.flex-animation') as HTMLElement;
+    let animateContainers: HTMLElement[] = [];
     let animationPause: boolean = false;
-    this.animationParent = this.elementRef.nativeElement.querySelector('.flex-animation');
+
+
     setTimeout(() => {
-       this.animateContainers = Array.from(this.animationParent.children) as HTMLElement[];
+       animateContainers = Array.from(animationParent.children) as HTMLElement[];
        this.animationImages = Array.from(document.querySelectorAll('.flex-animation-product-img')) as HTMLImageElement[];
        addEventListenersToProductAnimation(this.animationImages);
     }, 500);
     //functions for Product Animation
-
-    //giving state to each animated product
-function fillMovingChildren(products: HTMLElement[]){
-  products.forEach((product) => {
-    let animatedProduct: MovingProduct = {
-      child: product,
-      offsetLeft: product.offsetLeft,
-      pastRotationOne: false,
-      speed: product.offsetLeft + 200 + 40
-    };
-    movingChildren.push(animatedProduct);
-  });
-};
     //SetUp Animation function
     function productFlow(){
       let initialOffset = 0;
 
-      movingChildren.forEach((movingChild) => {
-        movingChild.child.style.transform = `translateX(${initialOffset}px)`;
-        initialOffset += movingChild.child.offsetWidth;
+      animateContainers.forEach((movingChild) => {
+        movingChild.style.transform = `translateX(${initialOffset}px)`;
+        initialOffset += movingChild.offsetWidth;
       });
     }
       //main animation function
       function frame(){
         let parentContainer = document.querySelector('.flex-animation') as HTMLElement;
         let containerWidth = parentContainer.offsetWidth;
-        movingChildren.forEach((movingChild) => {
-          const currentTransform = getComputedStyle(movingChild.child).transform;
+        animateContainers.forEach((movingChild) => {
+          const currentTransform = getComputedStyle(movingChild).transform;
           const matrix = new DOMMatrixReadOnly(currentTransform); //creates a matrix of all the transform on the element
           const currentTranslateX = matrix.m41; // this applies the currentTranslate to  the matrix, which affects the element. m41 is 4th column first row
           const speed = 1; //we can adjust speed here
 
           //moving each container to the left
           const newTranslateX = currentTranslateX - speed;
-          movingChild.child.style.transform = `translateX(${newTranslateX}px)`;
+          movingChild.style.transform = `translateX(${newTranslateX}px)`;
 
           //check if off screen, if so we reposition to other side of screen
-          if(newTranslateX + movingChild.child.offsetWidth < 0){
+          if(newTranslateX + movingChild.offsetWidth < 0){
             //reposition
             const resetTranslateX = containerWidth - speed;
-            movingChild.child.style.transform = `translateX(${resetTranslateX}px)`;
+            movingChild.style.transform = `translateX(${resetTranslateX}px)`;
           }
         });
 
@@ -264,7 +254,6 @@ function fillMovingChildren(products: HTMLElement[]){
     //----------
     //calling functions, waiting for async data to load so function param are sufficient
     setTimeout(() => {
-      fillMovingChildren(this.animateContainers);
       productFlow();
       requestAnimationFrame(frame);
     },1000);
