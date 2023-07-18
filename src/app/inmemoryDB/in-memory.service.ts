@@ -27,7 +27,10 @@ export class InMemoryService implements InMemoryDbService {
     let advertisedProducts = [
       { id: 11, name: 'Valhalla Java', price: 10.99, image: 'https://m.media-amazon.com/images/I/61BnSZMLBvL._SX679_.jpg', altImage: 'https://m.media-amazon.com/images/I/714EN0WLKOL._SX679_.jpg'},
      { id: 12, name: 'Kicking Horse', price: 20.99, image: 'https://m.media-amazon.com/images/I/61FTRgES9yL._SX679_.jpg', altImage: 'https://m.media-amazon.com/images/I/71j9EVleRLL._SX679_.jpg'},
-     {id: 13, name: 'Jims Organic Coffee', price: 30.99, image:'https://m.media-amazon.com/images/I/61Dsz0kpbWL._SX679_.jpg', altImage: 'https://m.media-amazon.com/images/I/613XZLFH+bL._SX679_.jpg'}
+     {id: 13, name: 'Jims Organic Coffee', price: 30.99, image:'https://m.media-amazon.com/images/I/61Dsz0kpbWL._SX679_.jpg', altImage: 'https://m.media-amazon.com/images/I/613XZLFH+bL._SX679_.jpg'},
+     { id: 6, name: 'Copper Moon Coffee', price: 24.99, image: 'https://m.media-amazon.com/images/I/41yg1mHVV1L._SX300_SY300_QL70_FMwebp_.jpg', quantity: 20, altImage:'https://m.media-amazon.com/images/I/51g8POijSEL._SX679_.jpg'},
+     { id: 5, name: 'Brooklyn Coffee', price: 24.99, image: 'https://m.media-amazon.com/images/I/51AiNsmZKKL._SX679_.jpg', quantity: 70, altImage:'https://m.media-amazon.com/images/I/51wBzE4F0GL.jpg'}
+
     ];
 
 

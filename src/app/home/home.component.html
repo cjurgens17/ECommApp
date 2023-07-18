@@ -61,11 +61,22 @@ Discover the power of coffee
   <p>...to ensure an exceptional and rich coffee experience.</p>
 </div>
 <div class="spacer"></div>
-<div class="product-advertise">
+<!-- <div class="product-advertise">
   <div class="img-container" *ngFor="let product of advertisedProducts">
     <img [src]="product.image">
   </div>
+</div> -->
+<!--  product animation -->
+<div class="flex-animation" #flexContainer>
+  <div
+  *ngFor="let product of advertisedProducts"
+   class="flex-animation-product-container"
+   (click)="passProduct(product)"
+   >
+    <img class="flex-animation-product-img" [src]="product.image">
+  </div>
 </div>
+<!-- end product animation -->
 <div class="product-button">
   <button (click)="scrollToTop()"  routerLink="/products">Shop Now</button>
 </div>
@@ -108,17 +119,7 @@ Discover the power of coffee
   <button (click)="scrollToTop()" routerLink="/products">Subscribe</button>
 </div>
 <div class="spacer"></div>
-<!-- testing for product animation -->
-<div class="flex-animation" #flexContainer>
-  <div
-  *ngFor="let product of advertisedProducts"
-   class="flex-animation-product-container"
-   (click)="passProduct(product)"
-   >
-    <img class="flex-animation-product-img" [src]="product.image">
-  </div>
-</div>
-<!-- end test for animation -->
+<!-- where animation was -->
 <div class="spacer"></div>
 <div class="product-end">
 
