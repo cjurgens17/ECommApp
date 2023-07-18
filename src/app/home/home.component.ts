@@ -43,6 +43,7 @@ products!: Product[];
 
 
 
+
 constructor(private productService: ProductsService, private elementRef: ElementRef, private viewProductService: ViewProductService, private router: Router) {}
 
 passProduct(product: Product){
@@ -198,7 +199,6 @@ function fillMovingChildren(products: HTMLElement[]){
 };
     //SetUp Animation function
     function productFlow(){
-
       let initialOffset = 0;
 
       movingChildren.forEach((movingChild) => {
@@ -232,7 +232,6 @@ function fillMovingChildren(products: HTMLElement[]){
           requestAnimationFrame(frame);
           }
       }
-
       // adding listeners for animation images
     function addEventListenersToProductAnimation(animationImages: HTMLImageElement[]){
       //IIFE
@@ -254,8 +253,15 @@ function fillMovingChildren(products: HTMLElement[]){
       })(animationImages);
       ///end IIFE
     }
-
     //End Animation Logic--------------------
+
+    //event listener for product animation
+    window.addEventListener('resize', handleResize);
+
+    function handleResize(){
+     productFlow();
+    }
+    //----------
     //calling functions, waiting for async data to load so function param are sufficient
     setTimeout(() => {
       fillMovingChildren(this.animateContainers);
@@ -267,13 +273,6 @@ function fillMovingChildren(products: HTMLElement[]){
   ngOnDestroy(): void {
     this.ngUnSubscribe.next();
     this.ngUnSubscribe.complete();
-  }
-
-  @HostListener('window:resize')
-  onWindowResize() {
-
-    // Perform logic based on the updated window width
-    // ...
   }
 }
 
