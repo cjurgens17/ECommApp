@@ -4,6 +4,7 @@ import { ProductsService } from '../products/products.service';
 import { Subject, takeUntil} from 'rxjs';
 import { ViewProductService } from '../view-product/view-product.service';
 import { Router } from '@angular/router';
+import { CarouselObjectImage } from './carouselobjectimage';
 
 
 @Component({
@@ -28,15 +29,23 @@ carouselIndex: number = 0;
 colorIndex: number = 0;
 advertisedProducts!: Product[];
 private ngUnSubscribe = new Subject<void>();
-carouselImages: string[] = [
-  "https://i.insider.com/5981c995b50ab126008b6605?width=700",
-  'https://spice4life.co.za/wp-content/uploads/2022/09/Screenshot-2022-09-26-at-09.36.38.png',
-  'https://www.medianews4u.com/wp-content/uploads/2023/05/Mothers-Day-Campaigns-Part-2-1.jpg'
-];
+
 carouselColors: string[] = [
   'hsl(165.56,79.41%,47.33%, 1)', 'hsl(50.48,96.6%,53.92%,1)', '#FF8DBD'
 ];
 products!: Product[];
+carouselObjects: CarouselObjectImage[] = [
+  {image: 'https://i.insider.com/5981c995b50ab126008b6605?width=700', subtitle: 'Image One', id: 0, isActive:false},
+  {image: 'https://spice4life.co.za/wp-content/uploads/2022/09/Screenshot-2022-09-26-at-09.36.38.png', subtitle: 'Image Two', id: 1, isActive:false},
+  {image: 'https://www.medianews4u.com/wp-content/uploads/2023/05/Mothers-Day-Campaigns-Part-2-1.jpg', subtitle: 'Image Two', id: 2,isActive:false},
+  {image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTq_DL5sbmsIFh7x7lmwonyD78z0MuBqqCL-Q&usqp=CAU', subtitle: 'Image Two', id: 3,isActive:false},
+];
+
+featuredCarouselObjects : CarouselObjectImage[] = [
+  {image: 'https://i.insider.com/5981c995b50ab126008b6605?width=700', subtitle: 'Image One', id: 0,isActive:false},
+  {image: 'https://spice4life.co.za/wp-content/uploads/2022/09/Screenshot-2022-09-26-at-09.36.38.png', subtitle: 'Image Two', id: 1,isActive:false},
+  {image: 'https://www.medianews4u.com/wp-content/uploads/2023/05/Mothers-Day-Campaigns-Part-2-1.jpg', subtitle: 'Image Two', id: 2,isActive:false}
+];
 
 
 
@@ -55,101 +64,39 @@ scrollToTop(){
   window.scroll(0,0);
 }
 //for carousel-----------------------------------------
+//for middle image always have class of .featured-img
+rotateLeft(){
+  let filteredImages: CarouselObjectImage[] = [];
+  let length = this.carouselObjects.length - 1;
 
-moveLeft(){
-  if(this.carouselIndex === this.carouselImages.length - 1){
-    this.carouselIndex = 0;
-  }else{
-    this.carouselIndex++;
-  }
-}
-
-moveRight(){
-  console.log(this.carouselIndex);
-  if(this.carouselIndex === 0){
-    this.carouselIndex = this.carouselImages.length-1;
-  }else{
-    this.carouselIndex--;
-  }
-}
-
-updateCarouselBackground(){
-  this.carouselImage.classList.remove('fade-in');
-  this.carouselImage.classList.add('fade-out');
-
-  setTimeout(() => {
-    this.carouselImage.src = `${this.carouselImages[this.carouselIndex]}`;
-
-    this.carouselImage.classList.remove('fade-out');
-    this.carouselImage.classList.add('fade-in');
-  }, 400);
+  this.featuredCarouselObjects.filter((obj, i) => {
+    if(obj.id === length){
+      filteredImages[i] = this.carouselObjects[0];
+    }else{
+      filteredImages[i] = this.carouselObjects[obj.id + 1];
+    }
+    return filteredImages;
+  });
+  this.featuredCarouselObjects = filteredImages;
 
 }
 
-moveLeftColor(){
-  if(this.colorIndex === this.carouselColors.length - 1){
-    this.colorIndex = 0;
-  }else{
-    this.colorIndex++;
-  }
-}
+rotateRight(){
+  let filteredImages: CarouselObjectImage[] = [];
+  let zero = 0;
 
-moveRightColor(){
-  if(this.colorIndex === 0){
-    this.colorIndex = this.carouselColors.length-1;
-  }else{
-    this.colorIndex--;
-  }
+  this.featuredCarouselObjects.filter((obj, i) => {
+    if(obj.id === zero){
+      filteredImages[i] = this.carouselObjects[this.carouselObjects.length - 1];
+    }else{
+      filteredImages[i] = this.carouselObjects[obj.id - 1];
+    }
+    return filteredImages;
+  });
+  this.featuredCarouselObjects = filteredImages;
 }
-
-updateCarouselBackgroundColor(){
-  let colorItem = document.getElementById('color') as HTMLElement;
-  colorItem.style.backgroundColor = `${this.carouselColors[this.colorIndex]}`;
-  colorItem.style.transition = `background-color 800ms ease-in`;
-  let carouselImageTitle = document.getElementById('carousel-image-title') as HTMLElement;
-  carouselImageTitle.style.transition = `background-color 800ms ease-in`;
-  //styles for different background colors
-  switch(this.colorIndex){
-    case 0:
-      carouselImageTitle.textContent = 'Have A Blast';
-      carouselImageTitle.style.backgroundColor = '#FF8DBD';
-      break;
-    case 1:
-      carouselImageTitle.textContent = 'Feel Energized';
-      carouselImageTitle.style.backgroundColor = '#7CE993';
-      break;
-    case 2:
-      carouselImageTitle.textContent = 'Warm Up';
-      carouselImageTitle.style.backgroundColor = 'hsl(50.48,96.6%,53.92%,1)';
-      break;
-     default:
-      break;
-  }
-}
-
-//updates the background of carousel circle to match the current index of image that is being displayed
-updateCircle(){
-let circles = document.getElementsByClassName('circle');
-let fullCircle = document.getElementsByClassName('carousel-fill-circle');
-fullCircle[0].classList.remove('carousel-fill-circle');
-circles[this.carouselIndex].classList.add('carousel-fill-circle');
-}
-
-// restartCarousel(): ReturnType<typeof setInterval>  {
-//   clearInterval(this.intervalController);
-//   this.intervalController = setInterval(() => {
-//     this.moveLeftColor(),
-//     this.updateCarouselBackgroundColor(),
-//     this.moveLeft(),
-//     this.updateCarouselBackground(),
-//     this.updateCircle()
-//   }, 4300);
-//   return this.intervalController;
-// }
 
 //----end of carousel
-
-
 
   ////Lifecycle Hooks
   ngOnInit(): void {
@@ -164,14 +111,6 @@ circles[this.carouselIndex].classList.add('carousel-fill-circle');
       error: err => console.log(`Error: ${err}`)
   });
 
-
-
-
-  //setting initial background color for carousel item
-  // this.carouselElement = document.getElementById('color') as HTMLElement;
-  // this.carouselElement.style.background = `${this.carouselColors[this.colorIndex]}`;
-  // this.carouselImage = document.getElementById('carousel-image') as HTMLImageElement;
-  // this.carouselImage.src = `${this.carouselImages[this.carouselIndex]}`;
   }
 
   ngAfterViewInit(): void {
@@ -179,6 +118,7 @@ circles[this.carouselIndex].classList.add('carousel-fill-circle');
     let animationParent = this.elementRef.nativeElement.querySelector('.flex-animation') as HTMLElement;
     let animateContainers: HTMLElement[] = [];
     let animationPause: boolean = false;
+
 
 
     setTimeout(() => {
