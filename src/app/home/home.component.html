@@ -94,7 +94,11 @@ Discover the power of coffee
   >
     <i class="fa-solid fa-arrow-left fa-sm"></i>
   </button>
-  <div *ngFor="let obj of featuredCarouselObjects; let i = index" class="carousel-img-container" [ngClass]="{'featured-img': i === 1}">
+  <div *ngFor="let obj of featuredCarouselObjects; let i = index" class="carousel-img-container" [ngClass]="{
+    'middle-img': i === 1,
+    'left-img': i === 0,
+    'right-img' : i === 2
+  }">
     <img [id]="'carousel-image' + i" [src]="obj.image">
     <h1 class="carousel-image-subtitle">{{obj.subtitle}}</h1>
   </div>

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Product } from '../products/products';
 import { ProductsService } from '../products/products.service';
 import { Subject, takeUntil} from 'rxjs';
@@ -6,23 +6,15 @@ import { ViewProductService } from '../view-product/view-product.service';
 import { Router } from '@angular/router';
 import { CarouselObjectImage } from './carouselobjectimage';
 
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
 
 animationImages: HTMLImageElement[] = [];
-// intervalController: ReturnType<typeof setInterval>  = setInterval(() => {
-//   this.moveLeftColor(),
-//   this.updateCarouselBackgroundColor(),
-//   this.moveLeft(),
-//   this.updateCarouselBackground(),
-//   this.updateCircle()
-// }, 4300);
 carouselElement!: HTMLElement;
 carouselImage!: HTMLImageElement;
 carouselIndex: number = 0;
@@ -35,16 +27,16 @@ carouselColors: string[] = [
 ];
 products!: Product[];
 carouselObjects: CarouselObjectImage[] = [
-  {image: 'https://i.insider.com/5981c995b50ab126008b6605?width=700', subtitle: 'Image One', id: 0, isActive:false},
-  {image: 'https://spice4life.co.za/wp-content/uploads/2022/09/Screenshot-2022-09-26-at-09.36.38.png', subtitle: 'Image Two', id: 1, isActive:false},
-  {image: 'https://www.medianews4u.com/wp-content/uploads/2023/05/Mothers-Day-Campaigns-Part-2-1.jpg', subtitle: 'Image Two', id: 2,isActive:false},
-  {image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTq_DL5sbmsIFh7x7lmwonyD78z0MuBqqCL-Q&usqp=CAU', subtitle: 'Image Two', id: 3,isActive:false},
+  {image: 'https://plus.unsplash.com/premium_photo-1661774963308-1354410bc437?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8dGVzdGluZ3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60', subtitle: 'Organically Tested', id: 0},
+  {image: 'https://images.unsplash.com/photo-1577962917302-cd874c4e31d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8dGVhbSUyMGNvbGxhYm9yYXRpb258ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60', subtitle: 'Team Planning', id: 1},
+  {image: 'https://images.unsplash.com/photo-1511537190424-bbbab87ac5eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Y29mZmUlMjBmYWN0b3J5fGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60', subtitle: 'Factory Roasted', id: 2},
+  {image: 'https://images.unsplash.com/photo-1523741543316-beb7fc7023d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTl8fHNvdXRoJTIwYW1lcmljYW4lMjBmYXJtfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60', subtitle: 'Harvest Season', id: 3},
 ];
 
 featuredCarouselObjects : CarouselObjectImage[] = [
-  {image: 'https://i.insider.com/5981c995b50ab126008b6605?width=700', subtitle: 'Image One', id: 0,isActive:false},
-  {image: 'https://spice4life.co.za/wp-content/uploads/2022/09/Screenshot-2022-09-26-at-09.36.38.png', subtitle: 'Image Two', id: 1,isActive:false},
-  {image: 'https://www.medianews4u.com/wp-content/uploads/2023/05/Mothers-Day-Campaigns-Part-2-1.jpg', subtitle: 'Image Two', id: 2,isActive:false}
+  {image: 'https://images.unsplash.com/photo-1511537190424-bbbab87ac5eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Y29mZmUlMjBmYWN0b3J5fGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60', subtitle: 'Factory Roasted', id: 0},
+  {image: 'https://images.unsplash.com/photo-1577962917302-cd874c4e31d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8dGVhbSUyMGNvbGxhYm9yYXRpb258ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60', subtitle: 'Team Planning', id: 1},
+  {image: 'https://plus.unsplash.com/premium_photo-1661774963308-1354410bc437?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8dGVzdGluZ3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60', subtitle: 'Organically Tested', id: 2}
 ];
 
 
@@ -64,7 +56,6 @@ scrollToTop(){
   window.scroll(0,0);
 }
 //for carousel-----------------------------------------
-//for middle image always have class of .featured-img
 rotateLeft(){
   let filteredImages: CarouselObjectImage[] = [];
   let length = this.carouselObjects.length - 1;
@@ -77,11 +68,11 @@ rotateLeft(){
     }
     return filteredImages;
   });
-  this.featuredCarouselObjects = filteredImages;
-
+    this.featuredCarouselObjects = filteredImages;
 }
 
 rotateRight(){
+
   let filteredImages: CarouselObjectImage[] = [];
   let zero = 0;
 
@@ -93,8 +84,9 @@ rotateRight(){
     }
     return filteredImages;
   });
-  this.featuredCarouselObjects = filteredImages;
+    this.featuredCarouselObjects = filteredImages;
 }
+
 
 //----end of carousel
 
@@ -110,6 +102,9 @@ rotateRight(){
       },
       error: err => console.log(`Error: ${err}`)
   });
+
+  //calling the carousel so animations fall into place
+  this.rotateRight();
 
   }
 
