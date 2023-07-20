@@ -31,12 +31,6 @@
         <button class="p-2 bg-white text-black rounded-full text-3xl" (click)="decrementQuantity()">-</button>
         <span>{{ quantity }}</span>
         <button class="p-2 bg-white text-black rounded-full text-3xl" (click)="incrementQuantity(product)">+</button>
-        <!-- <div
-        *ngIf="quantity == product.quantity"
-        class="max-quan"
-        >
-        Max Available!
-      </div> -->
       </div>
       <button class="cart-button" (click)="addToCart(product)" (click)="showElement(product)">
         <div id="appear" class="added-to-cart">
@@ -53,16 +47,6 @@
     class="card" (click)="viewProduct(product)"
     *ngFor="let product of products; let i = index"
     >
-      <!-- <button class="product-button" (click)="scrollToTop()">
-        <div
-        [ngStyle]="{
-          'background-image': 'url(' + product.image + ')'
-        }"
-        class="card-img"
-        id="varImage{{i}}"
-        (mouseover)="changeToAltImage(product, i)"
-        (mouseout)="changeToReg(product,i)"
-       > -->
        <button class="product-button" (click)="scrollToTop()">
         <div
         [ngStyle]="{

@@ -287,7 +287,16 @@ body {
   color: white;
   letter-spacing: 2px;
   font-weight: var(--font-weight-medium);
-  background-color: hsla(187, 8%, 78%);
+  background: hsla(187, 8%, 78%);
+  will-change: backgrond-color;
+  -webkit-transition: background-color .5s ease-out;
+  -moz-transition: background-color .5s ease-out;
+  -o-transition: background-color .5s ease-out;
+  transition: background-color .5s ease-out;
+}
+
+.product-button button:hover {
+  background-color: hsl(50.48, 96.6%, 53.92%);
 }
 
 .spacer {
@@ -401,6 +410,7 @@ body {
   justify-content: center;
   align-items: center;
   transition: transform 400ms;
+  overflow: hidden;
 }
 
 .home-ending-img {
@@ -411,6 +421,12 @@ body {
   border-radius: 16px;
   border: 2px solid black;
   box-shadow: -20px 20px rgba(252, 252, 252, 0.986);
+  will-change: transform;
+  transition: transform 0.5s ease-in-out;
+}
+
+.home-ending-img:hover {
+  transform: scale(1.1);
 }
 
 .home-ending-last-child {

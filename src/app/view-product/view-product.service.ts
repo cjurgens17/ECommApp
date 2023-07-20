@@ -10,12 +10,12 @@ export class ViewProductService {
 
   private productSubject = new BehaviorSubject<Product>(
     {
-    id: 0,
-    name: '',
-    price: 0,
-    image: '',
-    altImage: '',
-    quantity: 0,
+    id: 1,
+    name: `chock full o' Nuts`,
+    price: 9.99,
+    image: 'https://m.media-amazon.com/images/I/81TBeTikHhL._AC_UL400_.jpg',
+    altImage: 'https://m.media-amazon.com/images/I/818na+MgHtL._SX679_.jpg',
+    quantity: 15,
     type: ''
   }
   );

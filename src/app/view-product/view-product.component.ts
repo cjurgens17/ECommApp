@@ -1,18 +1,14 @@
 import {
   Component,
-  ElementRef,
   Input,
   OnDestroy,
-  OnInit,
-  QueryList,
-  ViewChild,
-  ViewChildren,
+  OnInit
 } from '@angular/core';
 import { ViewProductService } from './view-product.service';
 import { Cart } from '../products/cart';
 import { Product } from '../products/products';
 import { ProductsService } from '../products/products.service';
-import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Component({
