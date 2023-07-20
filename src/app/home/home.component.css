@@ -382,22 +382,67 @@ body {
   left: 5px;
 }
 
-.product-end {
+.home-ending {
   margin-left: auto;
   margin-right: auto;
   display: grid;
-  grid-template-columns:
-  repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+  grid-template-columns: 1fr 1fr;
   place-content: center;
   padding: 32px;
   gap: 32px;
-  background-color: hsl(50.48,96.6%,53.92%,1);;
+  background-color: #7CE993;
   width: 100%;
 }
 
-.product-end img {
-  display: block;
+.home-ending-child {
+  grid-column: 1/1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   transition: transform 400ms;
+}
+
+.home-ending-img {
+  width:75%;
+  height: 75%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 16px;
+  border: 2px solid black;
+  box-shadow: -20px 20px rgba(252, 252, 252, 0.986);
+}
+
+.home-ending-last-child {
+  grid-column: 2/-1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 16px;
+  padding: 8px;
+}
+
+.ending-header {
+  font-size: 2.5rem;
+  font-weight: 500;
+}
+
+.ending-paragraph::before {
+  content: '-';
+  margin-right: 2px;
+}
+
+.ending-paragraph:first-of-type {
+  margin-top: 64px;
+}
+
+
+.ending-paragraph {
+  font-size: 1.15rem;
+  font-weight: 400;
+  word-wrap: break-word;
+  hyphens: auto;
 }
 
 .img-container {
@@ -491,6 +536,25 @@ body {
     gap: 200px;
   }
 }
+
+/* for bottom ending grid to stack vertical */
+@media (max-width: 800px){
+  .home-ending {
+    grid-template-rows: 1fr 1fr;
+  }
+
+  .home-ending-child {
+    grid-column: 1/-1;
+    grid-row: 1/2;
+  }
+
+  .home-ending-last-child{
+    grid-column: 1/-1;
+    grid-row: 2/3;
+  }
+}
+
+
 /* for coffee items on landing view */
 @media (max-width: 630px){
   .center-content-2 {
@@ -532,6 +596,11 @@ body {
     .word {
       font-size: 1.5rem;
     }
+
+    .home-ending-img {
+      width: 100%;
+      height: 75%;
+    }
 }
 
 /* miscellanous query -- to adjust position of middle spanned image--coffee mug*/
@@ -539,6 +608,18 @@ body {
   .cool-image-container {
     background-position: 20% 20%;
   }
+
+  .home-ending {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .ending-header {
+    font-size: 2rem;
+  }
+
 }
 
 
@@ -552,6 +633,11 @@ body {
   .flex-animation-product-container {
     width: 150px;
   }
+
+  .ending-header {
+    font-size: 1.75rem;
+  }
+
 }
 
 
