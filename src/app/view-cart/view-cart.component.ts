@@ -5,6 +5,7 @@ import { Product } from '../products/products';
 import { Router } from '@angular/router';
 import { Cart } from '../products/cart';
 import { ViewProductService } from '../view-product/view-product.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-view-cart',
@@ -19,7 +20,8 @@ export class ViewCartComponent implements OnInit, OnDestroy{
   constructor(
     private productsService: ProductsService,
     private router: Router,
-    private viewProductService: ViewProductService
+    private viewProductService: ViewProductService,
+    private http: HttpClient
     ){}
 
 
@@ -61,6 +63,17 @@ export class ViewCartComponent implements OnInit, OnDestroy{
   //   this.productsService.setNextCart(cart);
   //   this.router.navigate(['/checkout']);
   // }
+
+  toStripe(){
+    this.http.post('http://localhost:4242/create-checkout-session',{})
+    .pipe(
+      takeUntil(this.ngUnSubscribe)
+    )
+    .subscribe({
+      next: resp => console.log(resp),
+      error: error => console.log(error)
+    });
+  }
 
   viewProduct(product: Product): void {
     this.viewProductService.swappingProductSubject(product);
