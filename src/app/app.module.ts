@@ -18,6 +18,8 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HammerModule } from '@angular/platform-browser';
 import { IgxCarouselModule } from 'igniteui-angular';
+import { SuccessComponent } from './success/success.component';
+import { CancelComponent } from './cancel/cancel.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { IgxCarouselModule } from 'igniteui-angular';
     CheckoutComponent,
     HomeComponent,
     FooterComponent,
-    CarouselComponent
+    CarouselComponent,
+    SuccessComponent,
+    CancelComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +47,8 @@ import { IgxCarouselModule } from 'igniteui-angular';
       { path: 'viewproduct', component: ViewProductComponent },
       { path: 'viewcart', component: ViewCartComponent },
       { path: 'checkout', component: CheckoutComponent },
+      {path: 'success', component: SuccessComponent},
+      {path: 'cancel', component: CancelComponent},
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: '**', redirectTo: 'home', pathMatch: 'full' },
 

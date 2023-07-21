@@ -56,11 +56,11 @@ export class ViewCartComponent implements OnInit, OnDestroy{
     console.log(cart);
   }
 
-  checkout(cart: Cart): void {
-    console.log(cart);
-    this.productsService.setNextCart(cart);
-    this.router.navigate(['/checkout']);
-  }
+  // checkout(cart: Cart): void {
+  //   console.log(cart);
+  //   this.productsService.setNextCart(cart);
+  //   this.router.navigate(['/checkout']);
+  // }
 
   viewProduct(product: Product): void {
     this.viewProductService.swappingProductSubject(product);

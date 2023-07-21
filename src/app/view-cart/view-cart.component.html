@@ -71,7 +71,10 @@
     <p class="total">
       {{ getTotalAmount(c.products) | currency:'USD' }}
     </p>
-    <button class="shop-button" (click)="checkout(c)">Checkout</button>
+    <form action="/create-checkout-session" method="POST">
+    <button type="submit" id="checkout-button" class="shop-button">Checkout</button>
+    <!-- (click)="checkout(c)" -->
+    </form>
   </div>
 </div>
 
