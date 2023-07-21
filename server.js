@@ -4,8 +4,10 @@ const stripe = require('stripe')('sk_test_51NWLWiAAwBntl43mAAscP0tDxysTzcY6oO8Pf
 const express = require('express');
 const cors = require('cors');
 const app = express();
+const bodyParser = require('body-parser');
 app.use(cors());
 app.use(express.static('public'));
+app.use(bodyParser.json());
 
 const MY_DOMAIN = 'http://localhost:4200';
 
@@ -16,29 +18,35 @@ app.get('/', (req, res) => {
 
 app.post('/create-checkout-session', async (req,res) => {
 try{
-  const session = await stripe.checkout.sessions.create({
+  console.log(req.body.cart);
+  const cartProducts = req.body.cart.products;
 
-    line_items: [
-      {
-        price_data: {
-          currency: 'usd',
-          product_data: {
-            name: 'T-shirt',
-          },
-          unit_amount: 2000,
-        },
-        quantity: 1,
+  const lineItems = await cartProducts.map((product) => ({
+    price_data: {
+      currency: 'usd',
+      product_data: {
+        name: product.name,
+        images: [product.image],
       },
-    ],
+      unit_amount: parseInt(product.price * 100), //converting to cents for stripe api
+    },
+    quantity: product.quantity,
+  }));
+
+  const session = await stripe.checkout.sessions.create({
+    line_items: lineItems,
     mode: 'payment',
     success_url: `${MY_DOMAIN}/success`,
     cancel_url: `${MY_DOMAIN}/cancel`
   });
+
+  console.log('Stripe Response:', session);
   res.redirect(303, session.url);
 } catch (e) {
-  throw new Error("stripe Post error: ", e.message);
+  console.error("stripe Post error: ", e);
+  res.status(500).json({ error: 'Error occurred while processing the request.' });
 }
-})
+});
 
 app.listen(4242, () => console.log('Running in port 4242'));
 

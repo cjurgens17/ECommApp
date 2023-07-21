@@ -5,7 +5,7 @@ import { Product } from '../products/products';
 import { Router } from '@angular/router';
 import { Cart } from '../products/cart';
 import { ViewProductService } from '../view-product/view-product.service';
-import { HttpClient } from '@angular/common/http';
+import { ViewCartService } from './view-cart.service';
 
 @Component({
   selector: 'app-view-cart',
@@ -21,7 +21,7 @@ export class ViewCartComponent implements OnInit, OnDestroy{
     private productsService: ProductsService,
     private router: Router,
     private viewProductService: ViewProductService,
-    private http: HttpClient
+    private viewCartService: ViewCartService
     ){}
 
 
@@ -63,16 +63,14 @@ export class ViewCartComponent implements OnInit, OnDestroy{
   //   this.productsService.setNextCart(cart);
   //   this.router.navigate(['/checkout']);
   // }
-
-  toStripe(){
-    this.http.post('http://localhost:4242/create-checkout-session',{})
-    .pipe(
-      takeUntil(this.ngUnSubscribe)
-    )
-    .subscribe({
+  onCheckout(cart: Cart) {
+    this.viewCartService.toStripe(cart)
+    .subscribe(
+     {
       next: resp => console.log(resp),
-      error: error => console.log(error)
-    });
+      error: err => console.log(err)
+     }
+    )
   }
 
   viewProduct(product: Product): void {
@@ -91,6 +89,8 @@ export class ViewCartComponent implements OnInit, OnDestroy{
 
   //Lifecycle hooks--------------------
   ngOnInit(): void {
+
+    console.log('Cart',JSON.stringify(this.products))
 
     this.screenWidth = window.innerWidth;
     window.addEventListener('resize', this.onResize.bind(this));
