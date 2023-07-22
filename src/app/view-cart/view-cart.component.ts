@@ -9,24 +9,23 @@ import { ViewProductService } from '../view-product/view-product.service';
 @Component({
   selector: 'app-view-cart',
   templateUrl: './view-cart.component.html',
-  styleUrls: ['./view-cart.component.css']
+  styleUrls: ['./view-cart.component.css'],
 })
-export class ViewCartComponent implements OnInit, OnDestroy{
+export class ViewCartComponent implements OnInit, OnDestroy {
   screenWidth!: number;
-  products !: Product[];
+  products!: Product[];
   cart$ = this.productsService.cart$;
   private ngUnSubscribe = new Subject<void>();
   constructor(
     private productsService: ProductsService,
     private router: Router,
     private viewProductService: ViewProductService
-    ){}
-
+  ) {}
 
   //functions----
-    scrollToTop(){
-      window.scroll(0,0);
-    }
+  scrollToTop() {
+    window.scroll(0, 0);
+  }
 
   decrementQuantity(product: Product) {
     if (product.quantity > 1) {
@@ -46,10 +45,10 @@ export class ViewCartComponent implements OnInit, OnDestroy{
     return total;
   }
 
-  removeFromCart(products: Product[], product:Product, cart: Cart){
+  removeFromCart(products: Product[], product: Product, cart: Cart) {
     const findIndex = products.findIndex((item) => item === product);
-    if(findIndex !== -1){
-      products.splice(findIndex,1);
+    if (findIndex !== -1) {
+      products.splice(findIndex, 1);
     }
     cart.size--;
     this.productsService.setNextCart(cart);
@@ -63,9 +62,13 @@ export class ViewCartComponent implements OnInit, OnDestroy{
 
     const jsonCart = JSON.stringify(cart);
 
-    const res = await fetch('http://localhost:4242/create-checkout-session', {method: 'POST', body: jsonCart, headers: {
-      'Content-Type' : 'application/json'
-    }})
+    const res = await fetch('http://localhost:4242/create-checkout-session', {
+      method: 'POST',
+      body: jsonCart,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
     const body = await res.json();
     window.location.href = body.url;
   }
@@ -83,27 +86,23 @@ export class ViewCartComponent implements OnInit, OnDestroy{
     return this.screenWidth <= 550;
   }
 
-
   //Lifecycle hooks--------------------
   ngOnInit(): void {
-
-    console.log('Cart',JSON.stringify(this.products));
+    console.log('Cart', JSON.stringify(this.products));
 
     this.screenWidth = window.innerWidth;
     window.addEventListener('resize', this.onResize.bind(this));
 
     this.productsService
-    .getProducts()
-    .pipe(takeUntil(this.ngUnSubscribe))
-    .subscribe({
-      next: (products) => (this.products = products),
-    });
-
+      .getProducts()
+      .pipe(takeUntil(this.ngUnSubscribe))
+      .subscribe({
+        next: (products) => (this.products = products),
+      });
   }
 
   ngOnDestroy(): void {
     this.ngUnSubscribe.next();
     this.ngUnSubscribe.complete();
   }
-
 }

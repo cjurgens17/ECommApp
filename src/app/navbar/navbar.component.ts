@@ -5,10 +5,9 @@ import { ProductsService } from '../products/products.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit, OnDestroy {
-
   options: boolean = false;
   transparent!: boolean;
   currentCart$ = this.productsService.cart$;
@@ -16,22 +15,20 @@ export class NavbarComponent implements OnInit, OnDestroy {
   constructor(
     private location: Location,
     private productsService: ProductsService
-    ){
-
-     location.onUrlChange((val) => {
+  ) {
+    location.onUrlChange((val) => {
       console.log(val);
-      if(val !== '/home'){
-          this.transparent = false;
-      }else {
-       this.transparent = true;
+      if (val !== '/home') {
+        this.transparent = false;
+      } else {
+        this.transparent = true;
       }
 
       console.log(this.transparent);
-    })
-
+    });
   }
 
-  public showOptions(): void{
+  public showOptions(): void {
     const getShow = document.getElementById('burgerOptions') as HTMLElement;
     const menuBar = document.getElementById('menubar') as HTMLElement;
 
@@ -40,7 +37,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     if (this.options) {
       getShow.classList.add('show');
       menuBar.classList.add('hide');
-    }else {
+    } else {
       getShow.classList.remove('show');
     }
 
@@ -55,21 +52,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
     menuBar.classList.remove('hide');
   }
 
-
-
-
   //Lifecycle Hooks
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
 
-
-
-
-
-
-  }
-
-  ngOnDestroy(): void {
-  }
-
+  ngOnDestroy(): void {}
 }

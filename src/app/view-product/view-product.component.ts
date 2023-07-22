@@ -1,9 +1,4 @@
-import {
-  Component,
-  Input,
-  OnDestroy,
-  OnInit
-} from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ViewProductService } from './view-product.service';
 import { Cart } from '../products/cart';
 import { Product } from '../products/products';
@@ -31,8 +26,8 @@ export class ViewProductComponent implements OnInit, OnDestroy {
     private router: Router
   ) {}
   //functions-------
-  incrementQuantity(product:Product) {
-    if(product.name.length > 0){
+  incrementQuantity(product: Product) {
+    if (product.name.length > 0) {
       this.quantity++;
     }
   }
@@ -45,7 +40,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
 
   addToCart(product: Product): void {
     //if we already have item in cart
-    if(product.name.length <= 0) return;
+    if (product.name.length <= 0) return;
     let check = false;
     this.cart.products.find((item) => {
       if (item.name === product.name) {
@@ -66,19 +61,21 @@ export class ViewProductComponent implements OnInit, OnDestroy {
   }
 
   showElement(product: Product) {
-     //adding css class for user feedback element of adding to the cart
-     if(product.name.length > 0){
-     const cartButton = document.getElementById('addToCartBtn') as HTMLButtonElement;
-     const addElement = document.getElementById('appear');
+    //adding css class for user feedback element of adding to the cart
+    if (product.name.length > 0) {
+      const cartButton = document.getElementById(
+        'addToCartBtn'
+      ) as HTMLButtonElement;
+      const addElement = document.getElementById('appear');
 
-     cartButton.disabled = true;
-     addElement?.classList.add('show');
+      cartButton.disabled = true;
+      addElement?.classList.add('show');
 
-     //removing the css so the element goes away
-     setTimeout(() => {
-      addElement?.classList.remove('show');
-      cartButton.disabled = false;
-     }, 2000);
+      //removing the css so the element goes away
+      setTimeout(() => {
+        addElement?.classList.remove('show');
+        cartButton.disabled = false;
+      }, 2000);
     }
   }
 
@@ -91,25 +88,8 @@ export class ViewProductComponent implements OnInit, OnDestroy {
     this.showPicture = value;
   }
 
-  //Changing the styling of background image for .products-grid .card-img div container dynamically with
-  //mouseover and mouseout events
-  // changeToAltImage(product: Product, index: number): void {
-  //   const varImage = document.getElementById(`varImage${index}`) as HTMLElement;
-  //   if (varImage) {
-  //     varImage.style.backgroundImage = `url(${product.altImage})`;
-  //   }
-  // }
-
-  // changeToReg(product: Product, index: number): void {
-  //   const varImage = document.getElementById(`varImage${index}`) as HTMLElement;
-  //   if (varImage) {
-  //     varImage.style.backgroundImage = `url(${product.image})`;
-  //   }
-  // }
-  //End of last comment, keep these methods jumbled together for better identity and seperation of concerns
-
   scrollToTop(): void {
-    window.scrollTo({top: 100, behavior: 'smooth'});
+    window.scrollTo({ top: 100, behavior: 'smooth' });
   }
 
   hideFixedElement(): void {
