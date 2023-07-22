@@ -5,8 +5,6 @@ import { Product } from '../products/products';
 import { Router } from '@angular/router';
 import { Cart } from '../products/cart';
 import { ViewProductService } from '../view-product/view-product.service';
-import { ViewCartService } from './view-cart.service';
-
 
 @Component({
   selector: 'app-view-cart',
@@ -21,8 +19,7 @@ export class ViewCartComponent implements OnInit, OnDestroy{
   constructor(
     private productsService: ProductsService,
     private router: Router,
-    private viewProductService: ViewProductService,
-    private viewCartService: ViewCartService
+    private viewProductService: ViewProductService
     ){}
 
 
@@ -60,6 +57,9 @@ export class ViewCartComponent implements OnInit, OnDestroy{
   }
 
   async onCheckout(cart: Cart) {
+    let checkoutButton = document.querySelector('.shop-button') as HTMLElement;
+    checkoutButton.classList.remove('shop-button');
+    checkoutButton.classList.add('dot-spin');
 
     const jsonCart = JSON.stringify(cart);
 
@@ -87,7 +87,7 @@ export class ViewCartComponent implements OnInit, OnDestroy{
   //Lifecycle hooks--------------------
   ngOnInit(): void {
 
-    console.log('Cart',JSON.stringify(this.products))
+    console.log('Cart',JSON.stringify(this.products));
 
     this.screenWidth = window.innerWidth;
     window.addEventListener('resize', this.onResize.bind(this));
@@ -100,6 +100,7 @@ export class ViewCartComponent implements OnInit, OnDestroy{
     });
 
   }
+
   ngOnDestroy(): void {
     this.ngUnSubscribe.next();
     this.ngUnSubscribe.complete();

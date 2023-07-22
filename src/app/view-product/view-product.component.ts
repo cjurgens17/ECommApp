@@ -68,12 +68,16 @@ export class ViewProductComponent implements OnInit, OnDestroy {
   showElement(product: Product) {
      //adding css class for user feedback element of adding to the cart
      if(product.name.length > 0){
+     const cartButton = document.getElementById('addToCartBtn') as HTMLButtonElement;
      const addElement = document.getElementById('appear');
+
+     cartButton.disabled = true;
      addElement?.classList.add('show');
 
      //removing the css so the element goes away
      setTimeout(() => {
       addElement?.classList.remove('show');
+      cartButton.disabled = false;
      }, 3000);
     }
   }

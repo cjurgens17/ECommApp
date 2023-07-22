@@ -60,7 +60,7 @@ footer {
   margin-left: auto;
 }
 
-.col.two > button i-feather:hover {
+.col.two > button:hover {
   color: black;
 }
 

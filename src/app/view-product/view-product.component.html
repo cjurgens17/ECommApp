@@ -32,7 +32,7 @@
         <span>{{ quantity }}</span>
         <button class="p-2 bg-white text-black rounded-full text-3xl" (click)="incrementQuantity(product)">+</button>
       </div>
-      <button class="cart-button" (click)="addToCart(product)" (click)="showElement(product)">
+      <button id="addToCartBtn" class="cart-button" (click)="addToCart(product)" (click)="showElement(product)">
         <div id="appear" class="added-to-cart">
           Added to Cart!
         </div>

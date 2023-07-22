@@ -10,11 +10,9 @@ import { ProductsComponent } from './products/products.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ViewProductComponent } from './view-product/view-product.component';
 import { ViewCartComponent } from './view-cart/view-cart.component';
-import { CheckoutComponent } from './checkout/checkout.component';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { IconsModule } from './icons/icons.module';
-import { CarouselComponent } from './carousel/carousel.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HammerModule } from '@angular/platform-browser';
 import { IgxCarouselModule } from 'igniteui-angular';
@@ -28,10 +26,8 @@ import { CancelComponent } from './cancel/cancel.component';
     NavbarComponent,
     ViewProductComponent,
     ViewCartComponent,
-    CheckoutComponent,
     HomeComponent,
     FooterComponent,
-    CarouselComponent,
     SuccessComponent,
     CancelComponent
   ],
@@ -46,7 +42,6 @@ import { CancelComponent } from './cancel/cancel.component';
       { path: 'products', component: ProductsComponent },
       { path: 'viewproduct', component: ViewProductComponent },
       { path: 'viewcart', component: ViewCartComponent },
-      { path: 'checkout', component: CheckoutComponent },
       {path: 'success', component: SuccessComponent},
       {path: 'cancel', component: CancelComponent},
       { path: '', redirectTo: 'home', pathMatch: 'full' },

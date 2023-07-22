@@ -19,7 +19,7 @@
     </div>
     <div *ngFor="let product of c.products" class="cart-flex">
       <div class="img-container">
-      <img class="p-image" [src]="product.image">
+      <img style="padding: 8px; object-fit: contain; object-position: center;" class="p-image" [src]="product.image">
     </div>
       <div
       class="p.details"
@@ -71,13 +71,11 @@
     <p class="total">
       {{ getTotalAmount(c.products) | currency:'USD' }}
     </p>
-    <!-- <form id="form-id" action="http://localhost:4242/create-checkout-session" method="POST"> -->
-    <button class="shop-button" (click)="onCheckout(c)">Checkout</button>
-  <!-- </form> -->
-    <!-- (click)="checkout(c)" -->
+    <button id="checkout-btn" class="shop-button" (click)="onCheckout(c)">Checkout</button>
   </div>
 </div>
 
+<!-- If no items are in cart -->
 <ng-template #emptyCart>
   <main class="empty-wrapper">
     <h1 class="empty-heading">Your cart is empty</h1>
@@ -85,5 +83,6 @@
   </main>
 </ng-template>
 </main>
+<!-- If no items are in cart -->
 
 

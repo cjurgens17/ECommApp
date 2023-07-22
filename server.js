@@ -1,6 +1,6 @@
+import { environment } from 'src\environments\environment.ts';
 
-
-const stripe = require('stripe')('sk_test_51NWLWiAAwBntl43mAAscP0tDxysTzcY6oO8PfCPxpbBmEJVgl9WlJchi0x3pFgycOrtWMW9yCMdoy0jb2Comob3f00Jnz53sLm');
+const stripe = require('stripe')(environment.stripeSecretTestKey);
 const express = require('express');
 const cors = require('cors');
 const app = express();
@@ -41,7 +41,6 @@ try{
   });
 
   console.log('Stripe Response:', session);
-  // res.redirect(303, session.url);
   res.json({url: session.url})
 } catch (e) {
   console.error("stripe Post error: ", e);
