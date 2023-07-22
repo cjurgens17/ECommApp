@@ -1,6 +1,5 @@
-import { environment } from 'src\environments\environment.ts';
-
-const stripe = require('stripe')(environment.stripeSecretTestKey);
+require('dotenv').config();
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const express = require('express');
 const cors = require('cors');
 const app = express();

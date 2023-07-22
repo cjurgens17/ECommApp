@@ -78,7 +78,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
      setTimeout(() => {
       addElement?.classList.remove('show');
       cartButton.disabled = false;
-     }, 3000);
+     }, 2000);
     }
   }
 
