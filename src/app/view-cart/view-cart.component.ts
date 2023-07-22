@@ -7,6 +7,7 @@ import { Cart } from '../products/cart';
 import { ViewProductService } from '../view-product/view-product.service';
 import { ViewCartService } from './view-cart.service';
 
+
 @Component({
   selector: 'app-view-cart',
   templateUrl: './view-cart.component.html',
@@ -58,19 +59,15 @@ export class ViewCartComponent implements OnInit, OnDestroy{
     console.log(cart);
   }
 
-  // checkout(cart: Cart): void {
-  //   console.log(cart);
-  //   this.productsService.setNextCart(cart);
-  //   this.router.navigate(['/checkout']);
-  // }
-  onCheckout(cart: Cart) {
-    this.viewCartService.toStripe(cart)
-    .subscribe(
-     {
-      next: resp => console.log(resp),
-      error: err => console.log(err)
-     }
-    )
+  async onCheckout(cart: Cart) {
+
+    const jsonCart = JSON.stringify(cart);
+
+    const res = await fetch('http://localhost:4242/create-checkout-session', {method: 'POST', body: jsonCart, headers: {
+      'Content-Type' : 'application/json'
+    }})
+    const body = await res.json();
+    window.location.href = body.url;
   }
 
   viewProduct(product: Product): void {

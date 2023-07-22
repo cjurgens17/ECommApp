@@ -18,7 +18,7 @@ export class ViewCartService {
         'Content-Type': 'application/json'
       }),
     };
-    return this.http.post<any>(this.apiUrl,cart, httpOptions)
+    return this.http.post<any>(`${this.apiUrl}/create-checkout-session`,cart, httpOptions)
     .pipe(
       tap(resp => console.log('resp',resp)),
       catchError((err) => {

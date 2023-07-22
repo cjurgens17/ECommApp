@@ -18,8 +18,8 @@ app.get('/', (req, res) => {
 
 app.post('/create-checkout-session', async (req,res) => {
 try{
-  console.log(req.body.cart);
-  const cartProducts = req.body.cart.products;
+  console.log(req.body);
+  const cartProducts = req.body.products;
 
   const lineItems = await cartProducts.map((product) => ({
     price_data: {
@@ -41,7 +41,8 @@ try{
   });
 
   console.log('Stripe Response:', session);
-  res.redirect(303, session.url);
+  // res.redirect(303, session.url);
+  res.json({url: session.url})
 } catch (e) {
   console.error("stripe Post error: ", e);
   res.status(500).json({ error: 'Error occurred while processing the request.' });
