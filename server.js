@@ -1,4 +1,4 @@
-require('dotenv').config();
+// require('dotenv').config();
 // const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 // const express = require('express');
 // const cors = require('cors');
@@ -61,6 +61,8 @@ app.get('/*', (req,res) =>
 res.sendFile(path.join(__dirname, 'dist/ecommapplication', 'index.html')),
 );
 
-app.listen(process.env.PORT || 8080);
+app.listen(process.env.PORT || 4200, () => {
+  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});
 
 
