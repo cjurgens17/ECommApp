@@ -14,8 +14,6 @@ import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { IconsModule } from './icons/icons.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HammerModule } from '@angular/platform-browser';
-import { IgxCarouselModule } from 'igniteui-angular';
 import { SuccessComponent } from './success/success.component';
 import { CancelComponent } from './cancel/cancel.component';
 
@@ -34,8 +32,6 @@ import { CancelComponent } from './cancel/cancel.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    HammerModule,
-    IgxCarouselModule,
     HttpClientInMemoryWebApiModule.forRoot(InMemoryService),
     RouterModule.forRoot([
       { path: 'home', component: HomeComponent },
