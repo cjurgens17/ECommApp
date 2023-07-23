@@ -1,27 +1,43 @@
-# Ecommapplication
+# Coffee Ecommerce Application
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.3.
+This is a Coffee Ecommerce Application built with a combination of Angular 14, Node.js, Express.js, and various other technologies. The application allows coffee enthusiasts to explore and purchase various coffee products. It provides a user-friendly interface, intuitive navigation, and a seamless shopping experience for coffee lovers. The UI was built from the ground up using vanilla css.
 
-## Development server
+Visit the [Live Demo](https://coffeebrothers-7ec5c7fdf171.herokuapp.com/) to see the application in action.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Table of Contents
 
-## Code scaffolding
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [Disclaimer](#disclaimer)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Features
 
-## Build
+- **Product Catalog:** Browse through an extensive selection of coffee products, including various blends, roasts, and origin types.
+- **Shopping Cart:** Add desired coffee products to the shopping cart for purchase.
+- **Payment Integration:** Integrated with the Stripe API to facilitate secure and seamless payment processing.
+- **Responsive Design:** The application is designed to be responsive and accessible on various devices, including desktop, tablet, and mobile.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Technologies Used
 
-## Running unit tests
+- Angular 14: Front-end framework for building user interfaces and handling application logic in TypeScript.
+- Node.js: Server-side JavaScript runtime environment for executing server code.
+- Express.js: Web application framework for Node.js, used to build the backend of the application.
+- Stripe API: For handling secure payment processing and transactions.
+- HTML: Markup language for creating the structure of the application's web pages.
+- CSS: Stylesheet language used for defining the presentation of the application's web pages.
+- TypeScript: Superset of JavaScript used in the Angular framework for static typing and improved code organization.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Usage
 
-## Running end-to-end tests
+- Explore the product catalog, view product details, and add products to the shopping cart.
+- Proceed to checkout and complete the purchase using the integrated Stripe payment gateway.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Contributing
 
-## Further help
+Contributions to the Coffee Ecommerce Application are welcome. If you encounter any bugs, have feature suggestions, or want to contribute code, please feel free to open an issue or submit a pull request.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Disclaimer
+
+This project is intended for portfolio use only. All images used in this application belong to their respective owners, and no profit is to be made from this app. The application is purely for demonstration and educational purposes.
