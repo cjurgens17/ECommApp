@@ -5,6 +5,7 @@ import { Product } from '../products/products';
 import { Router } from '@angular/router';
 import { Cart } from '../products/cart';
 import { ViewProductService } from '../view-product/view-product.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-view-cart',
@@ -62,7 +63,7 @@ export class ViewCartComponent implements OnInit, OnDestroy {
 
     const jsonCart = JSON.stringify(cart);
 
-    const res = await fetch('http://localhost:4242/create-checkout-session', {
+    const res = await fetch(environment.baseUrl, {
       method: 'POST',
       body: jsonCart,
       headers: {
