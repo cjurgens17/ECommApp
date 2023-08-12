@@ -12,7 +12,7 @@ Discover the power of coffee
   <div class="center-content-2">
     <div class="item rotate-right item-small">
       <div class="photo-info">
-        <h1 style="background-color: #7CE993">Light</h1>
+        <h1 style="background-color:  #de61ff;">Light</h1>
         <div class="word-blocks">
 <div class="word">start</div>
 <div class="word">your</div>
@@ -24,15 +24,15 @@ Discover the power of coffee
       <img src="https://images.unsplash.com/photo-1524350876685-274059332603?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGNvZmZlZSUyMGJlYW5zfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60">
     </div>
     </div>
-    <div class="item rotate-left item-large"style="background-color: hsl(165.56,79.41%,47.33%, 1);">
+    <div class="item rotate-left item-large">
       <div class="photo-info">
-        <h1 style="background-color: #FF8DBD;">Medium</h1>
+        <h1 style="background-color:  #fcd747;">Medium</h1>
         <div class="word-blocks">
 <div class="word middle">taste</div>
 <div class="word middle">the</div>
 <div class="word middle">magic.</div>
         </div>
-      <h3 style="color: hsl(42.35,54.84%,93.92%);">Savory!</h3>
+      <h3 style="color: black;">Savory!</h3>
       </div>
     <div class="img-container-hero">
       <img style="border-radius: 16px;"  src="https://images.unsplash.com/photo-1541167760496-1628856ab772?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Y29mZmVlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60">
@@ -40,7 +40,7 @@ Discover the power of coffee
     </div>
     <div class="item rotate-right item-last">
       <div class="photo-info">
-        <h1>Dark</h1>
+        <h1 style="background-color: #de61ff;">Dark</h1>
         <div class="word-blocks">
 <div class="word">brew</div>
 <div class="word">enjoy</div>
@@ -93,7 +93,7 @@ Discover the power of coffee
     'left-img': i === 0,
     'right-img' : i === 2
   }">
-    <img [id]="'carousel-image' + i" [src]="obj.image">
+    <img [id]="'carousel-image' + i" [src]="obj.image" [ngClass]="{'carousel-shadow': i == 1, 'side-shadow': i != 1}">
     <h1 class="carousel-image-subtitle">{{obj.subtitle}}</h1>
   </div>
   <button class="carousel-btn"

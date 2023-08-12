@@ -26,12 +26,12 @@ body {
   font-size: 1.25rem;
 }
 
-/* background-color: hsl(200deg, 73%, 75%); */
 nav {
   width: 100%;
   background-color: white;
-  height: min-content;
+  height: fit-content;
   padding: 48px;
+  border-bottom: 0.001rem solid var(--color-primary);
 }
 
 .button-container {
@@ -191,7 +191,7 @@ svg {
 }
 
 .transparent-bg {
-  background-color: hsl(50.48,96.6%,53.92%,1);
+  background-color: var(--color-primary);
 }
 
 @media (max-width: 900px) {

@@ -5,7 +5,7 @@ body {
 footer {
   --min-foot-size: 200px;
   width: 100%;
-  background-color: hsl(165.56,79.41%,23.33%);
+  background-color: var(--color-footer);
   padding: 32px;
 }
 
@@ -36,26 +36,28 @@ footer {
   padding: 16px;
 }
 
+
+
 .col.one h1:first-of-type {
   margin-bottom: 16px;
   font-weight: 500;
-  color: white;
+  color: black;
   font-size: 2rem;
 }
 
 .col.one > p {
   font-weight: 300;
-  color: white;
+  color: var(--footer-link);
 }
 
 .col.one h1:last-of-type {
   margin-top: 16px;
   font-weight: 300;
-  color: white;
+  color: var(--footer-link);
 }
 
 .col.two > button {
-  color: white;
+  color: var(--footer-link);
   padding: 8px;
   margin-left: auto;
 }
@@ -75,11 +77,11 @@ footer {
 .col.four h1:first-of-type{
   font-weight: 500;
   font-size: 2rem;
-  color: white;
+  color: black;
 }
 
 .col.four > a {
-  color: white;
+  color: var(--footer-link);
   cursor: pointer;
   font-weight: 300;
 }
@@ -92,11 +94,11 @@ footer {
 .col.three h1:first-of-type{
   font-weight: 500;
   font-size: 2rem;
-  color: white;
+  color: black;
 }
 
 .col.three > a {
-  color: white;
+  color: var(--footer-link);
   cursor: pointer;
   font-weight: 300;
 }
@@ -117,7 +119,7 @@ footer {
 }
 
 .bottom-foot div:last-of-type {
-  color: white;
+  color: var(--footer-link);
 }
 
 .svg-payments {
@@ -127,6 +129,10 @@ footer {
   justify-content: space-around;
   align-items: center;
   border-radius: 4px;
+}
+
+.svg-color {
+  color: var(--footer-link);
 }
 
 .footer-a {
