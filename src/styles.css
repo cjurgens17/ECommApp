@@ -17,16 +17,19 @@ body, html {
   margin: 0;
 }
 
-
+/* #fbc907 */
 body {
   font-family:'Bricolage Grotesque', sans-serif,"Raleway",Helvetica;
   --font-weight-light: 315;
   --font-weight-medium: 500;
   --font-weight-title: 580;
   --font-weight-dark: 945;
-  --color-primary: #fbc907;
-  --color-secondary:#0beabd;
-  --color-tertiary: #de61ff;
+  --color-primary:  #fcd747;
+  --color-primary-monochromatic: #FBCC15;
+  --color-secondary: #476cfc;
+  --color-secondary-monochromatic: #1544FB;
+  --color-tertiary: #9b6dfc;
+  --color-tertiary-monochromatic: #793BFB;
   --color-footer: #fcd747;
   --footer-link: #7f010a;
   --main-shadow: 0px 0px 6.7px rgba(0, 0, 0, 0.32);

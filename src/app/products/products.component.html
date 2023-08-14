@@ -1,7 +1,7 @@
-<div class="parent-wrapper">
+<main class="parent-wrapper">
   <div class="spacer"></div>
   <h1 class="hero-heading">Our Coffee</h1>
-  <div class="hero-summary">
+  <section class="hero-summary">
     <p lang="en" class="hero-text">Discover our exquisite coffee collection sourced from around the globe. With
       meticulous
       roasting, we ensure every
@@ -10,55 +10,55 @@
       Elevate your coffee experience with our high-quality brewing accessories.
       Let the enticing aroma and exceptional taste transport you to a world of sensory delight. Unleash the true essence
       of coffee with us.</p>
-    <img class="hero-float" src="\assets\static\images\undraw_coffee_re_x35h.svg">
-  </div>
+    <img class="hero-float" src="assets\static\images\undraw_coffee_re_x35h.svg" alt="Two figures drinking coffee" loading="eager">
+    </section>
   <div class="spacer"></div>
   <h1 class="hero-heading">Signature Coffee Blends</h1>
   <div class="spacer"></div>
-  <div class="wrapper">
-    <div class="card" (click)="viewProduct(product)" *ngFor="let product of products">
+  <article class="wrapper">
+    <section class="card" (click)="viewProduct(product)" *ngFor="let product of products">
       <button class="product-button">
-        <img class="card-img" [src]="product.image" alt="product.name">
+        <img class="card-img" [src]="product.image" [alt]="product.name" loading="lazy">
         <div class="quantity-grid" *ngIf="product.quantity <= 5">{{product.quantity}} Left</div>
         <div class="content">
           <h1 class="product-name">{{product.name | titlecase}}</h1>
           <h1 class="currency-size">{{product.price | currency}}</h1>
         </div>
       </button>
-    </div>
-  </div>
+    </section>
+  </article>
   <div class="spacer"></div>
   <h1 class="hero-heading">Award winning Blends</h1>
-  <div class="award-container">
+  <figure class="award-container">
     <div class="award-first">Explore Our</div>
     <div class="award-text">Coffee</div>
-  </div>
+  </figure>
   <div class="spacer"></div>
-  <div class="wrapper bottom-border">
-    <div class="card shadow" (click)="viewProduct(product)" *ngFor="let product of awardProducts">
+  <article class="wrapper bottom-border">
+    <section class="card shadow" (click)="viewProduct(product)" *ngFor="let product of awardProducts">
       <button class="product-button">
-        <img class="card-img" [src]="product.image" alt="product.name">
+        <img class="card-img" [src]="product.image" [alt]="product.name" loading="lazy">
         <div class="content">
           <h1 class="product-name">{{product.name | titlecase}}</h1>
           <h1 class="currency-size">{{product.price | currency}}</h1>
         </div>
       </button>
-    </div>
-  </div>
-  <div class="fixed-element" id="fixedElement">
+    </section>
+  </article>
+  <article class="fixed-element" id="fixedElement">
     <span class="close-btn" (click)="hideFixedElement()">x</span>
     Save 15% off with code 'coffee'
-  </div>
+  </article>
   <div class="spacer"></div>
   <h1 class="hero-heading">Cold Brew Season is Here!</h1>
   <div class="spacer"></div>
-  <div class="full-screen-coldbrew"></div>
-  <div class="cold-grid">
+  <figure class="full-screen-coldbrew"></figure>
+  <section class="cold-grid">
     <div id="coldBrew" class="cold-grid-disPic"></div>
     <div *ngFor="let product of coldBrew" (click)="viewProduct(product)" [ngClass]="product.type">
-      <img class="cold-img" [src]="product.image">
+      <img class="cold-img" [src]="product.image" [alt]="product.name" loading="lazy">
       <div class="grid-name">{{product.name}}</div>
       <div class="currency-size">{{product.price | currency}}</div>
     </div>
-  </div>
-</div>
+  </section>
+</main>

@@ -140,7 +140,6 @@ body {
       rgba(0, 0, 0, 0.2)),
     url('src\assets\static\images\victor-he-yam1KMv0SgQ-unsplash.jpg');
   background-position: 30%;
-  padding: 16px;
   background-size: cover;
   gap: 10px;
   isolation: isolate;
@@ -332,6 +331,13 @@ body {
 
 .cold-img {
   height: 90%;
+}
+
+/* laptop styles */
+@media screen and (max-width: 1200px){
+  /* .parent-wrapper {
+    padding: 32px;
+  } */
 }
 
 

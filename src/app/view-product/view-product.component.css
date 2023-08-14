@@ -80,7 +80,7 @@ figure {
   object-position: center;
 }
 
-main {
+#product-view {
   display: flex;
   flex-direction: column;
   grid-area: main;
@@ -89,7 +89,7 @@ main {
   gap: 16px;
 }
 
-main h1:first-of-type {
+#product-view h1:first-of-type {
   font-size: 2rem;
   font-weight: 600;
 }
@@ -311,7 +311,7 @@ cursor:default;
     font-size: 1.40rem;
   }
 
-  main {
+  #product-view {
     display: flex;
     flex-direction: column;
     justify-content: center;

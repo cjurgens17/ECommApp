@@ -31,10 +31,9 @@ nav {
   background-color: white;
   height: fit-content;
   padding: 48px;
-  border-bottom: 0.001rem solid var(--color-primary);
 }
 
-.button-container {
+.link-container {
   display: flex;
   justify-content: center;
   gap: 80px;
@@ -87,29 +86,25 @@ nav {
   color: black;
 }
 
-.coffee {
-  width: 35px;
-  height: 35px;
-  display: block;
-  padding-top: 8px;
-  color: white !important;
-}
-
 .cart {
   padding-top: 2px;
   width: 38px;
   display: block;
   padding-right: 8px;
   height: 38px;
-  color: white;
+  color: black;
+}
+
+.cart-size-parent {
+  position: relative;
 }
 
 .cart-size {
   position: absolute;
   width: 50px;
   height: 50px;
-  top: -25px;
-  left: -8px;
+  top: 50%;
+  transform: translate(27%, -50%);
 }
 
 svg {
@@ -117,7 +112,7 @@ svg {
 }
 
 .imenu {
-  color: white;
+  color: black;
   width: 50px;
   height: 50px;
 }
@@ -144,7 +139,7 @@ svg {
   width: 100%;
 }
 
-.logo>button {
+.logo > a {
   color: white;
   padding-bottom: 15px;
   font-size: 1.5rem;
@@ -182,16 +177,12 @@ svg {
   font-size: 1.5rem;
 }
 
-.options>button {
+.options > a {
   color: white;
 }
 
 .options:last-child {
   padding-right: 16px;
-}
-
-.transparent-bg {
-  background-color: var(--color-primary);
 }
 
 @media (max-width: 900px) {
@@ -242,12 +233,18 @@ svg {
 }
 
 /* super header */
-@media (max-width: 350px) {
+@media (max-width: 375px) {
   .super-header {
     flex-wrap: wrap;
     padding: 8px;
     height: min-content;
   }
+
+  .super-header::before,
+  .super-header::after {
+    display: none;
+  }
+
 }
 
 /* //desktop styles */

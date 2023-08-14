@@ -35,25 +35,25 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   carouselObjects: CarouselObjectImage[] = [
     {
       image:
-        'https://plus.unsplash.com/premium_photo-1661774963308-1354410bc437?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8dGVzdGluZ3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60',
+        "assets/static/images/organic tested.avif",
       subtitle: 'Organically Tested',
       id: 0,
     },
     {
       image:
-        'https://images.unsplash.com/photo-1577962917302-cd874c4e31d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8dGVhbSUyMGNvbGxhYm9yYXRpb258ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60',
+        'assets/static/images/team planning.avif',
       subtitle: 'Team Planning',
       id: 1,
     },
     {
       image:
-        'https://images.unsplash.com/photo-1511537190424-bbbab87ac5eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Y29mZmUlMjBmYWN0b3J5fGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60',
+        'assets/static/images/factory roasted.avif',
       subtitle: 'Factory Roasted',
       id: 2,
     },
     {
       image:
-        'https://images.unsplash.com/photo-1523741543316-beb7fc7023d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTl8fHNvdXRoJTIwYW1lcmljYW4lMjBmYXJtfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60',
+        'assets/static/images/Harvesting.avif',
       subtitle: 'Harvest Season',
       id: 3,
     },
@@ -62,19 +62,19 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   featuredCarouselObjects: CarouselObjectImage[] = [
     {
       image:
-        'https://images.unsplash.com/photo-1511537190424-bbbab87ac5eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Y29mZmUlMjBmYWN0b3J5fGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60',
+        'assets/static/images/factory roasted.avif',
       subtitle: 'Factory Roasted',
       id: 0,
     },
     {
       image:
-        'https://images.unsplash.com/photo-1577962917302-cd874c4e31d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8dGVhbSUyMGNvbGxhYm9yYXRpb258ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60',
+        'assets/static/images/team planning.avif',
       subtitle: 'Team Planning',
       id: 1,
     },
     {
       image:
-        'https://plus.unsplash.com/premium_photo-1661774963308-1354410bc437?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8dGVzdGluZ3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60',
+        'assets/static/images/organic tested.avif',
       subtitle: 'Organically Tested',
       id: 2,
     },

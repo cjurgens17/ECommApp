@@ -52,18 +52,19 @@ footer {
 
 .col.one h1:last-of-type {
   margin-top: 16px;
-  font-weight: 300;
+  font-weight: 500;
   color: var(--footer-link);
 }
 
-.col.two > button {
+.col.two > a {
   color: var(--footer-link);
   padding: 8px;
   margin-left: auto;
 }
 
-.col.two > button:hover {
+.col.two > a:hover {
   color: black;
+  cursor: pointer;
 }
 
 .col.three {

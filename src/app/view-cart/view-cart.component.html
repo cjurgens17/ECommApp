@@ -1,56 +1,32 @@
 <main>
-<div class="wrapper" *ngIf="cart$ | async as c">
-  <div
+<section class="wrapper" *ngIf="cart$ | async as c">
+  <figure
   *ngIf="c.size > 0"
   class="cart-shipping">
     <p><i-feather name="thumbs-up"></i-feather>Awesome! Your order qualifies for Free Standard Shipping</p>
-  </div>
+</figure>
   <div
   *ngIf="c.size > 0"
   class="cart-header">
     <h1 class="cart-header-title">Your Cart</h1>
     <a class="cart-header-link" routerLink="/products">Continue Shopping</a>
   </div>
-  <div class="cart-container" *ngIf="c.size > 0; else emptyCart">
+  <section class="cart-container" *ngIf="c.size > 0; else emptyCart">
     <div class="spacer"></div>
     <div class="product-header">
       <h3 class="product-header-text">product</h3>
       <h3 class="product-header-text">total</h3>
     </div>
-    <div *ngFor="let product of c.products" class="cart-flex">
-      <div class="img-container">
-      <img style="padding: 8px; object-fit: contain; object-position: center;" class="p-image" [src]="product.image">
-    </div>
-      <div
-      class="p.details"
-      [ngStyle]="{
-        'display' : 'flex',
-        'flex-direction' : 'column',
-        'gap' : '16px',
-        'justify-content' : 'center',
-        'align-items': 'center',
-        'width': '50ch',
-        'word-wrap': 'break-word',
-        'hyphens': 'auto'
-      }"
-      >
+    <section *ngFor="let product of c.products" class="cart-flex">
+      <figure class="img-container">
+      <img class="p-image" [src]="product.image" [alt]="product.name" loading="lazy">
+      </figure>
+      <div class="p-details">
         <h1>{{product.name | titlecase}}</h1>
         <h1>{{product.price | currency}}</h1>
       </div>
-      <div class="p.quantity"
-      [ngStyle]="{display: 'flex', gap: '24px', padding: '16px'}"
-      [ngClass]="{'flex-column' : isMobile()}"
-      >
-        <div
-         [ngStyle]="{
-          'display': 'flex',
-          'justify-content': 'space-evenly',
-          'align-items': 'center',
-          'width': '150px',
-          'height': '50px',
-          'border': '1px solid black'
-        }"
-         >
+      <div class="p-quantity" [ngClass]="{'flex-column' : isMobile()}">
+        <div class="update-cart">
           <button class="p-2 bg-white text-black rounded-full text-3xl button-1"
             (click)="decrementQuantity(product)"></button>
           <span>{{ product.quantity }}</span>
@@ -59,12 +35,12 @@
         </div>
         <button (click)="removeFromCart(c.products,product, c)"><i-feather name="trash"></i-feather></button>
       </div>
-      <div class="p.total">
+      <div class="p-total">
       Total: {{ product.price * product.quantity | currency}}
       </div>
-    </div>
-  </div>
-  <div
+    </section>
+  </section>
+  <section
   *ngIf="c.size > 0"
   class="flex-total">
     <h1 class="total-title">Subtotal</h1>
@@ -72,15 +48,15 @@
       {{ getTotalAmount(c.products) | currency:'USD' }}
     </p>
     <button id="checkout-btn" class="shop-button" (click)="onCheckout(c)">Checkout</button>
-  </div>
-</div>
+  </section>
+</section>
 
 <!-- If no items are in cart -->
 <ng-template #emptyCart>
-  <main class="empty-wrapper">
+  <section class="empty-wrapper">
     <h1 class="empty-heading">Your cart is empty</h1>
     <button (click)="scrollToTop()" class="shop-button" routerLink="/products">Continue Shopping</button>
-  </main>
+  </section>
 </ng-template>
 </main>
 <!-- If no items are in cart -->

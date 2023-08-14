@@ -1,127 +1,139 @@
-<div class="main-wrapper">
-<div class="wrapper">
-  <div class="info-section">
-    <div class="center-content">
-<h1 class="home-welcome">
-Discover the power of coffee
-</h1>
-<button class="shop-button" routerLink="/products">Shop Now</button>
-</div>
-</div>
-<div class="hero-section">
-  <div class="center-content-2">
-    <div class="item rotate-right item-small">
-      <div class="photo-info">
-        <h1 style="background-color:  #de61ff;">Light</h1>
-        <div class="word-blocks">
-<div class="word">start</div>
-<div class="word">your</div>
-<div class="word">day.</div>
+<main class="main-wrapper">
+  <section class="wrapper">
+    <!-- for bubbles -->
+    <section class="bubbles">
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+    </section>
+    <section class="info-section">
+      <div class="sticky-container">
+        <div class="center-content">
+          <h1 class="home-welcome">
+            Discover the power of coffee
+          </h1>
+          <button class="shop-button" (click)="scrollToTop()" routerLink="/products">Shop Now</button>
         </div>
-      <h3>Delicious!</h3>
       </div>
-    <div class="img-container-hero">
-      <img src="https://images.unsplash.com/photo-1524350876685-274059332603?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGNvZmZlZSUyMGJlYW5zfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60">
-    </div>
-    </div>
-    <div class="item rotate-left item-large">
-      <div class="photo-info">
-        <h1 style="background-color:  #fcd747;">Medium</h1>
-        <div class="word-blocks">
-<div class="word middle">taste</div>
-<div class="word middle">the</div>
-<div class="word middle">magic.</div>
+    </section>
+    <section class="card-section">
+      <article class="item">
+        <div class="photo-info">
+          <h1>Light</h1>
+          <div class="word-blocks">
+            <div class="word">start</div>
+            <div class="word">your</div>
+            <div class="word">day.</div>
+          </div>
+          <h3>Delicious!</h3>
         </div>
-      <h3 style="color: black;">Savory!</h3>
-      </div>
-    <div class="img-container-hero">
-      <img style="border-radius: 16px;"  src="https://images.unsplash.com/photo-1541167760496-1628856ab772?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Y29mZmVlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60">
-    </div>
-    </div>
-    <div class="item rotate-right item-last">
-      <div class="photo-info">
-        <h1 style="background-color: #de61ff;">Dark</h1>
-        <div class="word-blocks">
-<div class="word">brew</div>
-<div class="word">enjoy</div>
-<div class="word">repeat.</div>
+        <div class="img-container-hero">
+          <img src="assets\static\images\Sack of coffee beans.avif" alt="Sack of Coffe Beans" loading="lazy">
         </div>
-      <h3>Yummy!</h3>
-      </div>
-    <div class="img-container-hero">
-      <img id="unique-bg" src="https://images.unsplash.com/photo-1625021659159-f63f546d74a7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGNvZmZlZSUyMGJlYW5zfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60">
-    </div>
-    </div>
+      </article>
+      <article class="item item-large">
+        <div class="photo-info">
+          <h1>Medium</h1>
+          <div class="word-blocks">
+            <div class="word middle">taste</div>
+            <div class="word middle">the</div>
+            <div class="word middle">magic.</div>
+          </div>
+          <h3>Savory!</h3>
+        </div>
+        <div class="img-container-hero">
+          <img src="assets\static\images\pouring coffee.avif" alt="Pouring milk into coffee" loading="lazy">
+        </div>
+      </article>
+      <article class="item">
+        <div class="photo-info">
+          <h1>Dark</h1>
+          <div class="word-blocks">
+            <div class="word">brew</div>
+            <div class="word">enjoy</div>
+            <div class="word">repeat.</div>
+          </div>
+          <h3>Yummy!</h3>
+        </div>
+        <div class="img-container-hero">
+          <img src="assets\static\images\mike-kenneally-tNALoIZhqVM-unsplash.jpg" alt="Classic cup of Coffee"
+            loading="lazy">
+        </div>
+      </article>
+    </section>
+  </section>
+  <div class="spacer"></div>
+  <div class="statements">
+    <h1>Only the Highest Quality Ingredients</h1>
+    <p>...to ensure an exceptional and rich coffee experience.</p>
   </div>
-</div>
-</div>
-<div class="spacer"></div>
-<div class="statements">
-  <h1>Only the Highest Quality Ingredients</h1>
-  <p>...to ensure an exceptional and rich coffee experience.</p>
-</div>
-<div class="spacer"></div>
-<!--  product animation -->
-<div class="flex-animation" #flexContainer>
-  <div
-  *ngFor="let product of advertisedProducts"
-   class="flex-animation-product-container"
-   (click)="passProduct(product)"
-   >
-    <img class="flex-animation-product-img" [src]="product.image">
+  <div class="spacer"></div>
+  <!--  product animation -->
+  <section class="flex-animation" #flexContainer>
+    <div *ngFor="let product of advertisedProducts" class="flex-animation-product-container"
+      (click)="passProduct(product)">
+      <img class="flex-animation-product-img" [src]="product.image" [alt]="product.name" loading="lazy">
+    </div>
+  </section>
+  <!-- end product animation -->
+  <div class="product-button">
+    <button (click)="scrollToTop()" routerLink="/products">Shop Now</button>
   </div>
-</div>
-<!-- end product animation -->
-<div class="product-button">
-  <button (click)="scrollToTop()"  routerLink="/products">Shop Now</button>
-</div>
-<div class="spacer"></div>
-<div class="spacer"></div>
-<div class="statements two">
-  <h1>Where is our Coffee Made?</h1>
-  <p>Have a look behind the scenes!</p>
-</div>
-<!-- carousel -->
-<div id="color" class="cool-image-container">
-  <button class="carousel-btn"
-    (click)="rotateLeft()"
-  >
-    <i class="fa-solid fa-arrow-left fa-sm"></i>
-  </button>
-  <div *ngFor="let obj of featuredCarouselObjects; let i = index" class="carousel-img-container" [ngClass]="{
+  <div class="spacer"></div>
+  <section class="statements two">
+    <h1>Where is our Coffee Made?</h1>
+    <p>Have a look behind the scenes!</p>
+  </section>
+  <div class="spacer"></div>
+  <!-- carousel -->
+  <article id="color" class="cool-image-container">
+    <button class="carousel-btn" (click)="rotateLeft()">
+      <i class="fa-solid fa-arrow-left fa-sm"></i>
+    </button>
+    <div *ngFor="let obj of featuredCarouselObjects; let i = index" class="carousel-img-container" [ngClass]="{
     'middle-img': i === 1,
     'left-img': i === 0,
     'right-img' : i === 2
   }">
-    <img [id]="'carousel-image' + i" [src]="obj.image" [ngClass]="{'carousel-shadow': i == 1, 'side-shadow': i != 1}">
-    <h1 class="carousel-image-subtitle">{{obj.subtitle}}</h1>
-  </div>
-  <button class="carousel-btn"
-    (click)="rotateRight()"
-  >
-    <i class="fa-solid fa-arrow-right fa-sm"></i>
-  </button>
-</div>
-<!-- carousel -->
-<div class="spacer"></div>
-<div class="spacer"></div>
-<div class="home-ending">
-  <!-- wave html -->
-  <div class="custom-shape-divider-top-1690040930">
-    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
-    </svg>
-</div>
-<!-- end wave html -->
-<div class="home-ending-child">
-  <img class="home-ending-img" src="https://images.unsplash.com/photo-1576267423445-b2e0074d68a4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8aGFwcHklMjB0ZWFtfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60">
-</div>
-<div class="home-ending-last-child">
-  <h1 class="ending-header">We work as a team to provide quality service</h1>
-  <p class="ending-paragraph"> Our friendly coffee team is on a mission to deliver exceptional coffee experiences to our customers. From sourcing the finest beans to expertly roasting them, we take pride in serving high-quality coffee that tantalizes taste buds and supports sustainable practices.</p>
-  <p class="ending-paragraph">Join us for a warm and welcoming atmosphere where each sip invites you to savor the finest flavors and cherish moments with friends.</p>
-</div>
-</div>
-<div class="spacer"></div>
-</div>
-
+      <img [id]="'carousel-image' + i" [src]="obj.image" [ngClass]="{'carousel-shadow': i == 1, 'side-shadow': i != 1}"
+        [alt]="obj.subtitle" loading="lazy">
+      <h1 class="carousel-image-subtitle">{{obj.subtitle}}</h1>
+    </div>
+    <button class="carousel-btn" (click)="rotateRight()">
+      <i class="fa-solid fa-arrow-right fa-sm"></i>
+    </button>
+  </article>
+  <!-- carousel -->
+  <div class="spacer"></div>
+  <section class="home-ending">
+    <!-- wave html -->
+    <div class="custom-shape-divider-top-1690040930">
+      <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path
+          d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+          class="shape-fill"></path>
+      </svg>
+    </div>
+    <!-- end wave html -->
+    <div class="home-ending-child">
+      <img class="home-ending-img" src="assets\static\images\work together.avif" alt="Company Joyfully working together"
+        loading="lazy">
+    </div>
+    <div class="home-ending-last-child">
+      <h1 class="ending-header">We work as a team to provide quality service</h1>
+      <p class="ending-paragraph"> Our friendly coffee team is on a mission to deliver exceptional coffee experiences to
+        our customers. From sourcing the finest beans to expertly roasting them, we take pride in serving high-quality
+        coffee that tantalizes taste buds and supports sustainable practices.</p>
+      <p class="ending-paragraph">Join us for a warm and welcoming atmosphere where each sip invites you to savor the
+        finest flavors and cherish moments with friends.</p>
+    </div>
+  </section>
+  <div class="spacer"></div>
+</main>

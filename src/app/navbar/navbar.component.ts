@@ -9,24 +9,11 @@ import { ProductsService } from '../products/products.service';
 })
 export class NavbarComponent implements OnInit, OnDestroy {
   options: boolean = false;
-  transparent!: boolean;
   currentCart$ = this.productsService.cart$;
 
   constructor(
-    private location: Location,
     private productsService: ProductsService
-  ) {
-    location.onUrlChange((val) => {
-      console.log(val);
-      if (val !== '/home') {
-        this.transparent = false;
-      } else {
-        this.transparent = true;
-      }
-
-      console.log(this.transparent);
-    });
-  }
+  ) {}
 
   public showOptions(): void {
     const getShow = document.getElementById('burgerOptions') as HTMLElement;

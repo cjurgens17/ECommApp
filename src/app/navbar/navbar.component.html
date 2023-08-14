@@ -1,37 +1,34 @@
 <header>
+  <section>
 <div class="super-header text-white"> Free Shipping on all orders $50.00+ </div>
-    <nav id="nav" [ngClass]="{
-  'transparent-bg': transparent
-}">
-      <div class="logo">
+</section>
+    <nav id="nav">
+      <article class="logo">
         <div class="title">
           <h1>Coffee Brothers</h1>
         </div>
-        <div class="button-container">
-        <button class="cool-link" style="color: black;" routerLink="/home">Home</button>
-        <button class=" cool-link" style="color:black;" routerLink="/products">Shop</button>
-        <button class="cool-link" style="color:black;" routerLink="/viewproduct">Coffee Blends</button>
-        <button [ngStyle]="{'position' : 'relative'}" class=" icon cool-link" style="color: black;" routerLink="/viewcart">
-          <div *ngIf="currentCart$ | async as cart">
+        <section class="link-container">
+        <a class="cool-link" routerLink="/home">Home</a>
+        <a class="cool-link" routerLink="/products">Shop</a>
+        <a class="cool-link" routerLink="/viewproduct">Coffee Blends</a>
+        <a class="cool-link" routerLink="/viewcart">
+          <div *ngIf="currentCart$ | async as cart" class="cart-size-parent">
             <div *ngIf="cart.size > 0" class="cart-size">
               {{cart.size}}
             </div>
           </div>
-          <i-feather name="shopping-cart"class="cart" style="color: black;"></i-feather>
-        </button>
-      </div>
-      </div>
-      <div class="menu-bar" id="menubar"><button (click)="showOptions()"><i-feather name="menu"
-            class="imenu"
-            [ngClass]="{
-            'black-menu' : !transparent
-            }"></i-feather></button></div>
-      <div class="b-options" id="burgerOptions">
+          <i-feather name="shopping-cart"class="cart"></i-feather>
+        </a>
+      </section>
+    </article>
+      <div class="menu-bar" id="menubar"><a (click)="showOptions()">
+        <i-feather name="menu"class="imenu"></i-feather></a></div>
+      <section class="b-options" id="burgerOptions">
         <button (click)="backToBurger()"><i-feather name="x" class="X"></i-feather></button>
-        <button class="text-white cool-link" routerLink="/home">Home</button>
-        <button class="text-white cool-link" routerLink="/products">Shop</button>
-        <button class="text-white cool-link" routerLink="/viewproduct">Blends</button>
-        <button class="text-white cool-link" routerLink="/viewcart">Cart</button>
-      </div>
+        <a class="text-white cool-link" routerLink="/home">Home</a>
+        <a class="text-white cool-link" routerLink="/products">Shop</a>
+        <a class="text-white cool-link" routerLink="/viewproduct">Blends</a>
+        <a class="text-white cool-link" routerLink="/viewcart">Cart</a>
+      </section>
     </nav>
   </header>

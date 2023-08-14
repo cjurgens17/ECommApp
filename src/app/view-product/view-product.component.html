@@ -1,4 +1,4 @@
-<div class="wrapper" *ngIf="product$ |async as product">
+<main class="wrapper" *ngIf="product$ |async as product">
   <div
     *ngIf="product.name.length > 0 ; else noProduct"
    class="sub-header">Product<span class="featured-product">{{product.name | titlecase}}</span></div>
@@ -6,23 +6,21 @@
     <div class="no-product">No items are currently loaded. Choose an item to display</div>
   </ng-template>
   <div class="spacer"></div>
-  <div class="product-grid">
+  <section class="product-grid">
     <aside *ngIf="product.image.length > 0; else noProductBox">
       <div class="aside-img-container"  [ngStyle]="{'background-image' : 'url(' + product.image + ')'}"><button (click)="updateImage(true)"></button></div>
       <div class="aside-img-container" [ngStyle]="{'background-image' : 'url(' + product.altImage + ')'}">  <button (click)="updateImage(false)"></button></div>
     </aside>
     <ng-template #noProductBox>
     </ng-template>
-    <figure *ngIf="product.image.length > 0; else noImage">
+    <figure *ngIf="product.image.length > 0">
       <div class="figure-img-container" [ngSwitch]="showPicture">
-        <img class="fig-img" *ngSwitchCase='true' [src]="product.image">
-        <img class="fig-img" *ngSwitchCase="false" [src]="product.altImage">
-        <img class="fig-img" *ngSwitchDefault [src]="product.image">
+        <img class="fig-img" *ngSwitchCase='true' [src]="product.image" [alt]="product.name" loading="lazy">
+        <img class="fig-img" *ngSwitchCase="false" [src]="product.altImage" [alt]="product.name" loading="lazy">
+        <img class="fig-img" *ngSwitchDefault [src]="product.image" [alt]="product.name" loading="lazy">
       </div>
     </figure>
-    <ng-template #noImage>
-    </ng-template>
-    <main>
+    <section id="product-view">
       <h1 class="main-name">{{product.name}}</h1>
       <p class="price">{{product.price | currency}}</p>
       <p class="product-description">Welcome to our coffee world, where every sip tells a story. Experience the charm of our {{product.name || 'Coffee'}} blend crafted for true coffee lovers. Our expertly selected beans and perfected roasting process deliver the essence of perfection. Immerse yourself in the soulful aroma, indulge in the smoothness of our {{product.name || 'Coffee'}}, handcrafted just for you. Join us on this delightful journey and embrace our coffee culture.</p>
@@ -38,11 +36,11 @@
         </div>
         Add To Cart
       </button>
-    </main>
-  </div>
+    </section>
+  </section>
   <div class="spacer"></div>
   <div class="also-like">You Might Also Like</div>
-  <div class="products-grid">
+  <section class="products-grid">
     <div
     class="card" (click)="viewProduct(product)"
     *ngFor="let product of products; let i = index"
@@ -61,10 +59,10 @@
         </div>
       </button>
     </div>
-  </div>
-  <div class="fixed-element" id="fixedElement">
+  </section>
+  <figure class="fixed-element" id="fixedElement">
     <span class="close-btn" (click)="hideFixedElement()">x</span>
     Save 15% off with code 'coffee'
-  </div>
-</div>
+  </figure>
+</main>
 
