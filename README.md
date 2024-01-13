@@ -2,7 +2,7 @@
 
 This is a Coffee Ecommerce Application built with a combination of Angular 14, Node.js, Express.js, and various other technologies. The application allows coffee enthusiasts to explore and purchase various coffee products. It provides a user-friendly interface, intuitive navigation, and a seamless shopping experience for coffee lovers. The UI was built from the ground up using vanilla css.
 
-Visit the [Live Demo](https://coffeebrothers-7ec5c7fdf171.herokuapp.com/) to see the application in action.
+Visit the [Live Demo](https://ecommerce-app-three-tau.vercel.app/home) to see the application in action.
 
 ## Table of Contents
 
