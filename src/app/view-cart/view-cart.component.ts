@@ -63,7 +63,7 @@ export class ViewCartComponent implements OnInit, OnDestroy {
 
     const jsonCart = JSON.stringify(cart);
 
-    const res = await fetch(`${environment.baseUrl}create-checkout-session`, {
+    const res = await fetch(`${environment.baseUrl}/create-checkout-session`, {
       method: 'POST',
       body: jsonCart,
       headers: {
