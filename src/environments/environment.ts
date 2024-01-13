@@ -2,10 +2,10 @@ export const environment = {
 
   production: false,
   withCredentials: true,
-  baseUrl: "https://coffeeborthersserver-e1e5486fddfc.herokuapp.com/",
+  baseUrl: "https://ecomm-app-server.vercel.app/home",
   headers: {
     'content-type' : 'application/json',
-    'Access-Control-Allow-Origin': 'https://coffeebrothers-7ec5c7fdf171.herokuapp.com/'
+    'Access-Control-Allow-Origin': 'https://ecommerce-app-three-tau.vercel.app/home'
   }
 };
 
